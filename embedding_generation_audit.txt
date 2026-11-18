@@ -1,0 +1,223 @@
+﻿
+  evaluation\embedding_model_comparison\run_benchmark.py:20:)
+  evaluation\embedding_model_comparison\run_benchmark.py:21:
+> evaluation\embedding_model_comparison\run_benchmark.py:22:EXPERIMENT_ROOT = (
+  evaluation\embedding_model_comparison\run_benchmark.py:23:    ROOT
+  evaluation\embedding_model_comparison\run_benchmark.py:24:    / "data"
+  evaluation\embedding_model_comparison\run_benchmark.py:25:    / "embedding_experiments"
+  evaluation\embedding_model_comparison\run_benchmark.py:201:    )
+  evaluation\embedding_model_comparison\run_benchmark.py:202:
+> evaluation\embedding_model_comparison\run_benchmark.py:203:    model = SentenceTransformer(
+  evaluation\embedding_model_comparison\run_benchmark.py:204:        model_config["model_name"]
+  evaluation\embedding_model_comparison\run_benchmark.py:205:    )
+  evaluation\embedding_model_comparison\run_benchmark.py:206:
+  evaluation\embedding_model_comparison\run_benchmark.py:215:    started = time.perf_counter()
+  evaluation\embedding_model_comparison\run_benchmark.py:216:
+> evaluation\embedding_model_comparison\run_benchmark.py:217:    embeddings = model.encode(
+  evaluation\embedding_model_comparison\run_benchmark.py:218:        texts,
+> evaluation\embedding_model_comparison\run_benchmark.py:219:        normalize_embeddings=True,
+  evaluation\embedding_model_comparison\run_benchmark.py:220:        show_progress_bar=True,
+  evaluation\embedding_model_comparison\run_benchmark.py:221:    )
+  evaluation\embedding_model_comparison\run_benchmark.py:222:
+  evaluation\embedding_model_comparison\run_benchmark.py:232:
+  evaluation\embedding_model_comparison\run_benchmark.py:233:    model_directory = (
+> evaluation\embedding_model_comparison\run_benchmark.py:234:        EXPERIMENT_ROOT
+  evaluation\embedding_model_comparison\run_benchmark.py:235:        / model_name
+  evaluation\embedding_model_comparison\run_benchmark.py:236:    )
+  evaluation\embedding_model_comparison\run_benchmark.py:237:
+  evaluation\embedding_model_comparison\run_benchmark.py:242:
+  evaluation\embedding_model_comparison\run_benchmark.py:243:    np.save(
+> evaluation\embedding_model_comparison\run_benchmark.py:244:        model_directory / "vectors.npy",
+  evaluation\embedding_model_comparison\run_benchmark.py:245:        embeddings,
+  evaluation\embedding_model_comparison\run_benchmark.py:246:    )
+  evaluation\embedding_model_comparison\run_benchmark.py:247:
+  evaluation\embedding_model_comparison\run_benchmark.py:309:    started = time.perf_counter()
+  evaluation\embedding_model_comparison\run_benchmark.py:310:
+> evaluation\embedding_model_comparison\run_benchmark.py:311:    query_vector = model.encode(
+  evaluation\embedding_model_comparison\run_benchmark.py:312:        model_query,
+> evaluation\embedding_model_comparison\run_benchmark.py:313:        normalize_embeddings=True,
+  evaluation\embedding_model_comparison\run_benchmark.py:314:    )
+  evaluation\embedding_model_comparison\run_benchmark.py:315:
+  evaluation\embedding_model_comparison\run_benchmark.py:316:    query_vector = np.asarray(
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:32:CORPUS_FILE = ROOT / "data" / "vector_index_candidate" / "chunks.json"
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:33:DB_FILE = ROOT / "data" / "Northwind_db" / "nordwind.db"
+> evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:34:EXPERIMENT_ROOT = (
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:35:    ROOT / "data" / "embedding_experiments" / "single_query_comparison_8d_candidate"
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:36:)
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:37:OUT_DIR = ROOT / "evaluation" / "embedding_model_comparison" / "silver_label_evaluation_candidate"
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:835:
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:836:def load_candidate_vectors(model_key: str, corpus: list[dict[str, Any]]) -> np.ndarray:
+> evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:837:    model_dir = EXPERIMENT_ROOT / model_key
+> evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:838:    vector_file = model_dir / "vectors.npy"
+> evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:839:    manifest_file = model_dir / "index_manifest.json"
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:840:    if not vector_file.exists() or not manifest_file.exists():
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:841:        raise FileNotFoundError(
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:842:            f"Existing candidate vectors/manifest missing for {model_key}; refusing to rebuild/download. "
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:865:        vectors = load_candidate_vectors(model_key, chunks)
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:866:        # local_files_only=True guarantees no model download is attempted.
+> evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:867:        model = SentenceTransformer(config["model_name"], local_files_only=True)
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:868:        case_results = []
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:869:        for case in cases:
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:870:            q = config["query_prefix"] + case["query"]
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:871:            qvec = np.asarray(
+> evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:872:                model.encode(q, normalize_embeddings=True, convert_to_numpy=True, show_progress_bar=False),
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:873:                dtype=np.float32,
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:874:            ).reshape(-1)
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:875:            if qvec.shape[0] != vectors.shape[1]:
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:914:            "method": model_key,
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:915:            "status": "success",
+> evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:916:            "index_path": str((EXPERIMENT_ROOT / model_key).relative_to(ROOT)),
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:917:            "query_count": len(case_results),
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:918:            "case_results": case_results,
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:919:            "macro_average": {
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:15:ROOT = Path(__file__).resolve().parents[2]
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:16:CORPUS_FILE = ROOT / "data" / "vector_index" / "chunks.json"
+> evaluation\embedding_model_comparison\run_single_query_comparison.py:17:EXPERIMENT_ROOT = ROOT / "data" / "embedding_experiments" / "single_query_comparison"
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:18:REPORT_FILE = ROOT / "evaluation" / "embedding_model_comparison" / "single_query_comparison.json"
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:19:
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:20:QUERY = (
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:160:def save_candidate_index(model_key: str, vectors: np.ndarray, corpus: list[dict[str, Any]]) -> Path:
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:161:    # Candidate artifacts go under a separate directory, never data/vector_index.
+> evaluation\embedding_model_comparison\run_single_query_comparison.py:162:    model_dir = EXPERIMENT_ROOT / model_key
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:163:    model_dir.mkdir(parents=True, exist_ok=True)
+> evaluation\embedding_model_comparison\run_single_query_comparison.py:164:    np.save(model_dir / "vectors.npy", vectors)
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:165:    manifest = {
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:166:        "model_key": model_key,
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:167:        "corpus_file": str(CORPUS_FILE.relative_to(ROOT)),
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:183:        ],
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:184:    }
+> evaluation\embedding_model_comparison\run_single_query_comparison.py:185:    with (model_dir / "index_manifest.json").open("w", encoding="utf-8") as handle:
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:186:        json.dump(manifest, handle, indent=2, ensure_ascii=False)
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:187:    return model_dir
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:188:
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:191:    try:
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:192:        model_load_started = time.perf_counter()
+> evaluation\embedding_model_comparison\run_single_query_comparison.py:193:        model = SentenceTransformer(config["model_name"])
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:194:        model_load_seconds = time.perf_counter() - model_load_started
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:195:
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:196:        passages = [config["passage_prefix"] + embedding_text(chunk) for chunk in corpus]
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:197:        index_started = time.perf_counter()
+> evaluation\embedding_model_comparison\run_single_query_comparison.py:198:        vectors = model.encode(
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:199:            passages,
+> evaluation\embedding_model_comparison\run_single_query_comparison.py:200:            normalize_embeddings=True,
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:201:            convert_to_numpy=True,
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:202:            show_progress_bar=True,
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:203:            batch_size=32,
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:208:
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:209:        query_started = time.perf_counter()
+> evaluation\embedding_model_comparison\run_single_query_comparison.py:210:        query_vector = model.encode(
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:211:            config["query_prefix"] + QUERY,
+> evaluation\embedding_model_comparison\run_single_query_comparison.py:212:            normalize_embeddings=True,
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:213:            convert_to_numpy=True,
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:214:            show_progress_bar=False,
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:215:        )
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:276:            "score_warning": "Scores are method-specific and are not calibrated to a common scale. Compare returned evidence, not raw scores across methods.",
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:277:            "production_index_modified": False,
+> evaluation\embedding_model_comparison\run_single_query_comparison.py:278:            "candidate_indexes_path": str(EXPERIMENT_ROOT.relative_to(ROOT)),
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:279:            "evidence_review_required": "Inspect result text and provenance to assess whether a result contains useful root-cause findings or corrective 
+actions; rank alone does not establish relevance.",
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:280:        },
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:281:        "total_runtime_seconds": round(time.perf_counter() - overall_started, 6),
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:296:        )
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:297:    print(f"\nJSON report: {REPORT_FILE}")
+> evaluation\embedding_model_comparison\run_single_query_comparison.py:298:    print(f"Candidate indexes: {EXPERIMENT_ROOT}")
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:299:    print("Production index modified: NO")
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:300:
+  evaluation\embedding_model_comparison\run_single_query_comparison.py:301:
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:15:ROOT = Path(__file__).resolve().parents[2]
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:16:CORPUS_FILE = ROOT / "data" / "vector_index_candidate" / "chunks.json"
+> evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:17:EXPERIMENT_ROOT = ROOT / "data" / "embedding_experiments" / "single_query_comparison_8d_candidate"
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:18:REPORT_FILE = ROOT / "evaluation" / "embedding_model_comparison" / "single_query_comparison_8d_candidate.json"
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:19:
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:20:QUERY = (
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:160:def save_candidate_index(model_key: str, vectors: np.ndarray, corpus: list[dict[str, Any]]) -> Path:
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:161:    # Candidate artifacts go under a separate directory, never data/vector_index.
+> evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:162:    model_dir = EXPERIMENT_ROOT / model_key
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:163:    model_dir.mkdir(parents=True, exist_ok=True)
+> evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:164:    np.save(model_dir / "vectors.npy", vectors)
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:165:    manifest = {
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:166:        "model_key": model_key,
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:167:        "corpus_file": str(CORPUS_FILE.relative_to(ROOT)),
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:183:        ],
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:184:    }
+> evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:185:    with (model_dir / "index_manifest.json").open("w", encoding="utf-8") as handle:
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:186:        json.dump(manifest, handle, indent=2, ensure_ascii=False)
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:187:    return model_dir
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:188:
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:191:    try:
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:192:        model_load_started = time.perf_counter()
+> evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:193:        model = SentenceTransformer(config["model_name"])
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:194:        model_load_seconds = time.perf_counter() - model_load_started
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:195:
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:196:        passages = [config["passage_prefix"] + embedding_text(chunk) for chunk in corpus]
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:197:        index_started = time.perf_counter()
+> evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:198:        vectors = model.encode(
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:199:            passages,
+> evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:200:            normalize_embeddings=True,
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:201:            convert_to_numpy=True,
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:202:            show_progress_bar=True,
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:203:            batch_size=32,
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:208:
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:209:        query_started = time.perf_counter()
+> evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:210:        query_vector = model.encode(
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:211:            config["query_prefix"] + QUERY,
+> evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:212:            normalize_embeddings=True,
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:213:            convert_to_numpy=True,
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:214:            show_progress_bar=False,
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:215:        )
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:276:            "score_warning": "Scores are method-specific and are not calibrated to a common scale. Compare returned evidence, not raw scores across 
+methods.",
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:277:            "production_index_modified": False,
+> evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:278:            "candidate_indexes_path": str(EXPERIMENT_ROOT.relative_to(ROOT)),
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:279:            "evidence_review_required": "Inspect result text and provenance to assess whether a result contains useful root-cause findings or 
+corrective actions; rank alone does not establish relevance.",
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:280:        },
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:281:        "total_runtime_seconds": round(time.perf_counter() - overall_started, 6),
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:296:        )
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:297:    print(f"\nJSON report: {REPORT_FILE}")
+> evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:298:    print(f"Candidate indexes: {EXPERIMENT_ROOT}")
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:299:    print("Production index modified: NO")
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:300:
+  evaluation\embedding_model_comparison\run_single_query_comparison_candidate.py:301:
+  app\retrieval\ingestion.py:33:        self.model_name = model_name
+  app\retrieval\ingestion.py:34:
+> app\retrieval\ingestion.py:35:        self.model = SentenceTransformer(
+  app\retrieval\ingestion.py:36:            model_name
+  app\retrieval\ingestion.py:37:        )
+  app\retrieval\ingestion.py:38:
+  app\retrieval\ingestion.py:64:        ]
+  app\retrieval\ingestion.py:65:
+> app\retrieval\ingestion.py:66:        embeddings = self.model.encode(
+  app\retrieval\ingestion.py:67:            texts,
+> app\retrieval\ingestion.py:68:            normalize_embeddings=False,
+  app\retrieval\ingestion.py:69:            show_progress_bar=True,
+  app\retrieval\ingestion.py:70:        )
+  app\retrieval\ingestion.py:71:
+  app\retrieval\vector.py:50:        self.model_name = model_name
+  app\retrieval\vector.py:51:
+> app\retrieval\vector.py:52:        self.model = SentenceTransformer(
+  app\retrieval\vector.py:53:            model_name
+  app\retrieval\vector.py:54:        )
+  app\retrieval\vector.py:55:
+  app\retrieval\vector.py:73:            return []
+  app\retrieval\vector.py:74:
+> app\retrieval\vector.py:75:        query_vector = self.model.encode(
+  app\retrieval\vector.py:76:            query,
+> app\retrieval\vector.py:77:            normalize_embeddings=False,
+  app\retrieval\vector.py:78:        )
+  app\retrieval\vector.py:79:
+  app\retrieval\vector.py:80:        matches = self.store.search(
+  app\retrieval\vector_store.py:15:    Storage:
+  app\retrieval\vector_store.py:16:
+> app\retrieval\vector_store.py:17:        vectors.npy
+  app\retrieval\vector_store.py:18:        chunks.json
+  app\retrieval\vector_store.py:19:
+  app\retrieval\vector_store.py:20:    Chunk IDs are treated as stable keys.
+  app\retrieval\vector_store.py:37:
+  app\retrieval\vector_store.py:38:        self.vectors_path = (
+> app\retrieval\vector_store.py:39:            self.directory / "vectors.npy"
+  app\retrieval\vector_store.py:40:        )
+  app\retrieval\vector_store.py:41:
+  app\retrieval\vector_store.py:42:        self.chunks_path = (
+
+

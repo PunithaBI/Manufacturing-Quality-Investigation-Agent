@@ -1,0 +1,303 @@
+[
+  {
+    "case_id": "MQI-V2-001",
+    "name": "Valid NCR investigation",
+    "ncr_number": "NCR-20260001",
+    "expected": {
+      "workflow_started": true,
+      "ncr_required": true,
+      "hitl_required": true
+    }
+  },
+  {
+    "case_id": "MQI-V2-002",
+    "name": "Second valid NCR",
+    "ncr_number": "NCR-20260002",
+    "expected": {
+      "workflow_started": true,
+      "ncr_required": true,
+      "hitl_required": true
+    }
+  },
+  {
+    "case_id": "MQI-V2-003",
+    "name": "Third valid NCR",
+    "ncr_number": "NCR-20260003",
+    "expected": {
+      "workflow_started": true,
+      "ncr_required": true,
+      "hitl_required": true
+    }
+  },
+  {
+    "case_id": "MQI-V2-004",
+    "name": "Fourth valid NCR",
+    "ncr_number": "NCR-20260004",
+    "expected": {
+      "workflow_started": true,
+      "ncr_required": true,
+      "hitl_required": true
+    }
+  },
+  {
+    "case_id": "MQI-V2-005",
+    "name": "Fifth valid NCR",
+    "ncr_number": "NCR-20260005",
+    "expected": {
+      "workflow_started": true,
+      "ncr_required": true,
+      "hitl_required": true
+    }
+  },
+  {
+    "case_id": "MQI-V2-006",
+    "name": "Missing NCR",
+    "ncr_number": "NCR-999999",
+    "expected": {
+      "workflow_started": true,
+      "ncr_required": true,
+      "expected_final_state": "BLOCKED"
+    }
+  },
+  {
+    "case_id": "MQI-V2-007",
+    "name": "Empty NCR",
+    "ncr_number": "",
+    "expected": {
+      "workflow_started": true,
+      "expected_final_state": "FAILED"
+    }
+  },
+  {
+    "case_id": "MQI-V2-008",
+    "name": "Whitespace NCR",
+    "ncr_number": "   ",
+    "expected": {
+      "workflow_started": true,
+      "expected_final_state": "FAILED"
+    }
+  },
+  {
+    "case_id": "MQI-V2-009",
+    "name": "Nonexistent NCR",
+    "ncr_number": "NCR-NOT-FOUND",
+    "expected": {
+      "workflow_started": true,
+      "ncr_required": true,
+      "expected_final_state": "BLOCKED"
+    }
+  },
+  {
+    "case_id": "MQI-V2-010",
+    "name": "Malformed NCR identifier",
+    "ncr_number": "INVALID NCR VALUE",
+    "expected": {
+      "workflow_started": true,
+      "ncr_required": true,
+      "expected_final_state": "BLOCKED"
+    }
+  },
+  {
+    "case_id": "MQI-V2-011",
+    "name": "Valid NCR with investigation ID",
+    "ncr_number": "NCR-20260001",
+    "investigation_id": "V2-INV-011",
+    "expected": {
+      "workflow_started": true,
+      "ncr_required": true,
+      "hitl_required": true
+    }
+  },
+  {
+    "case_id": "MQI-V2-012",
+    "name": "Valid NCR with low retrieval limit",
+    "ncr_number": "NCR-20260001",
+    "max_results": 5,
+    "expected": {
+      "workflow_started": true,
+      "ncr_required": true,
+      "hitl_required": true
+    }
+  },
+  {
+    "case_id": "MQI-V2-013",
+    "name": "Valid NCR with standard retrieval limit",
+    "ncr_number": "NCR-20260002",
+    "max_results": 20,
+    "expected": {
+      "workflow_started": true,
+      "ncr_required": true,
+      "hitl_required": true
+    }
+  },
+  {
+    "case_id": "MQI-V2-014",
+    "name": "Historical evidence investigation",
+    "ncr_number": "NCR-20260003",
+    "expected": {
+      "workflow_started": true,
+      "ncr_required": true,
+      "hitl_required": true
+    }
+  },
+  {
+    "case_id": "MQI-V2-015",
+    "name": "8D evidence investigation",
+    "ncr_number": "NCR-20260004",
+    "expected": {
+      "workflow_started": true,
+      "ncr_required": true,
+      "hitl_required": true
+    }
+  },
+  {
+    "case_id": "MQI-V2-016",
+    "name": "Inspection evidence investigation",
+    "ncr_number": "NCR-20260005",
+    "expected": {
+      "workflow_started": true,
+      "ncr_required": true,
+      "hitl_required": true
+    }
+  },
+  {
+    "case_id": "MQI-V2-017",
+    "name": "Process evidence investigation",
+    "ncr_number": "NCR-20260001",
+    "expected": {
+      "workflow_started": true,
+      "ncr_required": true,
+      "hitl_required": true
+    }
+  },
+  {
+    "case_id": "MQI-V2-018",
+    "name": "Traceability investigation",
+    "ncr_number": "NCR-20260002",
+    "expected": {
+      "workflow_started": true,
+      "ncr_required": true,
+      "hitl_required": true
+    }
+  },
+  {
+    "case_id": "MQI-V2-019",
+    "name": "Graph retrieval investigation",
+    "ncr_number": "NCR-20260003",
+    "expected": {
+      "workflow_started": true,
+      "ncr_required": true,
+      "hitl_required": true
+    }
+  },
+  {
+    "case_id": "MQI-V2-020",
+    "name": "Vector retrieval investigation",
+    "ncr_number": "NCR-20260004",
+    "expected": {
+      "workflow_started": true,
+      "ncr_required": true,
+      "hitl_required": true
+    }
+  },
+  {
+    "case_id": "MQI-V2-021",
+    "name": "Hybrid retrieval investigation",
+    "ncr_number": "NCR-20260005",
+    "expected": {
+      "workflow_started": true,
+      "ncr_required": true,
+      "hitl_required": true
+    }
+  },
+  {
+    "case_id": "MQI-V2-022",
+    "name": "Evidence gap handling",
+    "ncr_number": "NCR-20260001",
+    "expected": {
+      "workflow_started": true,
+      "ncr_required": true,
+      "hitl_required": true
+    }
+  },
+  {
+    "case_id": "MQI-V2-023",
+    "name": "RCA evidence handling",
+    "ncr_number": "NCR-20260002",
+    "expected": {
+      "workflow_started": true,
+      "ncr_required": true,
+      "hitl_required": true
+    }
+  },
+  {
+    "case_id": "MQI-V2-024",
+    "name": "CAPA evidence handling",
+    "ncr_number": "NCR-20260003",
+    "expected": {
+      "workflow_started": true,
+      "ncr_required": true,
+      "hitl_required": true
+    }
+  },
+  {
+    "case_id": "MQI-V2-025",
+    "name": "Reviewer gate",
+    "ncr_number": "NCR-20260004",
+    "expected": {
+      "workflow_started": true,
+      "ncr_required": true,
+      "hitl_required": true
+    }
+  },
+  {
+    "case_id": "MQI-V2-026",
+    "name": "HITL required",
+    "ncr_number": "NCR-20260005",
+    "expected": {
+      "workflow_started": true,
+      "ncr_required": true,
+      "hitl_required": true
+    }
+  },
+  {
+    "case_id": "MQI-V2-027",
+    "name": "Repeat investigation",
+    "ncr_number": "NCR-20260001",
+    "investigation_id": "V2-INV-027",
+    "expected": {
+      "workflow_started": true,
+      "ncr_required": true,
+      "hitl_required": true
+    }
+  },
+  {
+    "case_id": "MQI-V2-028",
+    "name": "Controlled evidence retrieval",
+    "ncr_number": "NCR-20260002",
+    "expected": {
+      "workflow_started": true,
+      "ncr_required": true,
+      "hitl_required": true
+    }
+  },
+  {
+    "case_id": "MQI-V2-029",
+    "name": "Fail-closed missing evidence",
+    "ncr_number": "NCR-999999",
+    "expected": {
+      "workflow_started": true,
+      "expected_final_state": "BLOCKED"
+    }
+  },
+  {
+    "case_id": "MQI-V2-030",
+    "name": "End-to-end investigation",
+    "ncr_number": "NCR-20260005",
+    "expected": {
+      "workflow_started": true,
+      "ncr_required": true,
+      "hitl_required": true
+    }
+  }
+]

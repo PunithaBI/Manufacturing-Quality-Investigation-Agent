@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NCR-20260001 · Quality decision workspace</title>
+<style>
+:root{color-scheme:light dark;--bg:light-dark(#f3f6f6,#0f1618);--sf:light-dark(#fff,#172023);--sf2:light-dark(#f6f9f9,#1f2a2d);--tx:light-dark(#132326,#eaf2f2);--mu:light-dark(#5d6f72,#a3b4b6);--ln:light-dark(#d9e2e3,#323f42);--teal:light-dark(#004753,#5fb3c2);--tealbg:light-dark(#e6f0f1,#1c3238);--org:#f25b24;--orgbg:light-dark(#fff0e8,#3a241b);--grn:light-dark(#2a7550,#6fc79a);--grnbg:light-dark(#e5f3eb,#1b3126);--amb:light-dark(#9a5a10,#e6b85c);--ambbg:light-dark(#fff4dd,#3a2f17);--red:light-dark(#b84b42,#ef8a82)}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",Inter,system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--tx);line-height:1.45;font-variant-numeric:tabular-nums}
+button,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--org);outline-offset:2px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 28px;background:var(--sf);border-bottom:1px solid var(--ln);flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}
+.mark{width:34px;height:34px;border-radius:9px;background:#004753;color:#fff;display:grid;place-items:center;font-weight:800;font-size:13px}
+.brand b{display:block;font-size:15px}.brand small{color:var(--mu);font-size:12px}
+.seg{display:inline-flex;border:1px solid var(--ln);border-radius:10px;overflow:hidden;background:var(--sf2)}
+.seg button{border:0;background:none;padding:8px 16px;cursor:pointer;font-size:13px;font-weight:600;color:var(--mu)}
+.seg button[aria-pressed=true]{background:#004753;color:#fff}
+.who{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--mu)}
+.av{width:32px;height:32px;border-radius:50%;background:#51626f;color:#fff;display:grid;place-items:center;font-weight:700;font-size:12px}
+main{max-width:1440px;margin:0 auto;padding:22px 28px 60px}
+.crumb{font-size:12px;color:var(--mu)}
+h1{font-size:25px;letter-spacing:-.02em;margin:6px 0 4px}
+.sub{color:var(--mu);margin:0 0 16px;font-size:14px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:20px;align-items:start}
+.col{display:flex;flex-direction:column;gap:16px;min-width:0}
+.card{background:var(--sf);border:1px solid var(--ln);border-radius:12px;padding:18px}
+.card h2{font-size:15px;margin:0 0 4px}.hint{font-size:12px;color:var(--mu);margin:0 0 12px}
+/* hero */
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:24px;border-left:5px solid var(--org)}
+.hero h2{font-size:19px;line-height:1.3;margin-bottom:8px}
+.hero p{margin:0 0 10px;font-size:13.5px;color:var(--mu)}
+.chips{display:flex;gap:7px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700}
+.chip i{width:7px;height:7px;border-radius:50%;background:currentColor}
+.c-amb{background:var(--ambbg);color:var(--amb)}.c-grn{background:var(--grnbg);color:var(--grn)}.c-red{background:var(--orgbg);color:var(--red)}.c-mu{background:var(--sf2);color:var(--mu);border:1px solid var(--ln)}
+.gauge{align-self:center}
+.gauge .big{font-size:38px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.gauge .big small{font-size:15px;font-weight:600;color:var(--mu);margin-left:4px}
+.scale{position:relative;height:44px;margin:16px 0 4px}
+.scale .ok{position:absolute;left:0;top:18px;height:10px;width:62%;background:var(--grnbg);border:1px solid var(--grn);border-radius:6px 0 0 6px}
+.scale .bad{position:absolute;left:62%;top:18px;height:10px;width:38%;background:var(--orgbg);border:1px solid var(--org);border-radius:0 6px 6px 0}
+.scale .lim{position:absolute;left:62%;top:8px;height:30px;width:2px;background:var(--tx)}
+.scale .val{position:absolute;left:84%;top:10px;width:14px;height:26px;margin-left:-7px;background:var(--org);border-radius:4px;border:2px solid var(--sf)}
+.scale span{position:absolute;font-size:11px;color:var(--mu);white-space:nowrap}
+.tag{font-size:11px;color:var(--mu)}
+/* summary */
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.box{border:1px solid var(--ln);border-radius:10px;padding:13px;background:var(--sf2)}
+.box h3{margin:0 0 7px;font-size:13px}
+.box ul{margin:0;padding-left:17px;font-size:12.5px;color:var(--mu)}.box li{margin-bottom:5px}
+.box.k{border-top:3px solid var(--grn)}.box.u{border-top:3px solid var(--org)}.box.r{border-top:3px solid #004753}
+/* scorecard */
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;font-size:12px;color:var(--mu);font-weight:600;padding:0 8px 8px 0;border-bottom:1px solid var(--ln)}
+td{padding:10px 8px 10px 0;border-bottom:1px solid var(--ln);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td b{display:block}td span{color:var(--mu);font-size:12px}
+.st{display:inline-block;padding:3px 9px;border-radius:6px;font-size:12px;font-weight:700;white-space:nowrap}
+.st.k{background:var(--grnbg);color:var(--grn)}.st.p{background:var(--ambbg);color:var(--amb)}.st.u{background:var(--orgbg);color:var(--red)}
+.who-t{font-size:11px;color:var(--mu);white-space:nowrap}
+/* options */
+.opts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.opt{border:1px solid var(--ln);border-radius:10px;padding:14px;background:var(--sf2);cursor:pointer;text-align:left;width:100%}
+.opt[aria-pressed=true]{border-color:#004753;box-shadow:0 0 0 2px var(--teal);background:var(--tealbg)}
+.opt h3{margin:0 0 4px;font-size:14px;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.opt p{margin:0 0 10px;font-size:12.5px;color:var(--mu)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:3px 12px;font-size:12px}.kv dt{color:var(--mu)}.kv dd{margin:0;font-weight:600}
+/* hypotheses */
+.hyp{border:1px solid var(--ln);border-radius:10px;padding:13px;margin-bottom:10px}
+.hyp:last-child{margin-bottom:0}
+.hh{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px}
+.hh b{font-size:13.5px}
+.meter{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--mu);white-space:nowrap}
+.meter i{display:block;width:70px;height:6px;border-radius:5px;background:var(--ln);overflow:hidden}.meter i s{display:block;height:100%;background:var(--org)}
+.fa{display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:12.5px;color:var(--mu)}
+.fa b{display:block;font-size:12px;color:var(--tx);margin-bottom:3px}
+.fa ul{margin:0;padding-left:16px}
+/* gaps */
+.gap{display:grid;grid-template-columns:1fr auto;gap:4px 14px;align-items:center;padding:11px 0;border-bottom:1px solid var(--ln)}
+.gap:last-child{border-bottom:0}
+.gap b{font-size:13px}.gap span{font-size:12px;color:var(--mu);grid-column:1}
+.gap .b2{grid-row:1/3;grid-column:2}
+.btn{border:1px solid var(--ln);background:var(--sf);border-radius:8px;padding:8px 13px;font-weight:600;font-size:13px;cursor:pointer}
+.btn:hover{border-color:var(--teal)}
+.btn.pri{background:#004753;border-color:#004753;color:#fff}.btn.pri:hover{background:#00606f}
+.btn[disabled]{opacity:.6;cursor:default}
+/* evidence */
+details{border-bottom:1px solid var(--ln);padding:10px 0}details:last-child{border-bottom:0}
+summary{cursor:pointer;display:flex;justify-content:space-between;gap:10px;font-size:13px;font-weight:600;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary:before{content:"▸";color:var(--mu);margin-right:8px;transition:transform .15s}
+details[open] summary:before{transform:rotate(90deg)}
+summary em{font-style:normal;flex:1}.ev-s{font-size:12px;color:var(--mu);font-weight:500}
+details p{margin:8px 0 0 20px;font-size:12.5px;color:var(--mu)}
+.flow{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 10px;font-size:12px}
+.flow span{background:var(--sf2);border:1px solid var(--ln);border-radius:7px;padding:5px 9px}
+/* panel */
+.panel{position:static}
+.acts{display:flex;flex-direction:column;gap:7px;margin:10px 0}
+.act{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--ln);border-radius:9px;padding:10px;cursor:pointer;background:var(--sf2)}
+.act:has(input:checked){border-color:#004753;background:var(--tealbg)}
+.act input{margin-top:3px;accent-color:#004753}
+.act b{font-size:13px;display:block}.act span{font-size:12px;color:var(--mu)}
+.fld{display:none;margin-bottom:10px}.fld.on{display:block}
+label.l{display:block;font-size:12px;font-weight:600;margin-bottom:4px}
+select,textarea{width:100%;border:1px solid var(--ln);border-radius:8px;padding:8px;background:var(--sf);font-size:13px}
+textarea{min-height:66px;resize:vertical}
+.sel{font-size:12px;color:var(--mu);margin:0 0 10px}
+.log{margin:14px 0 0;padding:0;list-style:none;font-size:12px;color:var(--mu);border-top:1px solid var(--ln)}
+.log li{padding:8px 0;border-bottom:1px solid var(--ln)}.log b{color:var(--tx)}
+.note{font-size:12px;color:var(--mu);margin-top:6px}
+.toast{position:fixed;right:22px;bottom:22px;background:#004753;color:#fff;padding:12px 16px;border-radius:9px;font-size:13px;display:none;max-width:320px;box-shadow:0 8px 28px #0004}
+body.qe [data-r=po],body.po [data-r=qe]{display:none}
+[hidden]{display:none!important}
+.pipe{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:14px}
+.tile{text-align:left;background:var(--sf);border:1px solid var(--ln);border-radius:12px;padding:14px;cursor:pointer;color:var(--tx)}
+.tile[aria-pressed=true]{border-color:#004753;box-shadow:0 0 0 2px var(--teal)}
+.tile b{display:block;font-size:26px}.tile span{font-size:13px;font-weight:600}.tile small{display:block;font-size:12px;color:var(--mu)}
+.fl{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.fl select{width:auto;min-width:130px}.fl input{flex:1;min-width:220px}
+input[type=search]{border:1px solid var(--ln);border-radius:8px;padding:8px;background:var(--sf);font-size:13px;color:var(--tx)}
+.sim{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--ln);font-size:13px}.sim:last-child{border-bottom:0}.sim small{color:var(--mu);font-size:12px}
+.acc{display:flex;gap:6px;flex-wrap:wrap}
+.gs{position:relative;flex:1 1 260px;max-width:440px}.gs input{width:100%}
+.gsr{position:absolute;top:100%;left:0;right:0;margin-top:4px;background:var(--sf);border:1px solid var(--ln);border-radius:10px;box-shadow:0 10px 30px #0003;max-height:400px;overflow:auto;z-index:30}
+.gi{padding:9px 12px;cursor:pointer;border-bottom:1px solid var(--ln);font-size:13px}.gi:last-child{border-bottom:0}.gi:hover,.gi.on{background:var(--sf2)}
+.gi small{display:block;color:var(--mu);font-size:12px;margin-top:2px}.gi .chip{font-size:11px;padding:2px 8px}
+.step{display:flex;list-style:none;padding:0;margin:0 0 16px;overflow-x:auto;gap:4px}
+.step li{flex:1;min-width:118px;display:flex;align-items:center;gap:8px;padding:9px 11px;border:1px solid var(--ln);border-radius:9px;background:var(--sf);font-size:12.5px;color:var(--mu)}
+.step i{font-style:normal;width:22px;height:22px;border-radius:50%;border:1px solid var(--ln);display:grid;place-items:center;font-size:11px;font-weight:700;flex:none}
+.step li.done{color:var(--grn)}.step li.done i{background:var(--grnbg);border-color:var(--grn)}
+.step li.now{color:var(--tx);font-weight:700;border-color:#004753;box-shadow:0 0 0 2px var(--teal)}.step li.now i{background:#004753;color:#fff;border-color:#004753}
+.pr{height:6px;width:70px;border-radius:4px;background:var(--ln);overflow:hidden;display:inline-block;vertical-align:middle;margin-right:6px}.pr i{display:block;height:100%;background:var(--org)}
+.ap{list-style:none;margin:0;padding:0}.ap li{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--ln);font-size:12.5px}.ap li:last-child{border-bottom:0}.ap span{color:var(--mu);text-align:right}.ap li.off{opacity:.55}
+.chart text{fill:var(--mu);font-size:10px}
+.perbar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:10px 28px;background:var(--sf2);border-bottom:1px solid var(--ln);font-size:13px}.perbar select{width:auto}.perbar b{font-size:12px;color:var(--mu)}
+.four{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.four .box b{display:block;font-size:19px;margin:2px 0}.four .box small{color:var(--mu);font-size:12px}
+.tl2{display:flex;gap:3px;margin-top:12px}.tl2 div{background:var(--sf2);border:1px solid var(--ln);border-radius:6px;padding:6px 8px;font-size:11.5px;color:var(--mu);min-width:80px}.tl2 div.now{background:var(--tealbg);border-color:var(--teal);color:var(--tx)}
+@media(max-width:900px){.four{grid-template-columns:1fr 1fr}}@media(max-width:560px){.four{grid-template-columns:1fr}}
+mark{background:#f2d23c66;color:inherit;border-radius:2px}
+@media(max-width:700px){.pipe{grid-template-columns:1fr 1fr}}
+.tabs{display:flex;gap:4px;padding:0 28px;background:var(--sf);border-bottom:1px solid var(--ln);overflow-x:auto}
+.tabs button{border:0;background:none;padding:11px 16px;font-weight:600;font-size:13px;color:var(--mu);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
+.tabs button[aria-pressed=true]{color:var(--teal);border-color:var(--org)}
+.kp{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.kp b{display:block;font-size:24px;margin-top:4px}.kp span{font-size:12px;color:var(--mu)}
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:16px}
+.br{display:grid;grid-template-columns:120px 1fr 40px;gap:10px;align-items:center;font-size:12.5px;margin:8px 0}
+.br .tr{background:var(--sf2);border-radius:4px;height:12px}.br i{display:block;height:12px;border-radius:4px;background:var(--teal)}.br i.hot{background:var(--org)}
+.ins{background:var(--tealbg);border:1px solid var(--ln);border-left:4px solid #004753;border-radius:10px;padding:12px 14px;font-size:13.5px;margin-bottom:16px}
+.tw{overflow-x:auto}.tw tr.lk{cursor:pointer}.tw tr.lk:hover{background:var(--sf2)}
+.grp{margin-bottom:14px}.grp h3{font-size:13.5px;margin:0 0 4px}
+.fr{display:grid;grid-template-columns:170px 120px 1fr auto;gap:10px;align-items:center;padding:7px 0 7px 14px;border-left:2px solid var(--ln);font-size:12.5px}
+.fr small{color:var(--mu)}
+.dot2{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
+.pbar{height:8px;border-radius:5px;background:var(--ln);overflow:hidden;margin:8px 0 4px}.pbar i{display:block;height:100%;background:var(--grn)}
+pre{background:var(--sf2);border:1px solid var(--ln);border-radius:8px;padding:12px;font-size:12px;overflow:auto;max-height:230px}
+@media(max-width:900px){.kp,.g2{grid-template-columns:1fr 1fr}.fr{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.kp,.g2{grid-template-columns:1fr}}
+@media(max-width:1050px){.layout{grid-template-columns:1fr}.panel{position:static}.hero{grid-template-columns:1fr}}
+@media(max-width:680px){main{padding:16px 14px 50px}.top{padding:12px 14px}.three,.opts,.fa{grid-template-columns:1fr}.who span{display:none}th:nth-child(3),td:nth-child(3){display:none}}
+</style>
+</head>
+<body class="qe">
+<header class="top">
+  <div class="brand"><div class="mark">MQ</div><div><b>Quality decision workspace</b><small>Evidence from the AI investigation, framed for the decision</small></div></div>
+  <div class="gs"><input type="search" id="gs" placeholder="Search all NCRs and 8D reports" aria-label="Search all NCRs and 8D reports" autocomplete="off"><div class="gsr" id="gsr" role="listbox" hidden></div></div>
+  <div class="seg" role="group" aria-label="View as">
+    <button id="b-qe" aria-pressed="true" onclick="setRole('qe')">Quality engineer</button>
+    <button id="b-po" aria-pressed="false" onclick="setRole('po')">Product owner</button>
+  </div>
+  <div class="who"><span>Signed in as Quality Engineering. Data as of 30 Sep 2026</span><div class="av">PR</div></div>
+</header>
+<nav class="tabs" aria-label="Views"><button id="t-inbox" aria-pressed="true" onclick="setTab('inbox')">NCR inbox</button><button id="t-case" aria-pressed="false" onclick="setTab('case')">Case decision</button><button id="t-port" aria-pressed="false" onclick="setTab('port')">Portfolio</button><button id="t-data" aria-pressed="false" onclick="setTab('data')">Data links</button></nav>
+<div class="perbar" id="perbar"><b>Period</b><select id="per" aria-label="Period">
+<option value="0-30">Last 30 days</option><option value="0-29">This month (Sep 2026)</option><option value="30-60">Last month (Aug 2026)</option><option value="0-91">This quarter (Q3 2026)</option><option value="92-182">Last quarter (Q2 2026)</option><option value="0-182">Last 6 months</option><option value="0-365" selected>Last 12 months</option><option value="0-730">All sample data (24 months)</option></select>
+<span id="grpw" hidden><b>Group by</b> <select id="grp" aria-label="Group by"><option value="week">Week</option><option value="month" selected>Month</option><option value="quarter">Quarter</option></select></span><span class="tag" id="pernote"></span></div>
+<main>
+<div id="v-inbox">
+  <h1>NCR inbox</h1>
+  <p class="sub">Everything received and in the pipeline. <span class="chip c-red"><i></i>Sample data, except NCR-20260001</span></p>
+  <div class="pipe" id="pipe"></div>
+  <section class="card"><h2>Solved and unsolved</h2><div class="pbar"><i id="solvebar"></i></div><p class="note" id="solvetxt"></p></section>
+  <div class="fl"><input type="search" id="q" placeholder="Search by NCR number, issue, tool, cause, product or 8D text" aria-label="Search NCRs">
+   <select id="f-prod" aria-label="Product"></select><select id="f-tool" aria-label="Tool"></select><select id="f-cause" aria-label="Cause"></select>
+   <button class="btn" id="over" aria-pressed="false">Overdue only</button><button class="btn" id="mine" aria-pressed="false">My NCRs</button><select id="f-sort" aria-label="Sort"><option value="prio">Highest priority first</option><option value="old">Oldest first</option><option value="new">Newest first</option><option value="sev">Major first</option></select></div>
+  <section class="card"><p class="hint" id="cnt"></p><div class="tw"><table><thead><tr><th>NCR</th><th>Issue</th><th>Stage</th><th>Priority</th><th>Stage clock</th><th>Owner</th><th>Tool</th><th>Age (days)</th><th>8D</th></tr></thead><tbody id="ib"></tbody></table></div></section>
+</div>
+<div id="v-rec" hidden><div id="rec"></div></div>
+<div id="v-case" hidden>
+  <div class="crumb"><a href="#" onclick="setTab('inbox');return false" style="color:var(--teal)">NCR inbox</a> / API-HITL-001 / NCR-20260001</div>
+  <h1>Blade dimension is out of tolerance</h1>
+  <p class="sub">NordWind turbine blade assembly TB-40, serial SN-1001-000001, manufacturing order MO-202600001</p>
+  <ol class="step" id="step" aria-label="Workflow stage"></ol>
+  <section class="card" id="clk" style="margin-bottom:16px"></section>
+
+  <div class="layout">
+  <div class="col">
+
+    <section class="card hero" aria-label="Decision needed">
+      <div>
+        <div class="chips" style="margin-bottom:12px"><span class="chip c-amb"><i></i>Decision needed from you</span><span class="chip c-red"><i></i>Root cause not established</span><span class="chip c-grn"><i></i>Evidence traceable</span></div>
+        <h2>Contain the suspect units now, and get three missing records before naming a cause.</h2>
+        <p>The AI found a real, confirmed deviation but could only offer a low-confidence guess (tooling offset or process variation). It is not safe to close or to change the process on this evidence alone.</p>
+        <p class="tag">NCR severity: minor · Status: under review · 12 evidence items linked</p>
+      </div>
+      <div class="gauge">
+        <div class="big">10.8 mm<small>measured</small></div>
+        <div class="scale" role="img" aria-label="Measured 10.8 millimetres, upper limit 10.5 millimetres, 0.3 over">
+          <div class="ok"></div><div class="bad"></div><div class="lim"></div><div class="val"></div>
+          <span style="left:0;top:32px">In tolerance</span>
+          <span style="left:62%;top:-4px;transform:translateX(-50%)">Upper limit 10.5</span>
+          <span style="right:0;top:32px">Out of tolerance</span>
+        </div>
+        <div class="tag">0.3 mm over the upper limit (about 2.9%). Lower limit and nominal are not in the source record.</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Where we stand</h2><p class="hint">The same facts, reorganised into what is solid, what is open and what we suggest.</p>
+      <div class="three">
+        <div class="box k"><h3>What we know</h3><ul><li>Measured 10.8 mm against a 10.5 mm limit</li><li>Inspection record is linked to the NCR</li><li>Traceable from NCR to product, serial and order</li><li>Similar deviations exist in history</li></ul></div>
+        <div class="box u"><h3>What we do not know</h3><ul><li>Whether other units from this order are affected</li><li>Tooling offset and calibration history</li><li>Process trend around the order</li><li>Whether 0.3 mm matters for fit or function</li></ul></div>
+        <div class="box r"><h3>What we suggest</h3><ul><li>Hold the rest of the order pending a scope check</li><li>Request the three missing records</li><li>Rule out a measurement error</li><li>Decide disposition after the scope is known</li></ul></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Decision criteria</h2><p class="hint">Each criterion shows whether we can answer it today. Switch the view above to filter by role.</p>
+      <table>
+        <thead><tr><th>Criterion</th><th>Status today</th><th>Mainly for</th></tr></thead>
+        <tbody>
+        <tr data-r="qe"><td><b>Deviation vs tolerance</b><span>Plus process capability (Cpk) and trend</span></td><td><span class="st p">Partial</span><br><span>One value, upper limit only</span></td><td class="who-t">Quality engineer</td></tr>
+        <tr><td><b>Functional or safety criticality</b><span>Does 0.3 mm affect fit, fatigue or aerodynamics?</span></td><td><span class="st u">Unknown</span><br><span>Needs drawing, FMEA, CTQ flag</span></td><td class="who-t">Both</td></tr>
+        <tr><td><b>Scope and containment</b><span>Other serials, orders, tools or shifts</span></td><td><span class="st u">Unknown</span><br><span>No sibling units queried yet</span></td><td class="who-t">Both</td></tr>
+        <tr data-r="qe"><td><b>Recurrence</b><span>First time, or the Nth?</span></td><td><span class="st p">Partial</span><br><span>Similar history found, not confirmed</span></td><td class="who-t">Quality engineer</td></tr>
+        <tr data-r="qe"><td><b>Causal confidence and gaps</b><span>How sure are we, and what would change it?</span></td><td><span class="st k">Known</span><br><span>Low confidence, 3 gaps listed</span></td><td class="who-t">Quality engineer</td></tr>
+        <tr data-r="po"><td><b>Customer, contract and regulatory exposure</b><span>Do we have to notify anyone?</span></td><td><span class="st u">Unknown</span><br><span>No delivery or customer link</span></td><td class="who-t">Product owner</td></tr>
+        <tr data-r="po"><td><b>Cost and schedule</b><span>Cost of each option and of being wrong</span></td><td><span class="st p">Partial</span><br><span>Relative estimates below</span></td><td class="who-t">Product owner</td></tr>
+        <tr><td><b>Reversibility</b><span>Can we wait for more evidence safely?</span></td><td><span class="st p">Partial</span><br><span>Yes if the order stays on hold</span></td><td class="who-t">Both</td></tr>
+        <tr data-r="po"><td><b>One-off or systemic</b><span>Fix the unit, the process, or the design?</span></td><td><span class="st u">Unknown</span><br><span>Needs portfolio view of NCRs</span></td><td class="who-t">Product owner</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>Your options</h2><p class="hint">Choose one to carry it into the decision panel. Cost and time are relative sample estimates, not calculated values.</p>
+      <div class="opts" id="opts">
+        <button class="opt" data-o="Contain and keep investigating" aria-pressed="true"><h3>Contain and keep investigating <span class="chip c-grn">Recommended</span></h3><p>Hold the order, check sibling units, collect the missing records.</p><dl class="kv"><dt>Cost</dt><dd>Low</dd><dt>Time</dt><dd>2 to 4 days</dd><dt>Risk</dt><dd>Low, nothing ships unverified</dd><dt>Reversible</dt><dd>Yes</dd></dl></button>
+        <button class="opt" data-o="Use as is with engineering concession" aria-pressed="false"><h3>Use as is with concession</h3><p>Only if engineering confirms 0.3 mm is non-critical.</p><dl class="kv"><dt>Cost</dt><dd>Lowest</dd><dt>Time</dt><dd>1 day, plus sign-off</dd><dt>Risk</dt><dd>High while criticality is unknown</dd><dt>Reversible</dt><dd>No, once shipped</dd></dl></button>
+        <button class="opt" data-o="Rework the unit" aria-pressed="false"><h3>Rework the unit</h3><p>Correct this unit back into tolerance and re-inspect.</p><dl class="kv"><dt>Cost</dt><dd>Medium</dd><dt>Time</dt><dd>3 to 5 days</dd><dt>Risk</dt><dd>Medium, cause remains unfixed</dd><dt>Reversible</dt><dd>Partly</dd></dl></button>
+        <button class="opt" data-o="Scrap the unit" aria-pressed="false"><h3>Scrap the unit</h3><p>Remove it from the flow and replace it.</p><dl class="kv"><dt>Cost</dt><dd>High</dd><dt>Time</dt><dd>Depends on replacement lead time</dd><dt>Risk</dt><dd>Low for this unit</dd><dt>Reversible</dt><dd>No</dd></dl></button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Process trend for this dimension</h2><p class="hint">Last 20 measurements before and including this NCR. Sample series for illustration, the real series comes from the SPC system.</p>
+      <svg class="chart" id="chart" viewBox="0 0 560 175" width="100%" role="img" aria-label="Control chart: the measurements drift upward and cross the upper limit of 10.5 millimetres at the last four points"></svg>
+      <p class="note">A steady climb like this looks like drift, such as tool wear or an offset, not a random one-off. That would support the tooling hypothesis, but the tool records are still needed to confirm it.</p>
+    </section>
+
+    <section class="card" data-r="qe">
+      <h2>Competing explanations</h2><p class="hint">The AI named one cause. These are the explanations the current evidence can and cannot separate.</p>
+      <div class="hyp"><div class="hh"><b>Tooling offset</b><span class="meter">Low<i><s style="width:30%"></s></i></span></div><div class="fa"><div><b>Supports</b><ul><li>Process history suggests a tooling relationship</li></ul></div><div><b>Missing to confirm</b><ul><li>Calibration and tool-change records</li></ul></div></div></div>
+      <div class="hyp"><div class="hh"><b>General process variation</b><span class="meter">Low<i><s style="width:25%"></s></i></span></div><div class="fa"><div><b>Supports</b><ul><li>Similar deviations in historical NCRs</li></ul></div><div><b>Missing to confirm</b><ul><li>Process parameter trend around the order</li></ul></div></div></div>
+      <div class="hyp"><div class="hh"><b>Measurement error <span class="tag">(alternative to rule out)</span></b><span class="meter">Not assessed<i><s style="width:0"></s></i></span></div><div class="fa"><div><b>Supports</b><ul><li>Nothing assessed yet</li></ul></div><div><b>Missing to confirm</b><ul><li>Gauge calibration and a repeat measurement</li></ul></div></div></div>
+      <p class="note" id="aitr"></p>
+    </section>
+
+    <section class="card" data-r="qe">
+      <h2>Missing evidence and who can supply it</h2><p class="hint">Each gap becomes a request with an owner, so the investigation keeps moving.</p>
+      <div class="gap"><b>Tooling offset and calibration history</b><span>Suggested owner: Maintenance and Metrology</span><button class="btn b2 rq" data-g="Calibration history">Request</button></div>
+      <div class="gap"><b>Process parameter trend around the order</b><span>Suggested owner: Manufacturing Engineering</span><button class="btn b2 rq" data-g="Process parameter trend">Request</button></div>
+      <div class="gap"><b>Recent tool-change event</b><span>Suggested owner: Production Supervisor</span><button class="btn b2 rq" data-g="Tool-change event">Request</button></div>
+      <p class="note">If a record does not exist or is not integrated, say so in the request. That is a finding about the data foundation, separate from this NCR.</p>
+    </section>
+
+    <section class="card" data-r="qe">
+      <h2>Evidence behind the analysis</h2><p class="hint">Open an item to see what it says and how far to trust it.</p>
+      <details><summary><em>Inspection: measured 10.8 mm</em><span class="ev-s">Strength 1.00</span></summary><p>Upper limit 10.5 mm, deviation +0.3 mm. The inspection record is linked to the NCR. This is direct measurement evidence and the strongest item.</p></details>
+      <details><summary><em>Manufacturing: process and tooling history</em><span class="ev-s">Strength 0.90</span></summary><p>Available history hints at a variation or tooling-offset relationship. Note the high score reflects source reliability, not proof of cause.</p></details>
+      <details><summary><em>Historical NCRs: similar pattern</em><span class="ev-s">Strength 0.80</span></summary><p>Similar records were retrieved for comparison. Similarity still needs engineer confirmation before it counts as recurrence.</p></details>
+      <details><summary><em>Graph: traceability path</em><span class="ev-s">Strength 0.90</span></summary><div class="flow" style="margin-left:20px"><span>NCR-20260001</span><span>PRD-1001</span><span>SN-1001-000001</span><span>MO-202600001</span></div><p style="margin-top:0">The path proves provenance. It does not explain the cause.</p></details>
+    </section>
+
+    <section class="card">
+      <h2>Past investigations to read before deciding</h2><p class="hint">Closed NCRs with the same suspected causes. The tool is unknown for this NCR, so matches are by cause only. Read the 8D, then pin it so it is recorded with your decision.</p><div id="sim"></div>
+    </section>
+
+    <section class="card">
+      <details style="padding-top:0"><summary><em>How the AI reached this (for audit)</em><span class="ev-s">Complete</span></summary>
+        <div class="flow" style="margin-left:20px"><span>Traceability resolved</span><span>Evidence retrieved</span><span>RCA drafted with gaps</span><span>Review policy applied</span><span>Waiting for you</span></div>
+        <p>Source lineage, tool authorisation, evidence IDs (12) and trace events are all verified. Guardrails: autonomous redesign is blocked, an unverified root cause is blocked, and a human decision is required before any action.</p>
+      </details>
+    </section>
+  </div>
+
+  <aside class="col panel" aria-label="Your decision">
+    <section class="card">
+      <h2>Your decision</h2>
+      <p class="sel">Selected option: <b id="selopt">Contain and keep investigating</b></p>
+      <p class="sel">Records reviewed: <b id="pins">none</b></p>
+      <div class="acts" id="acts">
+        <label class="act"><input type="radio" name="a" value="Accept as working hypothesis" checked><div><b>Accept as working hypothesis</b><span>Keep the case open on the current explanation.</span></div></label>
+        <label class="act"><input type="radio" name="a" value="Request evidence"><div><b>Request evidence</b><span>Send the gaps to their owners.</span></div></label>
+        <label class="act"><input type="radio" name="a" value="Challenge the analysis"><div><b>Challenge the analysis</b><span>Say what is wrong and trigger a focused re-run.</span></div></label>
+        <label class="act"><input type="radio" name="a" value="Contain and escalate"><div><b>Contain and escalate</b><span>Hold units and notify engineering or the supplier.</span></div></label>
+        <label class="act"><input type="radio" name="a" value="Close with disposition"><div><b>Close with disposition</b><span>Apply the selected option and close.</span></div></label>
+      </div>
+      <div class="fld" id="f-ch"><label class="l" for="why">What is wrong?</label>
+        <select id="why"><option>Evidence is too weak</option><option>Scope is wrong</option><option>Business impact is missing</option><option>A different cause is more likely</option><option>Measurement may be wrong</option></select></div>
+      <div class="fld on" id="f-c"><label class="l" for="cm">Comment <span class="tag" id="req"></span></label><textarea id="cm" placeholder="Add context for the next reviewer"></textarea></div>
+      <button class="btn pri" style="width:100%" id="go">Record decision</button>
+      <p class="note">Recorded with your identity, time, the selected option and the evidence context.</p>
+      <ul class="log" id="log" aria-live="polite"><li><b>System</b> Investigation created from NCR-20260001. Routed to human review.</li></ul>
+    </section>
+    <section class="card"><h2>Approval chain</h2><p class="hint">Minor NCR: one approver. A major NCR adds the next two.</p>
+      <ol class="ap"><li><b>Quality engineer</b><span id="ap1">Waiting for you</span></li><li class="off"><b>Product owner</b><span>Only if major</span></li><li class="off"><b>Material review board</b><span>Only if major</span></li></ol></section>
+    <section class="card"><h2>Containment</h2><p class="hint">Holds are placed in the MES or ERP. Each line updates when that system confirms.</p>
+      <div class="sim"><div><b>Hold order MO-202600001</b><br><small id="c1">Not on hold</small></div><button class="btn cb" data-i="c1" data-t="On hold, waiting for MES confirmation">Place hold</button></div>
+      <div class="sim"><div><b>Check sibling units</b><br><small id="c2">Not started. Units affected: unknown</small></div><button class="btn cb" data-i="c2" data-t="Query sent. Units affected: unknown until it returns">Start check</button></div>
+      <div class="sim"><div><b>Tell Manufacturing Engineering</b><br><small id="c3">Not sent</small></div><button class="btn cb" data-i="c3" data-t="Sent to Manufacturing Engineering">Notify</button></div></section>
+    <section class="card"><h2>Tasks and comments</h2><ul class="log" id="tl" style="border:0"><li>No tasks yet. Use Request on a missing record and a task appears here.</li></ul>
+      <label class="l" for="cmt" style="margin-top:10px">Comment</label><textarea id="cmt" placeholder="Write a comment. Mention a team, for example @Maintenance"></textarea><button class="btn" style="margin-top:8px" onclick="postC()">Post comment</button></section>
+  </aside>
+  </div>
+  <p class="note" style="margin-top:22px">Option cost, time and risk are relative sample estimates. Criteria, competing explanations and request owners are proposed design content and not part of the source record.</p>
+</div>
+<div id="v-port" hidden>
+  <h1>Quality portfolio</h1>
+  <p class="sub">Patterns across NCRs, to decide whether to fix a unit, a process or a design. <span class="chip c-red"><i></i>Sample data, not real results</span></p>
+  <div class="kp" id="kp"></div>
+  <div class="ins" id="ins"></div>
+  <div class="g2"><section class="card"><h2>Causes (Pareto)</h2><p class="hint">Count of NCRs by cause. Orange marks the largest.</p><div id="ch-cause"></div></section>
+  <section class="card"><h2>NCRs by tool</h2><p class="hint">Repeat offenders stand out here.</p><div id="ch-tool"></div></section>
+  <section class="card"><h2>Average Cpk by tool</h2><p class="hint">Orange is below 1.0. Target is 1.33 or higher.</p><div id="ch-cpk"></div></section>
+  <section class="card"><h2>Age of open NCRs</h2><p class="hint">Days since the NCR was raised.</p><div id="ch-age"></div></section></div>
+  <div class="kp" id="kp2"></div>
+  <section class="card" style="margin-bottom:16px"><h2>Raised and closed per week</h2><p class="hint">Sample data. The backlog grows when the raised bars stay above the closed bars. Recent periods show a lower closed share simply because newer NCRs have had less time to close.</p><svg id="wk" class="chart" viewBox="0 0 560 200" width="100%" role="img" aria-label="NCRs raised and closed per week"></svg></section>
+  <section class="card"><h2>All NCRs</h2><p class="hint">Select any NCR to read its record. NCR-20260001 has no tool or shift recorded, which is the scope gap.</p><div class="tw"><table><thead><tr><th>NCR</th><th>Product</th><th>Tool</th><th>Shift</th><th>Cause</th><th>Severity</th><th>Age (days)</th><th>Status</th><th>Cpk</th></tr></thead><tbody id="tb"></tbody></table></div></section>
+</div>
+<div id="v-data" hidden>
+  <h1>Data links</h1>
+  <p class="sub">Every field the decision needs, where it should come from, and whether we have it. A blank is never shown as OK.</p>
+  <div class="layout"><div class="col" id="dl"></div>
+  <aside class="col panel"><section class="card"><h2>Completeness for NCR-20260001</h2><div class="pbar"><i id="pb"></i></div><p class="note" id="pt"></p>
+  <p class="note"><span class="dot2" style="background:var(--grn)"></span>Present: real value with a source<br><span class="dot2" style="background:var(--amb)"></span>Requestable: exists somewhere, ask the owner<br><span class="dot2" style="background:var(--red)"></span>Not collected: no system captures it, a data-foundation gap</p>
+  <button class="btn pri" style="width:100%;margin-top:10px" onclick="dlJSON()">Download data contract (JSON)</button></section>
+  <section class="card"><h2>Adapters to build</h2><p class="hint">One small adapter per source maps its output onto the contract. Names are proposed.</p><div id="ad" style="font-size:12.5px"></div></section>
+  <section class="card"><h2>Contract preview</h2><pre id="pv"></pre></section></aside></div>
+</div>
+</main>
+<div class="toast" id="toast" role="status"></div>
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+function toast(t){const x=$('#toast');x.textContent=t;x.style.display='block';clearTimeout(toast.h);toast.h=setTimeout(()=>x.style.display='none',2600)}
+function addLog(who,txt){const li=document.createElement('li');li.innerHTML='<b></b> <span></span> <br><span class="tag"></span>';li.children[0].textContent=who;li.children[1].textContent=txt;li.children[3].textContent=new Date().toLocaleString();$('#log').prepend(li)}
+function setRole(r){document.body.className=r;$('#b-qe').setAttribute('aria-pressed',r==='qe');$('#b-po').setAttribute('aria-pressed',r==='po')}
+$$('.opt').forEach(o=>o.onclick=()=>{$$('.opt').forEach(x=>x.setAttribute('aria-pressed',x===o));$('#selopt').textContent=o.dataset.o});
+function sync(){const v=$('input[name=a]:checked').value;$('#f-ch').classList.toggle('on',v==='Challenge the analysis');$('#req').textContent=v==='Challenge the analysis'?'(required)':''}
+$$('input[name=a]').forEach(i=>i.onchange=sync);
+$$('.rq').forEach(b=>b.onclick=()=>{b.textContent='Requested';b.disabled=true;addLog('You','requested: '+b.dataset.g);addTask(b.dataset.g);toast('Request sent: '+b.dataset.g)});
+$('#go').onclick=()=>{const v=$('input[name=a]:checked').value,c=$('#cm').value.trim();
+ if(v==='Challenge the analysis'&&!c){toast('Add a comment so the re-run knows what to fix.');$('#cm').focus();return}
+ let t=v+' (option: '+$('#selopt').textContent+')';if(v==='Challenge the analysis')t+=' · reason: '+$('#why').value;if(c)t+=' · '+c;
+ t+=' · records reviewed: '+(pins.join(', ')||'none');addLog('You',t);moveStage(v);$('#cm').value='';toast('Decision recorded: '+v+'. Stage is now: '+NCRS[0].stage)};
+function setTab(t){['inbox','case','port','data','rec'].forEach(k=>{$('#v-'+k).hidden=k!==t;const b=$('#t-'+k);if(b)b.setAttribute('aria-pressed',k===t)});if(t==='port'&&!setTab.p){setTab.p=1;portfolio();portTime()}if(t==='data'&&!setTab.d){setTab.d=1;datalinks()}$('#perbar').hidden=!(t==='inbox'||t==='port');$('#grpw').hidden=t!=='port';perNote(t);window.scrollTo(0,0)}
+function rnd(s){return()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function portfolio(){const N=NCRS.filter(inP);
+ const cnt=(a,f)=>a.reduce((m,x)=>(m[f(x)]=(m[f(x)]||0)+1,m),{});
+ const bars=(id,m,o={})=>{const e=Object.entries(m).sort((a,b)=>o.keep?0:b[1]-a[1]),mx=o.max||Math.max(...e.map(x=>x[1]));
+  $(id).innerHTML=e.map(([k,v],i)=>`<div class="br"><span>${k}</span><div class="tr"><i class="${o.hot?o.hot(k,v,i)?'hot':'':i===0?'hot':''}" style="width:${v/mx*100}%"></i></div><b>${v}</b></div>`).join('')};
+ const open=N.filter(n=>n.status!=='Closed'),known=N.filter(n=>n.tool!=='Unknown');
+ const byTool=cnt(known,n=>n.tool),top=Object.entries(byTool).sort((a,b)=>b[1]-a[1])[0];
+ const ac={};known.forEach(n=>{(ac[n.tool]=ac[n.tool]||[]).push(n.cpk)});
+ const cpk=Object.fromEntries(Object.entries(ac).map(([k,v])=>[k,+(v.reduce((a,b)=>a+b,0)/v.length).toFixed(2)]));
+ const low=Object.entries(cpk).sort((a,b)=>a[1]-b[1])[0];
+ const tc=cnt(known.filter(n=>n.tool===top[0]),n=>n.cause),lead=Object.entries(tc).sort((a,b)=>b[1]-a[1])[0];
+ const avgAge=Math.round(open.reduce((a,n)=>a+n.age,0)/open.length);
+ $('#kp').innerHTML=[['Open NCRs',open.length,'of '+N.length+' raised in this period'],['Average age of open',avgAge+' days','Oldest: '+Math.max(...open.map(n=>n.age))+' days'],['Busiest tool',top[0],top[1]+' NCRs'],['Lowest average Cpk',low[1],'Tool '+low[0]]].map(k=>`<div class="card"><span>${k[0]}</span><b>${k[1]}</b><span>${k[2]}</span></div>`).join('');
+ $('#ins').innerHTML=`<b>What this suggests:</b> tool ${top[0]} is linked to ${top[1]} of ${known.length} NCRs (${Math.round(top[1]/known.length*100)}%) and has the lowest average Cpk (${low[1]}). Its most common cause is ${lead[0].toLowerCase()} (${lead[1]} NCRs). That points to a process or tooling fix, not unit-by-unit rework. NCR-20260001 cannot join this picture until its tool is recorded.`;
+ bars('#ch-cause',cnt(N.filter(n=>n.cause!=='Under investigation'),n=>n.cause));bars('#ch-tool',byTool);
+ bars('#ch-cpk',cpk,{keep:1,max:2,hot:(k,v)=>v<1});
+ const ag={'0 to 7 days':0,'8 to 30 days':0,'Over 30 days':0};open.forEach(n=>ag[n.age<=7?'0 to 7 days':n.age<=30?'8 to 30 days':'Over 30 days']++);bars('#ch-age',ag,{keep:1,hot:k=>k==='Over 30 days'});
+ $('#tb').innerHTML=N.map(n=>`<tr class="lk" onclick="openRec('${n.id}','port')" tabindex=0><td><b>${n.id}</b></td><td>${n.prod}</td><td>${n.tool}</td><td>${n.shift}</td><td>${n.cause}</td><td>${n.sev}</td><td>${n.age}</td><td>${n.status}</td><td>${n.cpk??'n/a'}</td></tr>`).join('')}
+const DL=[
+['Measurement',[['Nominal','R','PLM / drawing'],['LSL','R','PLM / drawing'],['USL','P','QMS inspection record','10.5 mm'],['Deviation','P','Computed from measurement and USL','+0.3 mm'],['Gauge and uncertainty','R','Metrology'],['Repeat measurements','R','QMS inspection record']]],
+['Scope',[['Serial','P','Graph store','SN-1001-000001'],['Lot','R','MES'],['Manufacturing order','P','Graph store','MO-202600001'],['Tool','R','MES'],['Shift','R','MES']]],
+['Process capability',[['Trend','R','SPC system'],['Control limits','R','SPC system'],['Cp','R','Calculated from SPC data'],['Cpk','R','Calculated from SPC data']]],
+['Product criticality',[['CTQ flag','R','PLM'],['FMEA','R','PLM / quality system'],['Control plan','R','Quality system'],['Functional impact','N','Engineering judgement, no system captures it']]],
+['Business impact',[['Quantity affected','R','Calculated once scope is known'],['Cost','N','No cost-of-quality source identified'],['Schedule','R','ERP / planning'],['Customer exposure','R','ERP / shipping'],['Regulatory or contractual exposure','N','No system captures it']]],
+['History and recurrence',[['Similar past NCRs','P','Vector store','Retrieved, unconfirmed'],['Engineer confirmation of similarity','R','Quality engineer']]],
+['Investigation',[['Hypotheses','P','AI analysis','Low confidence'],['Evidence gaps','P','AI analysis','3 listed'],['Request owners','R','Organisation directory']]],
+['Disposition and CAPA',[['Chosen option','N','Set by the decision'],['Corrective and preventive actions','N','Created after the decision'],['Owner and due date','N','Created after the decision'],['Effectiveness check','N','Created after the decision']]]];
+const SC={P:['Present','var(--grn)'],R:['Requestable','var(--amb)'],N:['Not collected','var(--red)']};
+function datalinks(){$('#dl').innerHTML=DL.map(([g,f],gi)=>`<section class="card grp"><h3>${g}</h3>${f.map(([n,st,src,v],fi)=>`<div class="fr"><b>${n}</b><span><span class="dot2" style="background:${SC[st][1]}"></span><span id="s${gi}_${fi}">${SC[st][0]}</span></span><small>${src}${v?' · <b>'+v+'</b>':''}</small>${st==='R'?`<button class="btn" id="b${gi}_${fi}" onclick="reqF(${gi},${fi})">Request</button>`:'<span></span>'}</div>`).join('')}</section>`).join('');
+ const all=DL.flatMap(x=>x[1]),p=all.filter(x=>x[1]==='P').length,r=all.filter(x=>x[1]==='R').length,n=all.filter(x=>x[1]==='N').length;
+ $('#pb').style.width=p/all.length*100+'%';$('#pt').textContent=`${p} present, ${r} requestable, ${n} not collected, out of ${all.length} fields.`;
+ const AD=[['QMS','inspection records, limits, repeat measurements'],['MES','lot, tool, shift, process history'],['PLM','nominal, LSL, CTQ, FMEA'],['SPC','trend, control limits, Cp, Cpk'],['ERP','schedule, shipments, customer link'],['Graph and vector stores','traceability, similar NCRs']];
+ $('#ad').innerHTML=AD.map(a=>`<p style="margin:0 0 8px"><b>${a[0]}</b><br><span class="tag">${a[1]}</span></p>`).join('');
+ $('#pv').textContent=JSON.stringify(contract(),null,1).split('\n').slice(0,34).join('\n')+'\n ...'}
+function contract(){const o={ncr_id:'NCR-20260001',fields:{}};DL.forEach(([g,f])=>{o.fields[g]={};f.forEach(([n,st,src,v])=>{o.fields[g][n]={state:{P:'present',R:'requestable',N:'not_collected'}[st],source:src,value:v||null}})});return o}
+function reqF(g,f){const b=$('#b'+g+'_'+f);b.textContent='Requested';b.disabled=true;$('#s'+g+'_'+f).textContent='Requested';toast('Request sent: '+DL[g][1][f][0])}
+function dlJSON(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(contract(),null,2)],{type:'application/json'}));a.download='ncr_data_contract.json';a.click()}
+let pins=[];const F={stage:''};
+function mk(){const R=rnd(7),pk=a=>a[Math.floor(R()*a.length)],T=rnd(3),pt=a=>a[Math.floor(T()*a.length)];
+ const dims=['Bore diameter','Root thickness','Flange flatness','Hole position','Surface roughness'],own=['PR','AK','MS','JL'];
+ const N=[{id:'NCR-20260001',title:'Dimensional deviation, 10.8 mm vs 10.5 mm limit',prod:'TB-40',tool:'Unknown',shift:'Unknown',mo:'MO-202600001',sd:2,hist:[['Received',1]],cause:'Under investigation',txt:'AI analysis: possible tooling offset or process variation. Missing calibration history, process parameter trend and tool-change event.',sev:'Minor',age:3,status:'Under review',cpk:null,owner:'PR'}];
+ for(let i=2;i<=300;i++){const ag=Math.floor(R()*730)+1,st=ag>60?(R()<.03?'Open':'Closed'):pk(['Open','Open','Under review','Contained','CAPA','Closed']),yr=new Date(2026,8,30-ag).getFullYear();const tool=pk(['T-03','T-07','T-07','T-07','T-12','T-21']);const cause=tool==='T-07'&&R()<.6?'Tooling offset':pk(['Process variation','Process variation','Measurement error','Material','Operator / setup','Tooling offset']);
+  N.push({id:'NCR-'+yr+String(i).padStart(4,'0'),title:pt(dims)+' out of tolerance',prod:pk(['TB-40','TB-40','TB-32','TB-50']),tool,shift:pk(['A','B','B','C']),mo:'MO-2026'+String(i*13).padStart(5,'0'),cause,sev:pk(['Minor','Minor','Minor','Major']),age:ag,status:st,cpk:+((tool==='T-07'?.7:1)+R()*.6).toFixed(2),owner:pt(own),sd:Math.floor(T()*T()*16)})}
+ N.forEach((n,i)=>{n.stage=n.status==='Closed'?'Closed':n.status==='Under review'?'Awaiting decision':n.status==='Contained'?'Containment':n.status==='CAPA'?'CAPA':n.age<=7?'Received':'Investigating';n.eff=n.status==='Closed'?(i%5===3?'Recurred later':'Verified effective'):'';n.raised=new Date(2026,8,30-n.age).toLocaleDateString();n.sd=Math.min(n.sd,n.age);n.cyc=n.status==='Closed'?Math.max(3,Math.min(n.age,4+(i*11)%38)):0;n.rd=n.eff==='Recurred later'?15+(i*7)%60:0});return N}
+const SCH={Received:'c-mu',Investigating:'c-amb','Awaiting decision':'c-red',Containment:'c-amb',CAPA:'c-mu',Closed:'c-grn'};
+const STG=[['Received','New, not started'],['Investigating','Gathering evidence'],['Awaiting decision','Needs an engineer'],['Containment','Holds and sorting'],['CAPA','Corrective actions'],['Closed','Solved, 8D available']];
+function inbox(){const N=NCRS.filter(inbP),u=a=>[...new Set(a)].sort();
+ const fill=(id,label,vals)=>{$(id).innerHTML='<option value="">'+label+'</option>'+vals.map(v=>`<option>${v}</option>`).join('')};
+ fill('#f-prod','All products',u(N.map(n=>n.prod)));fill('#f-tool','All tools',u(N.map(n=>n.tool)));fill('#f-cause','All causes',u(N.map(n=>n.cause)));
+ ['q','f-prod','f-tool','f-cause','f-sort'].forEach(i=>$('#'+i).oninput=inboxList);
+ const c=k=>N.filter(n=>n.stage===k).length,un=N.filter(n=>n.status!=='Closed').length;
+ $('#solvebar').style.width=(N.length-un)/N.length*100+'%';
+ $('#solvetxt').textContent=`${un} unsolved, ${N.length-un} solved (${Math.round((N.length-un)/N.length*100)}% solved). ${N.filter(n=>n.age<=7).length} raised in the last 7 days. ${N.filter(n=>n.status!=='Closed'&&n.age>30).length} unsolved for more than 30 days.`;
+ $('#pipe').innerHTML=STG.map(([k,d])=>`<button class="tile" aria-pressed="${F.stage===k}" onclick="F.stage=F.stage==='${k}'?'':'${k}';inbox()"><span>${k}</span><b>${c(k)}</b><small>${d}${ov(k)?` · <b style="color:var(--red)">${ov(k)} overdue</b>`:''}</small></button>`).join('');inboxList()}
+function inboxList(){let L=NCRS.filter(n=>(!F.mine||n.owner==='PR')&&(!F.over||left(n)<0)&&whenOK(n)&&(!F.stage||n.stage===F.stage)&&(!$('#f-prod').value||n.prod===$('#f-prod').value)&&(!$('#f-tool').value||n.tool===$('#f-tool').value)&&(!$('#f-cause').value||n.cause===$('#f-cause').value)&&match(n,$('#q').value));
+ const so=$('#f-sort').value;L=L.sort((a,b)=>so==='prio'?prio(b).s-prio(a).s:so==='new'?a.age-b.age:so==='sev'?(b.sev==='Major')-(a.sev==='Major')||b.age-a.age:b.age-a.age);
+ $('#cnt').textContent=`Showing ${L.length} of ${NCRS.filter(inbP).length} NCRs${F.stage?' in stage: '+F.stage:''}. Select a row to read the record.`;
+ $('#ib').innerHTML=L.length?L.map(n=>`<tr class="lk" tabindex="0" onclick="openRec('${n.id}','inbox')" onkeydown="if(event.key==='Enter')openRec('${n.id}','inbox')"><td><b>${n.id}</b></td><td>${n.title}<br><small style="color:var(--mu)">${n.prod}, ${n.sev}</small></td><td><span class="chip ${SCH[n.stage]}">${n.stage}</span></td><td title="${prio(n).w}"><span class="pr"><i style="width:${prio(n).s}%"></i></span><b>${prio(n).s}</b><br><small style="color:var(--mu)">${prio(n).w}</small></td><td>${due(n)}</td><td>${n.owner}</td><td>${n.tool}</td><td>${n.age}</td><td>${n.status==='Closed'?'Yes':'No'}</td></tr>`).join(''):'<tr><td colspan="9">No NCRs match. Clear a filter or search term.</td></tr>'}
+const RC={'Tooling offset':['Tool offset drifted after a tool change; the last calibration was overdue.','Re-zeroed and recalibrated the tool, verified on first-off parts.','Added a calibration check to the tool-change checklist.'],
+'Process variation':['Process parameters drifted outside the validated window.','Reset parameters to the validated window and retrained the setup.','Added an SPC alarm on the dimension and tightened control limits.'],
+'Measurement error':['Gauge was out of calibration; parts were in tolerance on re-measurement.','Replaced the gauge and re-measured the lot.','Added a gauge R&R check to the inspection plan.'],
+'Material':['Incoming material varied beyond the supplier certificate.','Segregated the batch and raised a supplier corrective action.','Added incoming inspection on the dimension.'],
+'Operator / setup':['Setup instruction was ambiguous and the fixture seated incorrectly.','Clarified the work instruction and added a fixture seating check.','Added setup verification sign-off.']};
+function eightD(n){const r=RC[n.cause]||RC['Process variation'];return[['D1 Team','Quality ('+n.owner+'), Manufacturing Engineering, Maintenance.'],['D2 Problem',`${n.title} on ${n.prod}, tool ${n.tool}, shift ${n.shift}, ${n.mo}. Severity: ${n.sev}.`],['D3 Containment','Held the affected lot, sorted units, and inspected 100% of this dimension until the cause was verified.'],['D4 Root cause',r[0]],['D5 Corrective action',r[1]],['D6 Validation',`First 3 lots re-measured. Cpk moved from ${n.cpk} to ${(n.cpk+.3).toFixed(2)}.`],['D7 Prevent recurrence',r[2]],['D8 Closure',`Closed after ${n.cyc} days (raised ${n.raised}). Effectiveness: ${n.eff}${n.rd?', problem returned after '+n.rd+' days':''}.`]]}
+function openRec(id,from){const n=NCRS.find(x=>x.id===id),live=id==='NCR-20260001',cl=n.status==='Closed';openRec.from=from;
+ const av=live?['Available','Requestable','Requestable','Requestable']:cl?['Available','Available','Available','Available']:['Available','Requestable','Requestable','Requestable'];
+ const recs=[['Inspection record','IR-'+id.slice(-4),av[0]],['Calibration record','CAL-'+id.slice(-4),av[1]],['Tool-change log','TCL-'+id.slice(-4),av[2]],['Process parameter history',n.mo,av[3]]].concat(cl?[['8D report','8D-'+id.slice(-4),'Available'],['CAPA record','CA-'+id.slice(-4),'Available']]:[]);
+ $('#rec').innerHTML=`<p><button class="btn" onclick="setTab('${from}')">Back to ${from==='case'?'case decision':from==='port'?'portfolio':'inbox'}</button></p>
+ <h1>${n.id}: ${n.title}</h1><p class="sub">${n.prod}, tool ${n.tool}, shift ${n.shift}, ${n.mo}. Owner ${n.owner}. Raised ${n.raised} (${n.age} days ago).${cl?' Closed after '+n.cyc+' days.':' In this stage for '+n.sd+' days (SLA '+SLA[n.stage]+').'}</p>
+ <div class="chips" style="margin-bottom:14px"><span class="chip ${SCH[n.stage]}"><i></i>${n.stage}</span><span class="chip c-mu">${n.sev}</span><span class="chip c-mu">Cause: ${n.cause}</span>${cl?`<span class="chip ${n.eff==='Verified effective'?'c-grn':'c-red'}"><i></i>${n.eff}</span>`:''}</div>
+ <div class="layout"><div class="col">`+
+ (live?`<section class="card hero"><div><h2>Active investigation</h2><p>This NCR has an AI investigation waiting for your decision.</p><button class="btn pri" onclick="setTab('case')">Open case decision</button></div><div></div></section>`:
+ cl?`<section class="card"><h2>8D report</h2><p class="hint">Sample content. Read each step, then pin the report so it is recorded with your decision.</p>${eightD(n).map((d,i)=>`<details ${i===3?'open':''}><summary><em>${d[0]}</em></summary><p>${d[1]}</p></details>`).join('')}<div class="acc" style="margin-top:12px"><button class="btn pri" onclick="pin('${n.id}')">Pin as reference</button><button class="btn" onclick="window.print()">Print or save as PDF</button></div></section>`:
+ `<section class="card"><h2>No AI investigation yet</h2><p class="hint">This NCR is at the stage: ${n.stage}. Start an investigation to gather evidence and draft an analysis.</p><button class="btn pri" onclick="toast('Would start the AI investigation for ${n.id}')">Start investigation</button></section>`)+
+ `</div><aside class="col"><section class="card"><h2>Linked records</h2><p class="hint">Requestable records can be asked for from their owners.</p>${recs.map(r=>`<div class="sim"><div><b>${r[0]}</b><br><small>${r[1]} · ${r[2]}</small></div><button class="btn" onclick="toast('${r[2]==='Available'?'Would open':'Request sent for'} ${r[0]}')">${r[2]==='Available'?'Open':'Request'}</button></div>`).join('')}</section></aside></div>`;setTab('rec')}
+function pin(id){if(!pins.includes(id))pins.push(id);$('#pins').textContent=pins.join(', ');toast('Pinned '+id+'. It will be recorded with your decision.')}
+function simRender(){const L=NCRS.filter(n=>n.status==='Closed'&&['Tooling offset','Process variation'].includes(n.cause)).sort((a,b)=>(a.cause==='Tooling offset'?0:1)-(b.cause==='Tooling offset'?0:1)).slice(0,4);
+ $('#sim').innerHTML=L.map(n=>`<div class="sim"><div><b>${n.id}</b> ${n.title}<br><small>Cause: ${n.cause} · tool ${n.tool} · <span style="color:${n.eff==='Verified effective'?'var(--grn)':'var(--red)'}">${n.eff}${n.rd?' after '+n.rd+' days':''}</span></small></div><div class="acc"><button class="btn" onclick="openRec('${n.id}','case')">Read 8D</button><button class="btn" onclick="pin('${n.id}')">Pin</button></div></div>`).join('')||'<p class="note">No closed matches.</p>'}
+
+const P={a:0,b:365,g:'month'},inP=n=>n.age>=P.a&&n.age<=P.b,inbP=n=>n.status!=='Closed'||inP(n);
+const MAT=60;
+const PL={'0-30':'the last 30 days','0-29':'this month (Sep 2026)','30-60':'last month (Aug 2026)','0-91':'this quarter (Q3 2026)','92-182':'last quarter (Q2 2026)','0-182':'the last 6 months','0-365':'the last 12 months','0-730':'all sample data (24 months)'};
+const SLA={Received:2,Investigating:14,'Awaiting decision':3,Containment:5,CAPA:30};
+const ov=k=>NCRS.filter(n=>n.stage===k&&left(n)<0).length;
+const gs={i:-1};
+const esc=x=>String(x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function toks(q){return q.toLowerCase().split(/\s+/).filter(Boolean)}
+function hay(n){if(!n._h)n._h=(Object.values(n).join(' ')+' '+(n.status==='Closed'?eightD(n).map(d=>d[1]).join(' '):'')).toLowerCase();return n._h}
+function match(n,q){const t=toks(q);return t.every(x=>hay(n).includes(x))}
+function hl(x,t){const r=new RegExp('('+t.map(w=>w.replace(/[^a-z0-9]/gi,'')).filter(Boolean).join('|')+')','gi');return esc(x).replace(r,'<mark>$1</mark>')}
+function cur(){return ['inbox','case','port','data'].find(k=>!$('#v-'+k).hidden)||openRec.from||'inbox'}
+function gsOpen(id){$('#gsr').hidden=true;openRec(id,cur())}
+function gsAll(){$('#q').value=$('#gs').value;$('#gsr').hidden=true;inboxList();setTab('inbox')}
+function gsRun(){const q=$('#gs').value,t=toks(q),box=$('#gsr');gs.i=-1;if(!t.length){box.hidden=true;return}
+ const M=NCRS.filter(n=>match(n,q)).sort((a,b)=>{const r=n=>t.every(x=>(n.id+' '+n.title).toLowerCase().includes(x))?0:1;return r(a)-r(b)});
+ const cand=n=>[['Cause',n.cause],['Tool',n.tool],['Analysis',n.txt||'']].concat(n.status==='Closed'?eightD(n):[]);
+ box.hidden=false;
+ box.innerHTML=M.length?M.slice(0,8).map(n=>{const c=cand(n).find(([l,x])=>t.some(w=>String(x).toLowerCase().includes(w)));
+  return `<div class="gi" role="option" data-id="${n.id}" onclick="gsOpen('${n.id}')"><b>${n.id}</b> ${hl(n.title,t)} <span class="chip ${SCH[n.stage]}">${n.stage}</span><small>${c?esc(c[0])+': '+hl(c[1],t):'Matches other details of this NCR'}</small></div>`}).join('')+`<div class="gi" onclick="gsAll()"><b>Show all ${M.length} in the inbox</b></div>`:'<div class="gi">No NCR or 8D report matches. Try fewer or different words.</div>'}
+function gsInit(){const i=$('#gs');i.oninput=gsRun;i.onfocus=gsRun;
+ i.onkeydown=e=>{const l=[...document.querySelectorAll('.gi')];if(e.key==='Escape'){$('#gsr').hidden=true;return}if(!l.length)return;
+  if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();gs.i=(gs.i+(e.key==='ArrowDown'?1:-1)+l.length)%l.length;l.forEach((x,k)=>x.classList.toggle('on',k===gs.i));l[gs.i].scrollIntoView({block:'nearest'})}
+  if(e.key==='Enter'){e.preventDefault();(l[gs.i>=0?gs.i:0]).click()}};
+ document.addEventListener('click',e=>{if(!e.target.closest('.gs'))$('#gsr').hidden=true})}
+const NCRS=mk();inbox();simRender();gsInit();
+const FLOW=['Received','Investigating','Awaiting decision','Containment','CAPA','Closed'];
+function prio(n){if(n.status==='Closed')return{s:0,w:'Closed'};let s=n.sev==='Major'?40:15;const w=[n.sev];s+=Math.round(Math.min(n.age,45)/45*30);if(n.age>30)w.push(n.age+' days open');if(n.cpk!==null&&n.cpk<1){s+=20;w.push('Cpk '+n.cpk)}else s+=5;if(n.tool==='Unknown'){s+=10;w.push('scope unknown')}if(left(n)<0){s+=10;w.push('SLA breached')}return{s:Math.min(100,s),w:w.join(', ')}}
+function due(n){const l=left(n);if(l===null)return'';const sm=`<br><small style="color:var(--mu)">${n.sd}d in stage, SLA ${SLA[n.stage]}d</small>`;return(l<0?`<b style="color:var(--red)">Overdue ${-l}d</b>`:l===0?'Due today':'Due in '+l+'d')+sm}
+function renderStep(){const i=FLOW.indexOf(NCRS[0].stage);$('#step').innerHTML=FLOW.map((f,k)=>`<li class="${k<i?'done':k===i?'now':''}"><i>${k<i?'✓':k+1}</i><span>${f}</span></li>`).join('');clocks()}
+function moveStage(v){const m={'Accept as working hypothesis':'Investigating','Request evidence':'Investigating','Challenge the analysis':'Investigating','Contain and escalate':'Containment','Close with disposition':'CAPA'},n=NCRS[0];
+ n.hist.push([n.stage,n.sd]);n.sd=0;n.stage=m[v];n.status={Investigating:'Open',Containment:'Contained',CAPA:'CAPA'}[n.stage];
+ if(v==='Contain and escalate'||v==='Close with disposition')$('#ap1').textContent='Signed by PR, '+new Date().toLocaleString();
+ if(v==='Challenge the analysis')addLog('System','Re-run requested with your reason. The agents would run the analysis again here.');
+ renderStep();inbox()}
+const OWN={'Calibration history':'Maintenance and Metrology','Process parameter trend':'Manufacturing Engineering','Tool-change event':'Production Supervisor'};
+function addTask(g){const l=$('#tl');if(l.children[0]&&l.children[0].textContent.startsWith('No tasks'))l.innerHTML='';const li=document.createElement('li');li.innerHTML=`<b>Task</b> Get ${g} from ${OWN[g]}<br><span class="tag">Due in 2 days · open</span>`;l.prepend(li)}
+function postC(){const t=$('#cmt').value.trim();if(!t)return;const l=$('#tl');if(l.children[0]&&l.children[0].textContent.startsWith('No tasks'))l.innerHTML='';const li=document.createElement('li');li.innerHTML='<b>You</b> <span></span><br><span class="tag">'+new Date().toLocaleString()+'</span>';li.children[1].textContent=t;l.prepend(li);$('#cmt').value=''}
+function chart(){const v=[10.2,10.25,10.18,10.3,10.22,10.27,10.33,10.29,10.36,10.31,10.4,10.38,10.43,10.47,10.45,10.52,10.6,10.66,10.72,10.8],W=560,H=175,x=i=>34+i*(W-50)/19,y=d=>H-22-(d-10)*(H-44)/0.9;
+ const L=(d,c,t,da)=>`<line x1="34" x2="${W-14}" y1="${y(d)}" y2="${y(d)}" stroke="${c}" stroke-width="1" ${da?'stroke-dasharray="4 3"':''}/><text x="36" y="${y(d)-3}">${t}</text>`;
+ $('#chart').innerHTML=L(10.5,'#f25b24','Upper limit 10.5',0)+L(10.42,'#888','Control limit',1)+L(10.1,'#888','Control limit',1)+`<polyline fill="none" stroke="#004753" stroke-width="1.6" points="${v.map((d,i)=>x(i)+','+y(d)).join(' ')}"/>`+v.map((d,i)=>`<circle cx="${x(i)}" cy="${y(d)}" r="${i===19?5:3}" fill="${d>10.5?'#f25b24':'#004753'}"/>`).join('')+`<text x="${x(19)-96}" y="${y(10.8)+3}">This NCR: 10.8</text>`}
+function aitr(){const c=NCRS.filter((n,i)=>n.status==='Closed'&&n.cause!=='Under investigation'),ok=n=>NCRS.indexOf(n)%4!==1,h=c.filter(ok).length,t=c.filter(n=>n.cause==='Tooling offset'),th=t.filter(ok).length;
+ $('#aitr').textContent=`AI track record (sample): on ${c.length} closed NCRs the AI's first hypothesis matched the confirmed cause ${h} times (${Math.round(h/c.length*100)}%). For tooling offset: ${th} of ${t.length}.`}
+function initExtra(){$('#per').onchange=perChange;$('#grp').onchange=perChange;perNote('inbox');$('#over').onclick=function(){F.over=!F.over;this.setAttribute('aria-pressed',F.over);this.classList.toggle('pri',F.over);inboxList()};$('#mine').onclick=function(){F.mine=!F.mine;this.setAttribute('aria-pressed',F.mine);this.classList.toggle('pri',F.mine);inboxList()};
+ document.querySelectorAll('.cb').forEach(b=>b.onclick=()=>{$('#'+b.dataset.i).textContent=b.dataset.t;b.textContent='Done';b.disabled=true;addLog('You',b.dataset.t);clocks()})}
+
+function left(n){return n.status==='Closed'?null:SLA[n.stage]-n.sd}
+function whenOK(n){return inbP(n)}
+const med=a=>{a=[...a].sort((x,y)=>x-y);return a.length?a[Math.floor(a.length/2)]:0};
+function clocks(){const n=NCRS[0],sla=SLA[n.stage],pct=Math.min(100,Math.round(n.sd/sla*100)),hot=n.sd>sla||pct>=80;
+ const held=!$('#c1').textContent.startsWith('Not'),cont=held||n.stage==='Containment'||n.stage==='CAPA';
+ const md=med(NCRS.filter(x=>x.status==='Closed'&&['Tooling offset','Process variation'].includes(x.cause)).map(x=>x.cyc)),exp=new Date(2026,8,30+Math.max(0,md-n.age)).toLocaleDateString();
+ const seg=n.hist.map(h=>`<div style="flex:${Math.max(h[1],.7)}">${h[0]}<br><b>${h[1]}d</b></div>`).join('')+`<div class="now" style="flex:${Math.max(n.sd,.7)+1}">${n.stage} (now)<br><b>${n.sd}d</b></div>`;
+ $('#clk').innerHTML=`<h2>Time and deadlines</h2><p class="hint">Clocks for this NCR. Stage limits (SLA) are sample values to agree with your team.</p><div class="four">
+ <div class="box"><small>Open for</small><b>${n.age} days</b><small>Raised ${n.raised}</small></div>
+ <div class="box"><small>In this stage</small><b style="color:${hot?'var(--red)':'inherit'}">${n.sd} of ${sla} days</b><div class="pbar"><i style="width:${pct}%;background:${hot?'var(--org)':'var(--grn)'}"></i></div><small>Limit for ${n.stage}</small></div>
+ <div class="box"><small>Time to containment</small><b style="color:${cont?'var(--grn)':'var(--red)'}">${cont?'Started':n.age+' days, not started'}</b><small>Target: within 1 day of raising</small></div>
+ <div class="box"><small>Expected close</small><b>About ${exp}</b><small>Median ${md} days for similar closed NCRs (sample)</small></div></div>
+ <div class="tl2" aria-label="Time spent in each stage">${seg}</div>`}
+function perNote(t){perNote.t=t;$('#pernote').textContent=t==='inbox'?'Open NCRs are always shown, even if raised before this period.':'Showing NCRs raised in '+PL[$('#per').value]+'. '+(perNote.w||'')}
+function perChange(){const[a,b]=$('#per').value.split('-').map(Number);P.a=a;P.b=b;P.g=$('#grp').value;inbox();if(setTab.p){portfolio();portTime()}perNote(perNote.t||'inbox')}
+function bKey(age,g){const d=new Date(2026,8,30-age);return g==='week'?Math.floor((age-P.a)/7):g==='month'?d.getFullYear()*12+d.getMonth():d.getFullYear()*4+Math.floor(d.getMonth()/3)}
+function bLab(age,g){const d=new Date(2026,8,30-age);return g==='week'?d.toLocaleDateString('en',{day:'numeric',month:'short'}):g==='month'?d.toLocaleString('en',{month:'short',year:'2-digit'}):'Q'+(Math.floor(d.getMonth()/3)+1)+' '+String(d.getFullYear()).slice(2)}
+function portTime(){const st=a=>{const C=a.filter(n=>n.status==='Closed');return{r:a.length,cs:a.length?Math.round(C.length/a.length*100):0,m:med(C.map(n=>n.cyc)),rc:C.length?Math.round(C.filter(n=>n.rd).length/C.length*100):0}};
+ const cu=st(NCRS.filter(inP)),len=P.b-P.a+1,pv=P.b+len<=730?st(NCRS.filter(n=>n.age>P.b&&n.age<=P.b+len)):null;
+ const dl=(x,y,bad,u,m)=>{if(!pv)return'No earlier data to compare';if(m&&P.a<MAT)return'Not comparable yet: recent NCRs are still closing';const d=x-y;return`<span style="color:${d===0?'inherit':((d>0)===!!bad?'var(--red)':'var(--grn)')}">${d>0?'+':''}${d}${u}</span> vs previous period`};
+ $('#kp2').innerHTML=[['Raised',cu.r,pv&&dl(cu.r,pv.r,1,'')],['Closed share',cu.cs+'%',pv&&dl(cu.cs,pv.cs,0,' pts',1)],['Median days to close',cu.m,pv&&dl(cu.m,pv.m,1,' days',1)],['Problem came back',cu.rc+'% of closed',pv&&dl(cu.rc,pv.rc,1,' pts',1)]].map(k=>`<div class="card"><span>${k[0]}</span><b>${k[1]}</b><span>${k[2]||'No earlier data to compare'}</span></div>`).join('');
+ let g=P.g;perNote.w='';if(g==='week'&&len>182){g='month';perNote.w='Weekly view is limited to 6 months, so months are shown.'}
+ const keys=[],lab={};for(let a=P.b;a>=P.a;a--){const k=bKey(a,g);if(!keys.includes(k)){keys.push(k);lab[k]=bLab(a,g)}}
+ const r={},c={};keys.forEach(k=>{r[k]=0;c[k]=0});
+ NCRS.forEach(n=>{if(inP(n))r[bKey(n.age,g)]++;if(n.status==='Closed'){const ca=n.age-n.cyc;if(ca>=P.a&&ca<=P.b)c[bKey(ca,g)]++}});
+ const nb=keys.length,mx=Math.max(...keys.map(k=>Math.max(r[k],c[k])),1),step=508/nb,bw=Math.min(22,step*.38),h=v=>v/mx*130,ev=Math.ceil(nb/12);
+ $('#wk').innerHTML=`<line x1="40" x2="548" y1="160" y2="160" stroke="#888"/>`+keys.map((k,i)=>{const x=44+i*step+(step-2*bw-2)/2;return`<rect x="${x}" y="${160-h(r[k])}" width="${bw}" height="${h(r[k])}" rx="2" style="fill:var(--teal)"/><rect x="${x+bw+2}" y="${160-h(c[k])}" width="${bw}" height="${h(c[k])}" rx="2" style="fill:var(--grn)"/>`+(i%ev===0?`<text x="${x+bw}" y="176" text-anchor="middle">${lab[k]}</text>`:'')+(nb<=14?`<text x="${x+bw/2}" y="${155-h(r[k])}" text-anchor="middle">${r[k]}</text><text x="${x+bw*1.5+2}" y="${155-h(c[k])}" text-anchor="middle">${c[k]}</text>`:'')}).join('')+`<rect x="44" y="184" width="10" height="10" style="fill:var(--teal)"/><text x="58" y="193">Raised</text><rect x="110" y="184" width="10" height="10" style="fill:var(--grn)"/><text x="124" y="193">Closed</text>`}
+renderStep();chart();aitr();initExtra();
+</script>
+<style>
+.mqi-live{display:flex;align-items:center;gap:8px;padding:8px 28px;background:var(--sf2);border-bottom:1px solid var(--ln);font-size:12px;color:var(--mu)}
+.mqi-live i{width:8px;height:8px;border-radius:50%;background:var(--amb);display:inline-block}.mqi-live.ok{color:var(--grn)}.mqi-live.ok i{background:var(--grn)}.mqi-live.bad{color:var(--red)}.mqi-live.bad i{background:var(--red)}
+.mqi-api-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.mqi-api-box{border:1px solid var(--ln);border-radius:9px;padding:11px;background:var(--sf2)}.mqi-api-box small{display:block;color:var(--mu);font-size:11px}.mqi-api-box b{display:block;font-size:14px;margin-top:3px}.mqi-list{margin:0;padding-left:18px;color:var(--mu);font-size:12.5px}.mqi-cause{font-size:15px;font-weight:700;margin:4px 0 6px}.mqi-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.mqi-actions .btn{min-width:90px}.mqi-empty{color:var(--mu);font-size:12.5px;padding:10px 0}.mqi-error{background:var(--orgbg);border:1px solid var(--org);border-radius:9px;padding:11px;color:var(--red);font-size:12.5px;margin-bottom:12px}
+@media(max-width:700px){.mqi-api-grid{grid-template-columns:1fr}}
+</style>
+<div class="mqi-live" id="mqi-live"><i></i><span id="mqi-live-text">Connecting to MQI API · 127.0.0.1:8000</span></div>
+<script>
+(function(){
+ const API=(window.MQI_API_BASE||'http://127.0.0.1:8000').replace(/\/$/,'');
+ const ID='API-HITL-001'; const NCR='NCR-20260001'; let R=null;
+ const $=s=>document.querySelector(s), esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ async function api(path,opt={}){const r=await fetch(API+path,{headers:{'Content-Type':'application/json',...(opt.headers||{})},...opt});const txt=await r.text();let d={};try{d=txt?JSON.parse(txt):{}}catch{d={raw:txt}}if(!r.ok)throw Error(d.detail||d.message||txt||('HTTP '+r.status));return d}
+ function live(ok,msg){const b=$('#mqi-live');b.className='mqi-live '+(ok===true?'ok':ok===false?'bad':'');$('#mqi-live-text').textContent=msg}
+ function statusChip(v){const x=String(v||'UNKNOWN');return x==='SUCCESS'?'c-grn':x==='FAILED'||x==='BLOCKED'?'c-red':'c-amb'}
+ function firstCause(a){const c=(a.potential_causes||[])[0]||{};return c.cause||c.description||c.name||'No potential cause returned'}
+ function renderCase(response){
+  R=response;
+  const r={
+    ...response,
+    ...(response.data?.investigation_result || {}),
+    traceability: response.data?.traceability || response.data?.investigation_result?.traceability || response.traceability,
+    evidence_package: response.data?.evidence_package || response.data?.investigation_result?.evidence_package || response.evidence_package,
+    rca_analysis: response.data?.rca_analysis || response.data?.investigation_result?.rca_analysis || response.rca_analysis,
+    review: response.data?.review || response.data?.investigation_result?.review || response.review
+  };
+  const t=r.traceability||{},e=r.evidence_package||{},a=r.rca_analysis||{},v=r.review||{};const p=t.product||{},s=t.serial_unit||{},m=t.manufacturing_order||{};
+  const title=$('#v-case h1');if(title)title.textContent='Blade dimension is out of tolerance';
+  const sub=$('#v-case .sub');if(sub)sub.textContent=`${p.name||p.product_name||'Product '+(p.product_number||p.id||'not available')}, serial ${s.serial_number||s.id||'not available'}, manufacturing order ${m.mo_number||m.id||'not available'}`;
+  const liveStatus=r.status||'UNKNOWN';
+  const hero=$('#v-case .hero');if(hero){const h=hero.querySelector('h2'),ps=hero.querySelectorAll('p');if(h)h.textContent=r.hitl_required?'Investigation requires your human decision':'Investigation completed';if(ps[0])ps[0].textContent=a.conclusion||'The AI investigation has returned an evidence-backed analysis.';if(ps[1])ps[1].textContent=`Agent status: ${a.status||'UNKNOWN'} · ${e.evidence_count??(e.evidence||[]).length} evidence items · human authority remains final.`;}
+  const gauge=$('#v-case .gauge');if(gauge){const old=gauge.querySelector('.big');if(old)old.innerHTML=`${esc((a.problem_statement||'NCR '+NCR).slice(0,42))}<small>problem statement</small>`;const tag=gauge.querySelector('.tag');if(tag)tag.textContent=`Investigation ${esc(r.investigation_id||ID)} · ${esc(liveStatus)} · HITL ${r.hitl_required?'required':'not required'}`}
+  const cards=$('#v-case .layout .col');
+  if(cards){
+   const evidence=(e.evidence||[]).slice(0,12), gaps=e.evidence_gaps||[], supports=a.supporting_evidence||[], contradict=a.contradictory_evidence||[], next=a.recommended_next_steps||[], causes=a.potential_causes||[];
+   const apiBlock=`<section class="card"><h2>Live investigation result</h2><p class="hint">This screen is populated from the MQI FastAPI investigation endpoint. No static RCA result is being presented as live data.</p><div class="mqi-api-grid"><div class="mqi-api-box"><small>Investigation</small><b>${esc(r.investigation_id||ID)}</b></div><div class="mqi-api-box"><small>Agent status</small><b>${esc(liveStatus)}</b></div><div class="mqi-api-box"><small>Evidence count</small><b>${esc(e.evidence_count??evidence.length)}</b></div></div></section>`;
+   const trace=`<section class="card"><h2>Traceability</h2><p class="hint">Resolved by ProductTraceabilityAgent.</p><div class="flow"><span>${esc(t.ncr_number||r.ncr_number||NCR)}</span><span>${esc(p.product_number||p.id||'Product unavailable')}</span><span>${esc(s.serial_number||s.id||'Serial unavailable')}</span><span>${esc(m.mo_number||m.id||'MO unavailable')}</span></div></section>`;
+   const rca=`<section class="card"><h2>AI analysis · human decision required</h2><p class="hint">Potential causes are hypotheses, not autonomous root-cause declarations.</p>${causes.length?causes.map((c,i)=>`<div class="hyp"><div class="hh"><b>${esc(c.cause||c.description||c.name||'Potential cause '+(i+1))}</b><span class="chip ${statusChip(a.status)}">${esc(c.confidence??c.score??'unrated')}</span></div><p class="note">${esc(c.rationale||c.description||'Evidence requires engineer confirmation.')}</p></div>`).join(''):'<div class="mqi-empty">No potential cause returned.</div>'}<div class="fa"><div><b>Supporting evidence</b><ul>${supports.length?supports.map(x=>`<li>${esc(x)}</li>`).join(''):'<li>None returned</li>'}</ul></div><div><b>Contradictory / missing</b><ul>${[...contradict,...gaps].length?[...contradict,...gaps].map(x=>`<li>${esc(x)}</li>`).join(''):'<li>None returned</li>'}</ul></div></div>${next.length?`<div style="margin-top:12px"><b style="font-size:12px">Recommended next steps</b><ul class="mqi-list">${next.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`:''}<p class="note">${esc(a.conclusion||'No conclusion returned.')}</p></section>`;
+   const ev=`<section class="card"><h2>Evidence behind the analysis</h2><p class="hint">Retrieved by: ${(e.retrieval_methods||[]).map(esc).join(', ')||'not reported'}.</p>${evidence.length?evidence.map((x,i)=>`<details><summary><em>${esc(x.title||x.source||x.type||'Evidence '+(i+1))}</em><span class="ev-s">${esc(x.score??x.strength??'linked')}</span></summary><p>${esc(x.description||x.content||x.detail||JSON.stringify(x))}</p></details>`).join(''):'<div class="mqi-empty">No evidence items returned.</div>'}${gaps.length?`<div class="box u" style="margin-top:12px"><h3>Evidence gaps</h3><ul>${gaps.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`:''}</section>`;
+   cards.innerHTML=apiBlock+trace+rca+ev;
+  }
+  const side=$('#v-case .layout aside');if(side){side.innerHTML=`<section class="card"><h2>Your decision</h2><p class="hint">The AI cannot approve or reject the investigation. Your HITL decision is the authoritative action.</p><div class="acts"><label class="act"><input type="radio" name="mqi-decision" value="APPROVE"><div><b>Approve</b><span>Accept the investigation package for the next controlled step.</span></div></label><label class="act"><input type="radio" name="mqi-decision" value="RETURN"><div><b>Return for evidence</b><span>Request more evidence before proceeding.</span></div></label><label class="act"><input type="radio" name="mqi-decision" value="REJECT"><div><b>Reject</b><span>Reject the current investigation package.</span></div></label></div><label class="l" for="mqi-reason">Reviewer reason</label><textarea id="mqi-reason" placeholder="Record why you made this decision..."></textarea><div class="mqi-actions"><button class="btn pri" id="mqi-submit">Record human decision</button><button class="btn" id="mqi-refresh">Refresh</button></div><p class="note" id="mqi-decision-state">Current package: ${esc(v.status||r.status||'UNKNOWN')} · HITL ${r.hitl_required?'required':'not required'}</p></section><section class="card"><h2>Review checks</h2><ul class="mqi-list">${Object.keys(v.checks||{}).length?Object.entries(v.checks).map(([k,val])=>`<li>${esc(k)}: <b>${val?'PASS':'FAIL'}</b></li>`).join(''):'<li>No review checks returned.</li>'}</ul>${(v.issues||[]).length?`<p class="note">Issues: ${esc(v.issues.join('; '))}</p>`:''}${(v.warnings||[]).length?`<p class="note">Warnings: ${esc(v.warnings.join('; '))}</p>`:''}</section>`;
+   $('#mqi-submit').onclick=()=>hitl();$('#mqi-refresh').onclick=load;}
+  renderStep();
+ }
+ async function load(){live(null,'Connecting to MQI API · '+API);try{const r=await api('/investigations/'+encodeURIComponent(ID));renderCase(r);live(true,'MQI API connected · '+API);}catch(e){live(false,'MQI API unavailable · '+e.message);const c=$('#v-case .layout');if(c)c.insertAdjacentHTML('beforebegin',`<div class="mqi-error"><b>Live API unavailable.</b> Start FastAPI on ${esc(API)}. The UI has not replaced the missing response with fake live data.</div>`)} }
+ async function hitl(){const d=document.querySelector('input[name="mqi-decision"]:checked');if(!d){alert('Select a human decision first.');return}const reason=$('#mqi-reason').value.trim();if(!reason){alert('Enter a reviewer reason.');return}if(!confirm('Record '+d.value+' for '+ID+'? This changes investigation state.'))return;try{await api('/investigations/'+encodeURIComponent(ID)+'/hitl',{method:'POST',body:JSON.stringify({decision:d.value,reason,reviewed_by:'ui-reviewer'})});alert('Human decision recorded: '+d.value);await load();}catch(e){alert('HITL action failed: '+e.message)} }
+ window.MQI_LOAD=load;
+ const oldSetTab=window.setTab;window.setTab=function(t){oldSetTab(t);if(t==='case'||t==='rec')load()};
+ load();
+})();
+</script>
+</body>
+</html>

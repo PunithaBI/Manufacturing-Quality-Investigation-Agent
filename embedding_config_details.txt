@@ -1,0 +1,400 @@
+`n===== app\retrieval\chunking.py : line 25 =====
+  25:     )
+  26: 
+  27: 
+  28: DEFAULT_CHUNK_SIZE = 1200
+  29: DEFAULT_CHUNK_OVERLAP = 200
+  30: 
+  31: 
+  32: def chunk_document(
+  33:     document,
+  34:     *,
+  35:     chunk_size: int = DEFAULT_CHUNK_SIZE,
+  36:     overlap: int = DEFAULT_CHUNK_OVERLAP,
+  37: ) -> list[DocumentChunk]:
+  38: 
+  39:     content = document.content.strip()
+  40: 
+  41:     if not content:
+  42:         return []
+  43: 
+  44:     if chunk_size <= 0:
+  45:         raise ValueError("chunk_size must be greater than zero")
+  46: 
+  47:     if overlap < 0:
+  48:         raise ValueError("overlap cannot be negative")
+  49: 
+  50:     if overlap >= chunk_size:
+  51:         raise ValueError(
+  52:             "overlap must be smaller than chunk_size"
+  53:         )
+  54: 
+  55:     chunks: list[DocumentChunk] = []
+  56: 
+  57:     start = 0
+  58:     chunk_number = 0
+  59: 
+  60:     while start < len(content):
+  61: 
+  62:         end = min(
+  63:             start + chunk_size,
+  64:             len(content),
+  65:         )
+  66: 
+  67:         chunk_text = content[start:end].strip()
+  68: 
+  69:         if chunk_text:
+  70: 
+  71:             chunk_id = (
+  72:                 f"{document.document_id}:"
+  73:                 f"chunk:{chunk_number}"
+  74:             )
+  75: 
+  76:             chunks.append(
+  77:                 DocumentChunk(
+  78:                     chunk_id=chunk_id,
+  79:                     document_id=document.document_id,
+  80:                     source_type=document.source_type,
+  81:                     source_id=(
+  82:                         document.source_id
+  83:                         or document.document_id
+  84:                     ),
+  85:                     title=document.title,
+  86:                     content=chunk_text,
+  87:                     chunk_type="text",
+  88:                     metadata={
+  89:                         **document.metadata,
+`n===== app\retrieval\vector.py : line 35 =====
+  35: class SentenceTransformerRetriever:
+  36:     """
+  37:     Real semantic vector retriever.
+  38: 
+  39:     Embeddings are generated with Sentence Transformers
+  40:     and searched using cosine similarity.
+  41:     """
+  42: 
+  43:     def __init__(
+  44:         self,
+  45:         *,
+  46:         model_name: str = "sentence-transformers/all-MiniLM-L6-v2",
+  47:         index_directory: str | None = None,
+  48:     ) -> None:
+  49: 
+  50:         self.model_name = model_name
+  51: 
+  52:         self.model = SentenceTransformer(
+  53:             model_name
+  54:         )
+  55: 
+  56:         self.store = LocalVectorStore(
+  57:             index_directory
+  58:             or settings.vector_index_directory
+  59:         )
+  60: 
+  61:     def search(
+  62:         self,
+  63:         query: str,
+  64:         limit: int = 20,
+  65:     ) -> list[RetrievalEvidence]:
+  66: 
+  67:         query = query.strip()
+  68: 
+  69:         if not query:
+  70:             return []
+  71: 
+  72:         if limit < 1:
+  73:             return []
+  74: 
+  75:         query_vector = self.model.encode(
+  76:             query,
+  77:             normalize_embeddings=False,
+  78:         )
+  79: 
+  80:         matches = self.store.search(
+  81:             query_vector,
+  82:             limit=limit,
+  83:         )
+  84: 
+  85:         results: list[RetrievalEvidence] = []
+  86: 
+  87:         for chunk, score in matches:
+  88: 
+  89:             source_id = (
+  90:                 chunk.source_id
+  91:                 or chunk.document_id
+  92:             )
+  93: 
+  94:             evidence_id = create_evidence_id(
+  95:                 source_type=chunk.source_type,
+  96:                 source_id=str(source_id),
+  97:             )
+  98: 
+  99:             results.append(
+ 100:                 RetrievalEvidence(
+ 101:                     evidence_id=evidence_id,
+ 102:                     source_type=chunk.source_type,
+ 103:                     source_id=str(source_id),
+ 104:                     retrieval_method="vector",
+ 105:                     title=chunk.title,
+ 106:                     content=chunk.content,
+ 107:                     score=score,
+ 108:                     metadata={
+ 109:                         **chunk.metadata,
+ 110:                         "chunk_id": chunk.chunk_id,
+ 111:                         "document_id": chunk.document_id,
+ 112:                         "chunk_type": chunk.chunk_type,
+ 113:                         "embedding_model": self.model_name,
+ 114:                     },
+ 115:                     provenance=chunk.provenance,
+ 116:                 )
+ 117:             )
+ 118: 
+ 119:         return results
+`n===== app\retrieval\ingestion.py : line 50 =====
+  50:         for document in documents:
+  51: 
+  52:             chunks = chunk_manufacturing_document(
+  53:                 document
+  54:             )
+  55: 
+  56:             all_chunks.extend(chunks)
+  57: 
+  58:         if not all_chunks:
+  59:             return 0
+  60: 
+  61:         texts = [
+  62:             self._embedding_text(chunk)
+  63:             for chunk in all_chunks
+  64:         ]
+  65: 
+  66:         embeddings = self.model.encode(
+  67:             texts,
+  68:             normalize_embeddings=False,
+  69:             show_progress_bar=True,
+  70:         )
+  71: 
+  72:         self.store.add(
+  73:             embeddings,
+  74:             all_chunks,
+  75:         )
+  76: 
+  77:         return len(all_chunks)
+  78: 
+  79:     def ingest_text_file(
+  80:         self,
+  81:         path: str | Path,
+  82:         *,
+  83:         source_type: str = "document",
+  84:         source_id: str | None = None,
+`n===== evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py : line 810 =====
+ 810: 
+ 811: 
+ 812: def precision_at_k(ranked_ids: list[str], relevant: set[str], k: int) -> float:
+ 813:     return sum(1 for item in ranked_ids[:k] if item in relevant) / k if k else 0.0
+ 814: 
+ 815: 
+ 816: def recall_at_k(ranked_ids: list[str], relevant: set[str], k: int) -> float:
+ 817:     return sum(1 for item in ranked_ids[:k] if item in relevant) / len(relevant) if relevant else 0.0
+ 818: 
+ 819: 
+ 820: def mrr(ranked_ids: list[str], relevant: set[str]) -> float:
+ 821:     for rank, item in enumerate(ranked_ids, 1):
+ 822:         if item in relevant:
+ 823:             return 1.0 / rank
+ 824:     return 0.0
+ 825: 
+ 826: 
+ 827: def ndcg_at_k(ranked_ids: list[str], grades: dict[str, int], k: int) -> float:
+ 828:     def dcg(ids: list[str]) -> float:
+ 829:         return sum(((2 ** grades.get(cid, 0)) - 1) / math.log2(rank + 1) for rank, cid in enumerate(ids[:k], 1))
+ 830:     actual = dcg(ranked_ids)
+ 831:     ideal_grades = sorted(grades.values(), reverse=True)[:k]
+ 832:     ideal = sum(((2 ** grade) - 1) / math.log2(rank + 1) for rank, grade in enumerate(ideal_grades, 1))
+ 833:     return actual / ideal if ideal else 0.0
+ 834: 
+ 835: 
+ 836: def load_candidate_vectors(model_key: str, corpus: list[dict[str, Any]]) -> np.ndarray:
+ 837:     model_dir = EXPERIMENT_ROOT / model_key
+ 838:     vector_file = model_dir / "vectors.npy"
+ 839:     manifest_file = model_dir / "index_manifest.json"
+ 840:     if not vector_file.exists() or not manifest_file.exists():
+ 841:         raise FileNotFoundError(
+ 842:             f"Existing candidate vectors/manifest missing for {model_key}; refusing to rebuild/download. "
+ 843:             f"Expected {vector_file} and {manifest_file}"
+ 844:         )
+ 845:     manifest = json.loads(manifest_file.read_text(encoding="utf-8-sig"))
+ 846:     manifest_ids = [item.get("chunk_id") for item in manifest.get("items", [])]
+ 847:     corpus_ids = [chunk["chunk_id"] for chunk in corpus]
+ 848:     if manifest_ids != corpus_ids:
+ 849:         raise ValueError(f"{model_key}: candidate index manifest chunk order does not match candidate corpus.")
+ 850:     vectors = np.load(vector_file, mmap_mode="r")
+ 851:     if vectors.ndim != 2 or vectors.shape[0] != len(corpus):
+ 852:         raise ValueError(f"{model_key}: vector shape {vectors.shape} does not match {len(corpus)} candidate chunks.")
+ 853:     return np.asarray(vectors, dtype=np.float32)
+ 854: 
+ 855: 
+ 856: def run_model(
+ 857:     model_key: str,
+ 858:     config: dict[str, str],
+ 859:     chunks: list[dict[str, Any]],
+ 860:     cases: list[dict[str, str]],
+ 861:     labels: dict[str, dict[str, int]],
+ 862: ) -> dict[str, Any]:
+ 863:     started = time.perf_counter()
+ 864:     try:
+ 865:         vectors = load_candidate_vectors(model_key, chunks)
+ 866:         # local_files_only=True guarantees no model download is attempted.
+ 867:         model = SentenceTransformer(config["model_name"], local_files_only=True)
+ 868:         case_results = []
+ 869:         for case in cases:
+ 870:             q = config["query_prefix"] + case["query"]
+ 871:             qvec = np.asarray(
+ 872:                 model.encode(q, normalize_embeddings=True, convert_to_numpy=True, show_progress_bar=False),
+ 873:                 dtype=np.float32,
+ 874:             ).reshape(-1)
+ 875:             if qvec.shape[0] != vectors.shape[1]:
+ 876:                 raise ValueError(
+ 877:                     f"Query vector dimension {qvec.shape[0]} != candidate index dimension {vectors.shape[1]}"
+ 878:                 )
+ 879:             scores = np.asarray(vectors @ qvec)
+ 880:             order = np.argsort(-scores, kind="stable")[:10]
+ 881:             ranked_chunks = [chunks[int(i)] for i in order]
+ 882:             ranked_ids = [chunk["chunk_id"] for chunk in ranked_chunks]
+ 883:             grade_map = labels[case["case_id"]]
+ 884:             relevant = {cid for cid, grade in grade_map.items() if grade >= 2}
+ 885:             metrics = {
+ 886:                 "precision_at_5": round(precision_at_k(ranked_ids, relevant, 5), 4),
+ 887:                 "precision_at_10": round(precision_at_k(ranked_ids, relevant, 10), 4),
+ 888:                 "recall_at_5": round(recall_at_k(ranked_ids, relevant, 5), 4),
+ 889:                 "recall_at_10": round(recall_at_k(ranked_ids, relevant, 10), 4),
+ 890:                 "mrr": round(mrr(ranked_ids, relevant), 4),
+ 891:                 "ndcg_at_10_graded": round(ndcg_at_k(ranked_ids, grade_map, 10), 4),
+ 892:                 "silver_relevant_chunks_grade_2_plus": len(relevant),
+ 893:             }
+ 894:             case_results.append({
+ 895:                 "case_id": case["case_id"],
+ 896:                 "query": case["query"],
+ 897:                 "metrics": metrics,
+ 898:                 "top_10": [
+ 899:                     {
+ 900:                         "rank": rank,
+ 901:                         "chunk_id": chunk["chunk_id"],
+ 902:                         "source_id": chunk["source_id"],
+ 903:                         "source_type": chunk["source_type"],
+ 904:                         "title": chunk.get("title"),
+ 905:                         "content": chunk.get("content", ""),
+ 906:                         "silver_grade": grade_map.get(chunk["chunk_id"], 0),
+ 907:                         "silver_label_reason": "rule_based_label" if grade_map.get(chunk["chunk_id"], 0) else "not_identified_by_silver_rules",
+ 908:                         "score": round(float(scores[int(order[rank - 1])]), 8),
+ 909:                     }
+ 910:                     for rank, chunk in enumerate(ranked_chunks, 1)
+ 911:                 ],
+ 912:             })
+ 913:         return {
+ 914:             "method": model_key,
+ 915:             "status": "success",
+ 916:             "index_path": str((EXPERIMENT_ROOT / model_key).relative_to(ROOT)),
+ 917:             "query_count": len(case_results),
+ 918:             "case_results": case_results,
+ 919:             "macro_average": {
+`n===== evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py : line 920 =====
+ 920:                 key: round(sum(item["metrics"][key] for item in case_results) / len(case_results), 4)
+ 921:                 for key in case_results[0]["metrics"]
+ 922:                 if key != "silver_relevant_chunks_grade_2_plus"
+ 923:             },
+ 924:             "runtime_seconds": round(time.perf_counter() - started, 3),
+ 925:         }
+ 926:     except Exception as exc:
+ 927:         return {
+ 928:             "method": model_key,
+ 929:             "status": "failed",
+ 930:             "error_type": type(exc).__name__,
+ 931:             "error": str(exc),
+ 932:             "runtime_seconds": round(time.perf_counter() - started, 3),
+ 933:         }
+ 934: 
+ 935: 
+ 936: def run_tfidf(
+ 937:     chunks: list[dict[str, Any]],
+ 938:     cases: list[dict[str, str]],
+ 939:     labels: dict[str, dict[str, int]],
+ 940: ) -> dict[str, Any]:
+ 941:     started = time.perf_counter()
+ 942:     case_results = []
+ 943:     for case in cases:
+ 944:         ranked = tfidf_rank(chunks, case["query"], 10)
+ 945:         ranked_ids = [item["chunk_id"] for item in ranked]
+ 946:         grade_map = labels[case["case_id"]]
+ 947:         relevant = {cid for cid, grade in grade_map.items() if grade >= 2}
+ 948:         metrics = {
+ 949:             "precision_at_5": round(precision_at_k(ranked_ids, relevant, 5), 4),
+ 950:             "precision_at_10": round(precision_at_k(ranked_ids, relevant, 10), 4),
+ 951:             "recall_at_5": round(recall_at_k(ranked_ids, relevant, 5), 4),
+ 952:             "recall_at_10": round(recall_at_k(ranked_ids, relevant, 10), 4),
+ 953:             "mrr": round(mrr(ranked_ids, relevant), 4),
+ 954:             "ndcg_at_10_graded": round(ndcg_at_k(ranked_ids, grade_map, 10), 4),
+ 955:             "silver_relevant_chunks_grade_2_plus": len(relevant),
+ 956:         }
+ 957:         chunk_by_id = {chunk["chunk_id"]: chunk for chunk in chunks}
+ 958:         case_results.append({
+ 959:             "case_id": case["case_id"],
+ 960:             "query": case["query"],
+ 961:             "metrics": metrics,
+ 962:             "top_10": [
+ 963:                 {
+ 964:                     "rank": rank,
+ 965:                     "chunk_id": item["chunk_id"],
+ 966:                     "source_id": chunk_by_id[item["chunk_id"]]["source_id"],
+ 967:                     "source_type": chunk_by_id[item["chunk_id"]]["source_type"],
+ 968:                     "title": chunk_by_id[item["chunk_id"]].get("title"),
+ 969:                     "content": chunk_by_id[item["chunk_id"]].get("content", ""),
+ 970:                     "silver_grade": grade_map.get(item["chunk_id"], 0),
+ 971:                     "silver_label_reason": "rule_based_label" if grade_map.get(item["chunk_id"], 0) else "not_identified_by_silver_rules",
+ 972:                     "score": round(item["score"], 8),
+ 973:                 }
+ 974:                 for rank, item in enumerate(ranked, 1)
+ 975:             ],
+ 976:         })
+ 977:     return {
+ 978:         "method": "keyword_tfidf_baseline",
+ 979:         "status": "success",
+ 980:         "description": "Local TF-IDF cosine baseline; not BM25 and uses no embedding model.",
+ 981:         "query_count": len(case_results),
+ 982:         "case_results": case_results,
+ 983:         "macro_average": {
+ 984:             key: round(sum(item["metrics"][key] for item in case_results) / len(case_results), 4)
+ 985:             for key in case_results[0]["metrics"]
+ 986:             if key != "silver_relevant_chunks_grade_2_plus"
+ 987:         },
+ 988:         "runtime_seconds": round(time.perf_counter() - started, 3),
+ 989:     }
+ 990: 
+ 991: 
+ 992: def main() -> None:
+ 993:     started = time.perf_counter()
+ 994:     OUT_DIR.mkdir(parents=True, exist_ok=True)
+ 995:     chunks = load_chunks()
+ 996:     source_counts = Counter(str(chunk.get("source_type", "")) for chunk in chunks)
+ 997:     print(f"Candidate corpus loaded: {len(chunks)} chunks")
+ 998:     print("Source types:", dict(source_counts))
+ 999:     print("Production index read or modified: NO")
+1000: 
+1001:     conn = readonly_db_connection()
+1002:     try:
+1003:         links = build_record_links(conn)
+1004:     finally:
+1005:         if conn is not None:
+1006:             conn.close()
+1007: 
+1008:     labels, label_summary = build_silver_labels(chunks, links)
+1009:     label_summary["corpus"] = {
+1010:         "path": str(CORPUS_FILE.relative_to(ROOT)),
+1011:         "chunk_count": len(chunks),
+1012:         "source_type_counts": dict(source_counts),
+1013:     }
+1014:     label_summary["database_relationships"] = {
+1015:         "database_path": str(DB_FILE.relative_to(ROOT)),
+1016:         "opened_read_only": DB_FILE.exists(),
+1017:         "record_link_count": len(links),
+1018:         "note": "Only identifiable foreign-key paths were used; records without resolvable links rely on source/text rules.",
+1019:     }

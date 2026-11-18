@@ -1,0 +1,498 @@
+{
+  "evaluation": {
+    "total_cases": 30,
+    "passed": 1,
+    "failed": 29,
+    "pass_rate": 0.0333,
+    "total_duration_ms": 1010.61
+  },
+  "cases": [
+    {
+      "case_id": "MQI-001",
+      "name": "Valid NCR investigation",
+      "passed": false,
+      "failures": [
+        "hitl_required mismatch: expected=True actual=False"
+      ],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "FAILED",
+        "hitl_required": false,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "FAILED"
+        ],
+        "errors": [
+          "NCR could not be retrieved."
+        ]
+      },
+      "duration_ms": 174.97
+    },
+    {
+      "case_id": "MQI-002",
+      "name": "Second valid NCR",
+      "passed": false,
+      "failures": [
+        "hitl_required mismatch: expected=True actual=False"
+      ],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "FAILED",
+        "hitl_required": false,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "FAILED"
+        ],
+        "errors": [
+          "NCR could not be retrieved."
+        ]
+      },
+      "duration_ms": 78.98
+    },
+    {
+      "case_id": "MQI-003",
+      "name": "Third valid NCR",
+      "passed": false,
+      "failures": [
+        "hitl_required mismatch: expected=True actual=False"
+      ],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "FAILED",
+        "hitl_required": false,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "FAILED"
+        ],
+        "errors": [
+          "NCR could not be retrieved."
+        ]
+      },
+      "duration_ms": 101.94
+    },
+    {
+      "case_id": "MQI-004",
+      "name": "Fourth valid NCR",
+      "passed": false,
+      "failures": [
+        "hitl_required mismatch: expected=True actual=False"
+      ],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "FAILED",
+        "hitl_required": false,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "FAILED"
+        ],
+        "errors": [
+          "NCR could not be retrieved."
+        ]
+      },
+      "duration_ms": 72.28
+    },
+    {
+      "case_id": "MQI-005",
+      "name": "Fifth valid NCR",
+      "passed": false,
+      "failures": [
+        "hitl_required mismatch: expected=True actual=False"
+      ],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "FAILED",
+        "hitl_required": false,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "FAILED"
+        ],
+        "errors": [
+          "NCR could not be retrieved."
+        ]
+      },
+      "duration_ms": 76.79
+    },
+    {
+      "case_id": "MQI-006",
+      "name": "Missing NCR",
+      "passed": false,
+      "failures": [
+        "final_state mismatch: expected=BLOCKED actual=FAILED"
+      ],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "FAILED",
+        "hitl_required": false,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "FAILED"
+        ],
+        "errors": [
+          "NCR could not be retrieved."
+        ]
+      },
+      "duration_ms": 92.34
+    },
+    {
+      "case_id": "MQI-007",
+      "name": "Empty NCR",
+      "passed": true,
+      "failures": [],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "FAILED",
+        "hitl_required": false,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "FAILED"
+        ],
+        "errors": [
+          "NCR number is required."
+        ]
+      },
+      "duration_ms": 78.02
+    },
+    {
+      "case_id": "MQI-008",
+      "name": "Whitespace NCR",
+      "passed": false,
+      "failures": [
+        "Unhandled evaluator exception: Investigation 'INV-' already exists."
+      ],
+      "actual": {
+        "workflow_started": false,
+        "error": "Investigation 'INV-' already exists."
+      },
+      "duration_ms": 0.69
+    },
+    {
+      "case_id": "MQI-009",
+      "name": "Nonexistent NCR",
+      "passed": false,
+      "failures": [
+        "final_state mismatch: expected=BLOCKED actual=FAILED"
+      ],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "FAILED",
+        "hitl_required": false,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "FAILED"
+        ],
+        "errors": [
+          "NCR could not be retrieved."
+        ]
+      },
+      "duration_ms": 83.94
+    },
+    {
+      "case_id": "MQI-010",
+      "name": "Malformed NCR identifier",
+      "passed": false,
+      "failures": [
+        "final_state mismatch: expected=BLOCKED actual=FAILED"
+      ],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "FAILED",
+        "hitl_required": false,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "FAILED"
+        ],
+        "errors": [
+          "NCR could not be retrieved."
+        ]
+      },
+      "duration_ms": 90.92
+    },
+    {
+      "case_id": "MQI-011",
+      "name": "Valid NCR with investigation ID",
+      "passed": false,
+      "failures": [
+        "hitl_required mismatch: expected=True actual=False"
+      ],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "FAILED",
+        "hitl_required": false,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "FAILED"
+        ],
+        "errors": [
+          "NCR could not be retrieved."
+        ]
+      },
+      "duration_ms": 73.8
+    },
+    {
+      "case_id": "MQI-012",
+      "name": "Valid NCR with low retrieval limit",
+      "passed": false,
+      "failures": [
+        "Unhandled evaluator exception: Investigation 'INV-NCR-001' already exists."
+      ],
+      "actual": {
+        "workflow_started": false,
+        "error": "Investigation 'INV-NCR-001' already exists."
+      },
+      "duration_ms": 0.7
+    },
+    {
+      "case_id": "MQI-013",
+      "name": "Valid NCR with standard retrieval limit",
+      "passed": false,
+      "failures": [
+        "Unhandled evaluator exception: Investigation 'INV-NCR-002' already exists."
+      ],
+      "actual": {
+        "workflow_started": false,
+        "error": "Investigation 'INV-NCR-002' already exists."
+      },
+      "duration_ms": 0.61
+    },
+    {
+      "case_id": "MQI-014",
+      "name": "Historical evidence investigation",
+      "passed": false,
+      "failures": [
+        "Unhandled evaluator exception: Investigation 'INV-NCR-003' already exists."
+      ],
+      "actual": {
+        "workflow_started": false,
+        "error": "Investigation 'INV-NCR-003' already exists."
+      },
+      "duration_ms": 0.58
+    },
+    {
+      "case_id": "MQI-015",
+      "name": "8D evidence investigation",
+      "passed": false,
+      "failures": [
+        "Unhandled evaluator exception: Investigation 'INV-NCR-004' already exists."
+      ],
+      "actual": {
+        "workflow_started": false,
+        "error": "Investigation 'INV-NCR-004' already exists."
+      },
+      "duration_ms": 0.57
+    },
+    {
+      "case_id": "MQI-016",
+      "name": "Inspection evidence investigation",
+      "passed": false,
+      "failures": [
+        "Unhandled evaluator exception: Investigation 'INV-NCR-005' already exists."
+      ],
+      "actual": {
+        "workflow_started": false,
+        "error": "Investigation 'INV-NCR-005' already exists."
+      },
+      "duration_ms": 0.54
+    },
+    {
+      "case_id": "MQI-017",
+      "name": "Process evidence investigation",
+      "passed": false,
+      "failures": [
+        "Unhandled evaluator exception: Investigation 'INV-NCR-001' already exists."
+      ],
+      "actual": {
+        "workflow_started": false,
+        "error": "Investigation 'INV-NCR-001' already exists."
+      },
+      "duration_ms": 0.52
+    },
+    {
+      "case_id": "MQI-018",
+      "name": "Traceability investigation",
+      "passed": false,
+      "failures": [
+        "Unhandled evaluator exception: Investigation 'INV-NCR-002' already exists."
+      ],
+      "actual": {
+        "workflow_started": false,
+        "error": "Investigation 'INV-NCR-002' already exists."
+      },
+      "duration_ms": 0.52
+    },
+    {
+      "case_id": "MQI-019",
+      "name": "Graph retrieval investigation",
+      "passed": false,
+      "failures": [
+        "Unhandled evaluator exception: Investigation 'INV-NCR-003' already exists."
+      ],
+      "actual": {
+        "workflow_started": false,
+        "error": "Investigation 'INV-NCR-003' already exists."
+      },
+      "duration_ms": 0.51
+    },
+    {
+      "case_id": "MQI-020",
+      "name": "Vector retrieval investigation",
+      "passed": false,
+      "failures": [
+        "Unhandled evaluator exception: Investigation 'INV-NCR-004' already exists."
+      ],
+      "actual": {
+        "workflow_started": false,
+        "error": "Investigation 'INV-NCR-004' already exists."
+      },
+      "duration_ms": 0.51
+    },
+    {
+      "case_id": "MQI-021",
+      "name": "Hybrid retrieval investigation",
+      "passed": false,
+      "failures": [
+        "Unhandled evaluator exception: Investigation 'INV-NCR-005' already exists."
+      ],
+      "actual": {
+        "workflow_started": false,
+        "error": "Investigation 'INV-NCR-005' already exists."
+      },
+      "duration_ms": 1.16
+    },
+    {
+      "case_id": "MQI-022",
+      "name": "Evidence gap handling",
+      "passed": false,
+      "failures": [
+        "Unhandled evaluator exception: Investigation 'INV-NCR-001' already exists."
+      ],
+      "actual": {
+        "workflow_started": false,
+        "error": "Investigation 'INV-NCR-001' already exists."
+      },
+      "duration_ms": 0.78
+    },
+    {
+      "case_id": "MQI-023",
+      "name": "RCA evidence handling",
+      "passed": false,
+      "failures": [
+        "Unhandled evaluator exception: Investigation 'INV-NCR-002' already exists."
+      ],
+      "actual": {
+        "workflow_started": false,
+        "error": "Investigation 'INV-NCR-002' already exists."
+      },
+      "duration_ms": 0.64
+    },
+    {
+      "case_id": "MQI-024",
+      "name": "CAPA evidence handling",
+      "passed": false,
+      "failures": [
+        "Unhandled evaluator exception: Investigation 'INV-NCR-003' already exists."
+      ],
+      "actual": {
+        "workflow_started": false,
+        "error": "Investigation 'INV-NCR-003' already exists."
+      },
+      "duration_ms": 0.58
+    },
+    {
+      "case_id": "MQI-025",
+      "name": "Reviewer gate",
+      "passed": false,
+      "failures": [
+        "Unhandled evaluator exception: Investigation 'INV-NCR-004' already exists."
+      ],
+      "actual": {
+        "workflow_started": false,
+        "error": "Investigation 'INV-NCR-004' already exists."
+      },
+      "duration_ms": 0.59
+    },
+    {
+      "case_id": "MQI-026",
+      "name": "HITL required",
+      "passed": false,
+      "failures": [
+        "Unhandled evaluator exception: Investigation 'INV-NCR-005' already exists."
+      ],
+      "actual": {
+        "workflow_started": false,
+        "error": "Investigation 'INV-NCR-005' already exists."
+      },
+      "duration_ms": 0.58
+    },
+    {
+      "case_id": "MQI-027",
+      "name": "Repeat investigation",
+      "passed": false,
+      "failures": [
+        "hitl_required mismatch: expected=True actual=False"
+      ],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "FAILED",
+        "hitl_required": false,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "FAILED"
+        ],
+        "errors": [
+          "NCR could not be retrieved."
+        ]
+      },
+      "duration_ms": 74.47
+    },
+    {
+      "case_id": "MQI-028",
+      "name": "Controlled evidence retrieval",
+      "passed": false,
+      "failures": [
+        "Unhandled evaluator exception: Investigation 'INV-NCR-002' already exists."
+      ],
+      "actual": {
+        "workflow_started": false,
+        "error": "Investigation 'INV-NCR-002' already exists."
+      },
+      "duration_ms": 0.7
+    },
+    {
+      "case_id": "MQI-029",
+      "name": "Fail-closed missing evidence",
+      "passed": false,
+      "failures": [
+        "Unhandled evaluator exception: Investigation 'INV-NCR-999999' already exists."
+      ],
+      "actual": {
+        "workflow_started": false,
+        "error": "Investigation 'INV-NCR-999999' already exists."
+      },
+      "duration_ms": 0.61
+    },
+    {
+      "case_id": "MQI-030",
+      "name": "End-to-end investigation",
+      "passed": false,
+      "failures": [
+        "Unhandled evaluator exception: Investigation 'INV-NCR-005' already exists."
+      ],
+      "actual": {
+        "workflow_started": false,
+        "error": "Investigation 'INV-NCR-005' already exists."
+      },
+      "duration_ms": 0.77
+    }
+  ]
+}

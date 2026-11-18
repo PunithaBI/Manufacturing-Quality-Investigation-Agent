@@ -1,0 +1,11 @@
+requirements.lock is intentionally generated on the user's machine
+after the Python 3.12 environment successfully installs and verifies.
+
+Do not manually invent the lock file.
+
+Run:
+    SETUP_ALL.bat
+
+The script installs requirements.txt + requirements-dev.txt,
+verifies imports and dependency consistency, then runs:
+    python -m pip freeze > requirements.lock

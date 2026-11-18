@@ -1,0 +1,1174 @@
+{
+  "experiment": "single_query_retrieval_comparison",
+  "created_at_utc": "2026-10-12T13:05:38.324336+00:00",
+  "query": "Find historical cases similar to a dimensional defect found during final inspection, including root-cause findings and corrective actions.",
+  "top_k": 10,
+  "corpus": {
+    "path": "data\\vector_index\\chunks.json",
+    "chunk_count": 1188
+  },
+  "methods": [
+    {
+      "method": "keyword_tfidf_baseline",
+      "status": "success",
+      "score_type": "tfidf_cosine_similarity",
+      "index_build_seconds": 0.029783,
+      "query_latency_seconds": 0.002928,
+      "embedding_dimension": null,
+      "top_results": [
+        {
+          "rank": 1,
+          "score": 0.23716463,
+          "score_type": "tfidf_cosine_similarity",
+          "chunk_id": "capa:CAPA-20260002:chunk:0",
+          "source_id": "CAPA-20260002",
+          "source_type": "capa",
+          "document_id": "capa:CAPA-20260002",
+          "title": "Corrective action: Re-calibrated equipment and reworked/replaced non-conforming units.",
+          "content": "Preventive action: Revised PM schedule and added in-process checkpoint to control plan.\nAction status: Closed",
+          "metadata": {
+            "record_id": 2,
+            "section": "Corrective action: Re-calibrated equipment and reworked/replaced non-conforming units.",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "capas",
+            "record_id": 2,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 2,
+          "score": 0.23716463,
+          "score_type": "tfidf_cosine_similarity",
+          "chunk_id": "capa:CAPA-20260008:chunk:0",
+          "source_id": "CAPA-20260008",
+          "source_type": "capa",
+          "document_id": "capa:CAPA-20260008",
+          "title": "Corrective action: Re-calibrated equipment and reworked/replaced non-conforming units.",
+          "content": "Preventive action: Revised PM schedule and added in-process checkpoint to control plan.\nAction status: Closed",
+          "metadata": {
+            "record_id": 8,
+            "section": "Corrective action: Re-calibrated equipment and reworked/replaced non-conforming units.",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "capas",
+            "record_id": 8,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 3,
+          "score": 0.23716463,
+          "score_type": "tfidf_cosine_similarity",
+          "chunk_id": "capa:CAPA-20260009:chunk:0",
+          "source_id": "CAPA-20260009",
+          "source_type": "capa",
+          "document_id": "capa:CAPA-20260009",
+          "title": "Corrective action: Re-calibrated equipment and reworked/replaced non-conforming units.",
+          "content": "Preventive action: Revised PM schedule and added in-process checkpoint to control plan.\nAction status: Closed",
+          "metadata": {
+            "record_id": 9,
+            "section": "Corrective action: Re-calibrated equipment and reworked/replaced non-conforming units.",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "capas",
+            "record_id": 9,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 4,
+          "score": 0.23716463,
+          "score_type": "tfidf_cosine_similarity",
+          "chunk_id": "capa:CAPA-20260010:chunk:0",
+          "source_id": "CAPA-20260010",
+          "source_type": "capa",
+          "document_id": "capa:CAPA-20260010",
+          "title": "Corrective action: Re-calibrated equipment and reworked/replaced non-conforming units.",
+          "content": "Preventive action: Revised PM schedule and added in-process checkpoint to control plan.\nAction status: Closed",
+          "metadata": {
+            "record_id": 10,
+            "section": "Corrective action: Re-calibrated equipment and reworked/replaced non-conforming units.",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "capas",
+            "record_id": 10,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 5,
+          "score": 0.23716463,
+          "score_type": "tfidf_cosine_similarity",
+          "chunk_id": "capa:CAPA-20260011:chunk:0",
+          "source_id": "CAPA-20260011",
+          "source_type": "capa",
+          "document_id": "capa:CAPA-20260011",
+          "title": "Corrective action: Re-calibrated equipment and reworked/replaced non-conforming units.",
+          "content": "Preventive action: Revised PM schedule and added in-process checkpoint to control plan.\nAction status: Closed",
+          "metadata": {
+            "record_id": 11,
+            "section": "Corrective action: Re-calibrated equipment and reworked/replaced non-conforming units.",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "capas",
+            "record_id": 11,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 6,
+          "score": 0.23716463,
+          "score_type": "tfidf_cosine_similarity",
+          "chunk_id": "capa:CAPA-20260012:chunk:0",
+          "source_id": "CAPA-20260012",
+          "source_type": "capa",
+          "document_id": "capa:CAPA-20260012",
+          "title": "Corrective action: Re-calibrated equipment and reworked/replaced non-conforming units.",
+          "content": "Preventive action: Revised PM schedule and added in-process checkpoint to control plan.\nAction status: Closed",
+          "metadata": {
+            "record_id": 12,
+            "section": "Corrective action: Re-calibrated equipment and reworked/replaced non-conforming units.",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "capas",
+            "record_id": 12,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 7,
+          "score": 0.23716463,
+          "score_type": "tfidf_cosine_similarity",
+          "chunk_id": "capa:CAPA-20260015:chunk:0",
+          "source_id": "CAPA-20260015",
+          "source_type": "capa",
+          "document_id": "capa:CAPA-20260015",
+          "title": "Corrective action: Re-calibrated equipment and reworked/replaced non-conforming units.",
+          "content": "Preventive action: Revised PM schedule and added in-process checkpoint to control plan.\nAction status: Closed",
+          "metadata": {
+            "record_id": 15,
+            "section": "Corrective action: Re-calibrated equipment and reworked/replaced non-conforming units.",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "capas",
+            "record_id": 15,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 8,
+          "score": 0.23716463,
+          "score_type": "tfidf_cosine_similarity",
+          "chunk_id": "capa:CAPA-20260016:chunk:0",
+          "source_id": "CAPA-20260016",
+          "source_type": "capa",
+          "document_id": "capa:CAPA-20260016",
+          "title": "Corrective action: Re-calibrated equipment and reworked/replaced non-conforming units.",
+          "content": "Preventive action: Revised PM schedule and added in-process checkpoint to control plan.\nAction status: Closed",
+          "metadata": {
+            "record_id": 16,
+            "section": "Corrective action: Re-calibrated equipment and reworked/replaced non-conforming units.",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "capas",
+            "record_id": 16,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 9,
+          "score": 0.23716463,
+          "score_type": "tfidf_cosine_similarity",
+          "chunk_id": "capa:CAPA-20260018:chunk:0",
+          "source_id": "CAPA-20260018",
+          "source_type": "capa",
+          "document_id": "capa:CAPA-20260018",
+          "title": "Corrective action: Re-calibrated equipment and reworked/replaced non-conforming units.",
+          "content": "Preventive action: Revised PM schedule and added in-process checkpoint to control plan.\nAction status: Closed",
+          "metadata": {
+            "record_id": 18,
+            "section": "Corrective action: Re-calibrated equipment and reworked/replaced non-conforming units.",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "capas",
+            "record_id": 18,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 10,
+          "score": 0.23716463,
+          "score_type": "tfidf_cosine_similarity",
+          "chunk_id": "capa:CAPA-20260019:chunk:0",
+          "source_id": "CAPA-20260019",
+          "source_type": "capa",
+          "document_id": "capa:CAPA-20260019",
+          "title": "Corrective action: Re-calibrated equipment and reworked/replaced non-conforming units.",
+          "content": "Preventive action: Revised PM schedule and added in-process checkpoint to control plan.\nAction status: Closed",
+          "metadata": {
+            "record_id": 19,
+            "section": "Corrective action: Re-calibrated equipment and reworked/replaced non-conforming units.",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "capas",
+            "record_id": 19,
+            "query_scope": "database_ingestion"
+          }
+        }
+      ]
+    },
+    {
+      "method": "all-MiniLM-L6-v2",
+      "status": "success",
+      "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+      "score_type": "cosine_similarity",
+      "model_load_seconds": 4.409761,
+      "index_build_seconds": 8.71002,
+      "query_latency_seconds": 0.022885,
+      "embedding_dimension": 384,
+      "candidate_index_path": "data\\embedding_experiments\\single_query_comparison\\all-MiniLM-L6-v2",
+      "top_results": [
+        {
+          "rank": 1,
+          "score": 0.43297487,
+          "score_type": "cosine_similarity",
+          "chunk_id": "inspection:215:chunk:0",
+          "source_id": "215",
+          "source_type": "inspection",
+          "document_id": "inspection:215",
+          "title": "Inspection 215",
+          "content": "Inspection Type: In-Process\nResult: Fail",
+          "metadata": {
+            "record_id": 215,
+            "section": "Inspection 215",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "inspections",
+            "record_id": 215,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 2,
+          "score": 0.43077201,
+          "score_type": "cosine_similarity",
+          "chunk_id": "inspection:163:chunk:0",
+          "source_id": "163",
+          "source_type": "inspection",
+          "document_id": "inspection:163",
+          "title": "Inspection 163",
+          "content": "Inspection Type: In-Process\nResult: Fail",
+          "metadata": {
+            "record_id": 163,
+            "section": "Inspection 163",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "inspections",
+            "record_id": 163,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 3,
+          "score": 0.42856413,
+          "score_type": "cosine_similarity",
+          "chunk_id": "inspection:387:chunk:0",
+          "source_id": "387",
+          "source_type": "inspection",
+          "document_id": "inspection:387",
+          "title": "Inspection 387",
+          "content": "Inspection Type: In-Process\nResult: Fail",
+          "metadata": {
+            "record_id": 387,
+            "section": "Inspection 387",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "inspections",
+            "record_id": 387,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 4,
+          "score": 0.41906828,
+          "score_type": "cosine_similarity",
+          "chunk_id": "inspection:132:chunk:0",
+          "source_id": "132",
+          "source_type": "inspection",
+          "document_id": "inspection:132",
+          "title": "Inspection 132",
+          "content": "Inspection Type: Final\nResult: Fail",
+          "metadata": {
+            "record_id": 132,
+            "section": "Inspection 132",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "inspections",
+            "record_id": 132,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 5,
+          "score": 0.41684562,
+          "score_type": "cosine_similarity",
+          "chunk_id": "inspection:161:chunk:0",
+          "source_id": "161",
+          "source_type": "inspection",
+          "document_id": "inspection:161",
+          "title": "Inspection 161",
+          "content": "Inspection Type: In-Process\nResult: Fail",
+          "metadata": {
+            "record_id": 161,
+            "section": "Inspection 161",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "inspections",
+            "record_id": 161,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 6,
+          "score": 0.41598034,
+          "score_type": "cosine_similarity",
+          "chunk_id": "inspection:244:chunk:0",
+          "source_id": "244",
+          "source_type": "inspection",
+          "document_id": "inspection:244",
+          "title": "Inspection 244",
+          "content": "Inspection Type: Final\nResult: Fail",
+          "metadata": {
+            "record_id": 244,
+            "section": "Inspection 244",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "inspections",
+            "record_id": 244,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 7,
+          "score": 0.41555175,
+          "score_type": "cosine_similarity",
+          "chunk_id": "inspection:238:chunk:0",
+          "source_id": "238",
+          "source_type": "inspection",
+          "document_id": "inspection:238",
+          "title": "Inspection 238",
+          "content": "Inspection Type: Final\nResult: Fail",
+          "metadata": {
+            "record_id": 238,
+            "section": "Inspection 238",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "inspections",
+            "record_id": 238,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 8,
+          "score": 0.41464037,
+          "score_type": "cosine_similarity",
+          "chunk_id": "inspection:364:chunk:0",
+          "source_id": "364",
+          "source_type": "inspection",
+          "document_id": "inspection:364",
+          "title": "Inspection 364",
+          "content": "Inspection Type: Final\nResult: Fail",
+          "metadata": {
+            "record_id": 364,
+            "section": "Inspection 364",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "inspections",
+            "record_id": 364,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 9,
+          "score": 0.41445941,
+          "score_type": "cosine_similarity",
+          "chunk_id": "ncr:NCR-20260037:chunk:0",
+          "source_id": "NCR-20260037",
+          "source_type": "ncr",
+          "document_id": "ncr:NCR-20260037",
+          "title": "NCR NCR-20260037",
+          "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Major\nStatus: Open",
+          "metadata": {
+            "record_id": 37,
+            "severity": "Major",
+            "status": "Open",
+            "section": "NCR NCR-20260037",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "ncrs",
+            "record_id": 37,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 10,
+          "score": 0.41422909,
+          "score_type": "cosine_similarity",
+          "chunk_id": "inspection:374:chunk:0",
+          "source_id": "374",
+          "source_type": "inspection",
+          "document_id": "inspection:374",
+          "title": "Inspection 374",
+          "content": "Inspection Type: Final\nResult: Fail",
+          "metadata": {
+            "record_id": 374,
+            "section": "Inspection 374",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "inspections",
+            "record_id": 374,
+            "query_scope": "database_ingestion"
+          }
+        }
+      ]
+    },
+    {
+      "method": "all-mpnet-base-v2",
+      "status": "success",
+      "model_name": "sentence-transformers/all-mpnet-base-v2",
+      "score_type": "cosine_similarity",
+      "model_load_seconds": 108.215781,
+      "index_build_seconds": 62.665047,
+      "query_latency_seconds": 0.130191,
+      "embedding_dimension": 768,
+      "candidate_index_path": "data\\embedding_experiments\\single_query_comparison\\all-mpnet-base-v2",
+      "top_results": [
+        {
+          "rank": 1,
+          "score": 0.58121181,
+          "score_type": "cosine_similarity",
+          "chunk_id": "ncr:NCR-20260040:chunk:0",
+          "source_id": "NCR-20260040",
+          "source_type": "ncr",
+          "document_id": "ncr:NCR-20260040",
+          "title": "NCR NCR-20260040",
+          "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+          "metadata": {
+            "record_id": 40,
+            "severity": "Minor",
+            "status": "Closed",
+            "section": "NCR NCR-20260040",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "ncrs",
+            "record_id": 40,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 2,
+          "score": 0.58058339,
+          "score_type": "cosine_similarity",
+          "chunk_id": "ncr:NCR-20260012:chunk:0",
+          "source_id": "NCR-20260012",
+          "source_type": "ncr",
+          "document_id": "ncr:NCR-20260012",
+          "title": "NCR NCR-20260012",
+          "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+          "metadata": {
+            "record_id": 12,
+            "severity": "Minor",
+            "status": "Closed",
+            "section": "NCR NCR-20260012",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "ncrs",
+            "record_id": 12,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 3,
+          "score": 0.58029979,
+          "score_type": "cosine_similarity",
+          "chunk_id": "ncr:NCR-20260010:chunk:0",
+          "source_id": "NCR-20260010",
+          "source_type": "ncr",
+          "document_id": "ncr:NCR-20260010",
+          "title": "NCR NCR-20260010",
+          "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+          "metadata": {
+            "record_id": 10,
+            "severity": "Minor",
+            "status": "Closed",
+            "section": "NCR NCR-20260010",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "ncrs",
+            "record_id": 10,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 4,
+          "score": 0.57963556,
+          "score_type": "cosine_similarity",
+          "chunk_id": "ncr:NCR-20260004:chunk:0",
+          "source_id": "NCR-20260004",
+          "source_type": "ncr",
+          "document_id": "ncr:NCR-20260004",
+          "title": "NCR NCR-20260004",
+          "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+          "metadata": {
+            "record_id": 4,
+            "severity": "Minor",
+            "status": "Closed",
+            "section": "NCR NCR-20260004",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "ncrs",
+            "record_id": 4,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 5,
+          "score": 0.57867616,
+          "score_type": "cosine_similarity",
+          "chunk_id": "ncr:NCR-20260007:chunk:0",
+          "source_id": "NCR-20260007",
+          "source_type": "ncr",
+          "document_id": "ncr:NCR-20260007",
+          "title": "NCR NCR-20260007",
+          "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+          "metadata": {
+            "record_id": 7,
+            "severity": "Minor",
+            "status": "Closed",
+            "section": "NCR NCR-20260007",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "ncrs",
+            "record_id": 7,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 6,
+          "score": 0.56324112,
+          "score_type": "cosine_similarity",
+          "chunk_id": "ncr:NCR-20260015:chunk:0",
+          "source_id": "NCR-20260015",
+          "source_type": "ncr",
+          "document_id": "ncr:NCR-20260015",
+          "title": "NCR NCR-20260015",
+          "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Under Review",
+          "metadata": {
+            "record_id": 15,
+            "severity": "Minor",
+            "status": "Under Review",
+            "section": "NCR NCR-20260015",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "ncrs",
+            "record_id": 15,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 7,
+          "score": 0.55982322,
+          "score_type": "cosine_similarity",
+          "chunk_id": "ncr:NCR-20260037:chunk:0",
+          "source_id": "NCR-20260037",
+          "source_type": "ncr",
+          "document_id": "ncr:NCR-20260037",
+          "title": "NCR NCR-20260037",
+          "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Major\nStatus: Open",
+          "metadata": {
+            "record_id": 37,
+            "severity": "Major",
+            "status": "Open",
+            "section": "NCR NCR-20260037",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "ncrs",
+            "record_id": 37,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 8,
+          "score": 0.5583607,
+          "score_type": "cosine_similarity",
+          "chunk_id": "ncr:NCR-20260028:chunk:0",
+          "source_id": "NCR-20260028",
+          "source_type": "ncr",
+          "document_id": "ncr:NCR-20260028",
+          "title": "NCR NCR-20260028",
+          "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Critical\nStatus: Closed",
+          "metadata": {
+            "record_id": 28,
+            "severity": "Critical",
+            "status": "Closed",
+            "section": "NCR NCR-20260028",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "ncrs",
+            "record_id": 28,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 9,
+          "score": 0.55303621,
+          "score_type": "cosine_similarity",
+          "chunk_id": "ncr:NCR-20260001:chunk:0",
+          "source_id": "NCR-20260001",
+          "source_type": "ncr",
+          "document_id": "ncr:NCR-20260001",
+          "title": "NCR NCR-20260001",
+          "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Under Review",
+          "metadata": {
+            "record_id": 1,
+            "severity": "Minor",
+            "status": "Under Review",
+            "section": "NCR NCR-20260001",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "ncrs",
+            "record_id": 1,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 10,
+          "score": 0.54866385,
+          "score_type": "cosine_similarity",
+          "chunk_id": "ncr:NCR-20260002:chunk:0",
+          "source_id": "NCR-20260002",
+          "source_type": "ncr",
+          "document_id": "ncr:NCR-20260002",
+          "title": "NCR NCR-20260002",
+          "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Open",
+          "metadata": {
+            "record_id": 2,
+            "severity": "Minor",
+            "status": "Open",
+            "section": "NCR NCR-20260002",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "ncrs",
+            "record_id": 2,
+            "query_scope": "database_ingestion"
+          }
+        }
+      ]
+    },
+    {
+      "method": "bge-small-en-v1.5",
+      "status": "success",
+      "model_name": "BAAI/bge-small-en-v1.5",
+      "score_type": "cosine_similarity",
+      "model_load_seconds": 27.457078,
+      "index_build_seconds": 16.309576,
+      "query_latency_seconds": 0.04848,
+      "embedding_dimension": 384,
+      "candidate_index_path": "data\\embedding_experiments\\single_query_comparison\\bge-small-en-v1.5",
+      "top_results": [
+        {
+          "rank": 1,
+          "score": 0.64005566,
+          "score_type": "cosine_similarity",
+          "chunk_id": "inspection:161:chunk:0",
+          "source_id": "161",
+          "source_type": "inspection",
+          "document_id": "inspection:161",
+          "title": "Inspection 161",
+          "content": "Inspection Type: In-Process\nResult: Fail",
+          "metadata": {
+            "record_id": 161,
+            "section": "Inspection 161",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "inspections",
+            "record_id": 161,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 2,
+          "score": 0.63726926,
+          "score_type": "cosine_similarity",
+          "chunk_id": "inspection:238:chunk:0",
+          "source_id": "238",
+          "source_type": "inspection",
+          "document_id": "inspection:238",
+          "title": "Inspection 238",
+          "content": "Inspection Type: Final\nResult: Fail",
+          "metadata": {
+            "record_id": 238,
+            "section": "Inspection 238",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "inspections",
+            "record_id": 238,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 3,
+          "score": 0.62721241,
+          "score_type": "cosine_similarity",
+          "chunk_id": "inspection:298:chunk:0",
+          "source_id": "298",
+          "source_type": "inspection",
+          "document_id": "inspection:298",
+          "title": "Inspection 298",
+          "content": "Inspection Type: Final\nResult: Fail",
+          "metadata": {
+            "record_id": 298,
+            "section": "Inspection 298",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "inspections",
+            "record_id": 298,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 4,
+          "score": 0.62430561,
+          "score_type": "cosine_similarity",
+          "chunk_id": "inspection:364:chunk:0",
+          "source_id": "364",
+          "source_type": "inspection",
+          "document_id": "inspection:364",
+          "title": "Inspection 364",
+          "content": "Inspection Type: Final\nResult: Fail",
+          "metadata": {
+            "record_id": 364,
+            "section": "Inspection 364",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "inspections",
+            "record_id": 364,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 5,
+          "score": 0.62407291,
+          "score_type": "cosine_similarity",
+          "chunk_id": "inspection:395:chunk:0",
+          "source_id": "395",
+          "source_type": "inspection",
+          "document_id": "inspection:395",
+          "title": "Inspection 395",
+          "content": "Inspection Type: In-Process\nResult: Pass",
+          "metadata": {
+            "record_id": 395,
+            "section": "Inspection 395",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "inspections",
+            "record_id": 395,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 6,
+          "score": 0.62249112,
+          "score_type": "cosine_similarity",
+          "chunk_id": "inspection:163:chunk:0",
+          "source_id": "163",
+          "source_type": "inspection",
+          "document_id": "inspection:163",
+          "title": "Inspection 163",
+          "content": "Inspection Type: In-Process\nResult: Fail",
+          "metadata": {
+            "record_id": 163,
+            "section": "Inspection 163",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "inspections",
+            "record_id": 163,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 7,
+          "score": 0.61926794,
+          "score_type": "cosine_similarity",
+          "chunk_id": "inspection:153:chunk:0",
+          "source_id": "153",
+          "source_type": "inspection",
+          "document_id": "inspection:153",
+          "title": "Inspection 153",
+          "content": "Inspection Type: In-Process\nResult: Pass",
+          "metadata": {
+            "record_id": 153,
+            "section": "Inspection 153",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "inspections",
+            "record_id": 153,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 8,
+          "score": 0.6187976,
+          "score_type": "cosine_similarity",
+          "chunk_id": "inspection:81:chunk:0",
+          "source_id": "81",
+          "source_type": "inspection",
+          "document_id": "inspection:81",
+          "title": "Inspection 81",
+          "content": "Inspection Type: In-Process\nResult: Fail",
+          "metadata": {
+            "record_id": 81,
+            "section": "Inspection 81",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "inspections",
+            "record_id": 81,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 9,
+          "score": 0.61728036,
+          "score_type": "cosine_similarity",
+          "chunk_id": "inspection:14:chunk:0",
+          "source_id": "14",
+          "source_type": "inspection",
+          "document_id": "inspection:14",
+          "title": "Inspection 14",
+          "content": "Inspection Type: Final\nResult: Fail",
+          "metadata": {
+            "record_id": 14,
+            "section": "Inspection 14",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "inspections",
+            "record_id": 14,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 10,
+          "score": 0.61401683,
+          "score_type": "cosine_similarity",
+          "chunk_id": "inspection:2:chunk:0",
+          "source_id": "2",
+          "source_type": "inspection",
+          "document_id": "inspection:2",
+          "title": "Inspection 2",
+          "content": "Inspection Type: Final\nResult: Fail",
+          "metadata": {
+            "record_id": 2,
+            "section": "Inspection 2",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "inspections",
+            "record_id": 2,
+            "query_scope": "database_ingestion"
+          }
+        }
+      ]
+    },
+    {
+      "method": "bge-base-en-v1.5",
+      "status": "success",
+      "model_name": "BAAI/bge-base-en-v1.5",
+      "score_type": "cosine_similarity",
+      "model_load_seconds": 69.934742,
+      "index_build_seconds": 59.382037,
+      "query_latency_seconds": 0.165464,
+      "embedding_dimension": 768,
+      "candidate_index_path": "data\\embedding_experiments\\single_query_comparison\\bge-base-en-v1.5",
+      "top_results": [
+        {
+          "rank": 1,
+          "score": 0.57644308,
+          "score_type": "cosine_similarity",
+          "chunk_id": "inspection:404:chunk:0",
+          "source_id": "404",
+          "source_type": "inspection",
+          "document_id": "inspection:404",
+          "title": "Inspection 404",
+          "content": "Inspection Type: Final\nResult: Pass",
+          "metadata": {
+            "record_id": 404,
+            "section": "Inspection 404",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "inspections",
+            "record_id": 404,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 2,
+          "score": 0.56957126,
+          "score_type": "cosine_similarity",
+          "chunk_id": "ncr:NCR-20260001:chunk:0",
+          "source_id": "NCR-20260001",
+          "source_type": "ncr",
+          "document_id": "ncr:NCR-20260001",
+          "title": "NCR NCR-20260001",
+          "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Under Review",
+          "metadata": {
+            "record_id": 1,
+            "severity": "Minor",
+            "status": "Under Review",
+            "section": "NCR NCR-20260001",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "ncrs",
+            "record_id": 1,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 3,
+          "score": 0.56879675,
+          "score_type": "cosine_similarity",
+          "chunk_id": "ncr:NCR-20260007:chunk:0",
+          "source_id": "NCR-20260007",
+          "source_type": "ncr",
+          "document_id": "ncr:NCR-20260007",
+          "title": "NCR NCR-20260007",
+          "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+          "metadata": {
+            "record_id": 7,
+            "severity": "Minor",
+            "status": "Closed",
+            "section": "NCR NCR-20260007",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "ncrs",
+            "record_id": 7,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 4,
+          "score": 0.56819332,
+          "score_type": "cosine_similarity",
+          "chunk_id": "ncr:NCR-20260015:chunk:0",
+          "source_id": "NCR-20260015",
+          "source_type": "ncr",
+          "document_id": "ncr:NCR-20260015",
+          "title": "NCR NCR-20260015",
+          "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Under Review",
+          "metadata": {
+            "record_id": 15,
+            "severity": "Minor",
+            "status": "Under Review",
+            "section": "NCR NCR-20260015",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "ncrs",
+            "record_id": 15,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 5,
+          "score": 0.56752986,
+          "score_type": "cosine_similarity",
+          "chunk_id": "inspection:278:chunk:0",
+          "source_id": "278",
+          "source_type": "inspection",
+          "document_id": "inspection:278",
+          "title": "Inspection 278",
+          "content": "Inspection Type: Final\nResult: Pass",
+          "metadata": {
+            "record_id": 278,
+            "section": "Inspection 278",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "inspections",
+            "record_id": 278,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 6,
+          "score": 0.56695539,
+          "score_type": "cosine_similarity",
+          "chunk_id": "ncr:NCR-20260002:chunk:0",
+          "source_id": "NCR-20260002",
+          "source_type": "ncr",
+          "document_id": "ncr:NCR-20260002",
+          "title": "NCR NCR-20260002",
+          "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Open",
+          "metadata": {
+            "record_id": 2,
+            "severity": "Minor",
+            "status": "Open",
+            "section": "NCR NCR-20260002",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "ncrs",
+            "record_id": 2,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 7,
+          "score": 0.56490833,
+          "score_type": "cosine_similarity",
+          "chunk_id": "ncr:NCR-20260004:chunk:0",
+          "source_id": "NCR-20260004",
+          "source_type": "ncr",
+          "document_id": "ncr:NCR-20260004",
+          "title": "NCR NCR-20260004",
+          "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+          "metadata": {
+            "record_id": 4,
+            "severity": "Minor",
+            "status": "Closed",
+            "section": "NCR NCR-20260004",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "ncrs",
+            "record_id": 4,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 8,
+          "score": 0.56459033,
+          "score_type": "cosine_similarity",
+          "chunk_id": "inspection:336:chunk:0",
+          "source_id": "336",
+          "source_type": "inspection",
+          "document_id": "inspection:336",
+          "title": "Inspection 336",
+          "content": "Inspection Type: Final\nResult: Fail",
+          "metadata": {
+            "record_id": 336,
+            "section": "Inspection 336",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "inspections",
+            "record_id": 336,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 9,
+          "score": 0.56380081,
+          "score_type": "cosine_similarity",
+          "chunk_id": "inspection:302:chunk:0",
+          "source_id": "302",
+          "source_type": "inspection",
+          "document_id": "inspection:302",
+          "title": "Inspection 302",
+          "content": "Inspection Type: Final\nResult: Pass",
+          "metadata": {
+            "record_id": 302,
+            "section": "Inspection 302",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "inspections",
+            "record_id": 302,
+            "query_scope": "database_ingestion"
+          }
+        },
+        {
+          "rank": 10,
+          "score": 0.56344271,
+          "score_type": "cosine_similarity",
+          "chunk_id": "inspection:376:chunk:0",
+          "source_id": "376",
+          "source_type": "inspection",
+          "document_id": "inspection:376",
+          "title": "Inspection 376",
+          "content": "Inspection Type: Final\nResult: Pass",
+          "metadata": {
+            "record_id": 376,
+            "section": "Inspection 376",
+            "chunk_number": 0
+          },
+          "provenance": {
+            "table": "inspections",
+            "record_id": 376,
+            "query_scope": "database_ingestion"
+          }
+        }
+      ]
+    },
+    {
+      "method": "e5-base-v2",
+      "status": "failed",
+      "model_name": "intfloat/e5-base-v2",
+      "error_type": "OSError",
+      "error": "Can't load the model for 'intfloat/e5-base-v2'. If you were trying to load it from 'https://huggingface.co/models', make sure you don't have a local directory with the same name. Otherwise, make sure 'intfloat/e5-base-v2' is the correct path to a directory containing a file named pytorch_model.bin.",
+      "top_results": []
+    }
+  ],
+  "evaluation_notes": {
+    "accuracy_metrics_calculated": false,
+    "reason": "No validated relevant-source labels are available; Recall@K, MRR, and nDCG are intentionally omitted.",
+    "baseline": "Keyword baseline uses local TF-IDF cosine similarity; it is not BM25 and uses no embedding model.",
+    "score_warning": "Scores are method-specific and are not calibrated to a common scale. Compare returned evidence, not raw scores across methods.",
+    "production_index_modified": false,
+    "candidate_indexes_path": "data\\embedding_experiments\\single_query_comparison",
+    "evidence_review_required": "Inspect result text and provenance to assess whether a result contains useful root-cause findings or corrective actions; rank alone does not establish relevance."
+  },
+  "total_runtime_seconds": 416.05127
+}

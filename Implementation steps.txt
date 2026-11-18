@@ -1,0 +1,1756 @@
+Then build in this order
+
+1. Foundation
+
+repository structure
+Python environment
+dependencies
+configuration
+Docker
+FastAPI
+database
+logging
+
+2. Manufacturing data
+
+synthetic NW-250 data
+products
+BOM
+components
+serial/lot genealogy
+manufacturing orders
+inspections
+process measurements
+NCRs
+8D/CAPA
+documents
+
+3. Tools
+Implement the controlled tools from Phase 4:
+
+product identification
+BOM lookup
+genealogy
+NCR lookup
+inspection lookup
+process measurement lookup
+document retrieval
+evidence lookup
+
+4. Retrieval
+Build the actual:
+
+Structured retrieval
+       +
+Metadata filtering
+       +
+Graph retrieval
+       +
+Keyword retrieval
+       +
+Vector retrieval
+       ↓
+Fusion / reranking
+       ↓
+Evidence objects
+
+5. Agents
+Implement the bounded agents from Phase 5:
+
+Orchestrator
+     ↓
+Product & Traceability
+     ↓
+Evidence Retrieval
+     ↓
+RCA / Investigation Analyst
+     ↓
+Reviewer
+
+6. Investigation workflow
+Connect the agents and tools to your frozen Phase 3 state machine.
+
+7. Evidence + HITL
+Make sure every important conclusion can answer:
+
+“What evidence supports this?”
+
+and route uncertain/high-impact cases to human review.
+
+8. Evaluation
+Run the 30 Phase 7 cases and produce:
+
+retrieval metrics
+grounding metrics
+workflow metrics
+security results
+cost/latency
+regression report
+
+9. Security
+Run the Phase 8 security suite against the real implementation.
+
+10. Production
+Docker → CI/CD → smoke test → canary → rollback.
+
+NCR-2026-0017
+       ↓
+Identify affected product
+       ↓
+NW-250 / Revision B
+       ↓
+Trace component + serial/lot
+       ↓
+Find manufacturing operation
+       ↓
+Retrieve inspection + process data
+       ↓
+Retrieve historical NCR / 8D
+       ↓
+Graph + RAG evidence fusion
+       ↓
+Generate cause hypotheses
+       ↓
+Check conflicts + evidence gaps
+       ↓
+Confidence assessment
+       ↓
+Human Review
+       ↓
+Traceable Investigation Report
+
+
+Realistic breakdown
+Work	Approx. time
+Phase 9 finalization + project setup	2–3 days
+Synthetic manufacturing data	3–5 days
+Database + data access	3–4 days
+Controlled tools	4–6 days
+Hybrid RAG + document ingestion	5–7 days
+Graph retrieval	3–5 days
+Agent/orchestrator implementation	5–7 days
+Investigation workflow + HITL	3–4 days
+Evaluation harness + 30 cases	4–5 days
+Security/guardrails integration	3–4 days
+Observability	2–3 days
+Docker + CI/CD + deployment	3–5 days
+End-to-end testing/debugging	5–7 days
+Portfolio README/demo/screenshots	2–3 days
+
+
+The biggest risk
+
+The RAG + graph + manufacturing data + agent orchestration integration is where most of the time will go.
+
+Not the LLM itself.
+
+Your project has to prove:
+
+NCR → correct scope → correct evidence → reasoning → evidence-backed conclusion → human review → auditable result
+
+That end-to-end chain is what will make the project strong.
+
+We can work in vertical slices:
+
+Slice 1
+
+NCR → Product identification → Database → Result
+
+Slice 2
+
+NCR → Product → Component → Genealogy
+
+Slice 3
+
+NCR → Evidence retrieval → Evidence objects
+
+Slice 4
+
+Evidence → RAG + Graph → Investigation analysis
+
+Slice 5
+
+Investigation → Reviewer → HITL
+
+Slice 6
+
+Complete case → Evaluation → Security → Observability
+
+Slice 7
+
+Docker → CI/CD → Canary → Rollback → Portfolio demo
+
+48-hour plan
+Day 1 — Build the actual investigation engine
+
+Morning
+
+Project setup
+Synthetic manufacturing dataset
+Database/schema
+FastAPI
+Core tools
+
+Afternoon
+6. Product → BOM → component → serial/lot genealogy
+7. NCR → affected product mapping
+8. Document ingestion
+9. Hybrid retrieval
+
+structured
+keyword
+vector
+graph-style relationships
+
+Evening
+10. Orchestrator
+11. Product/Traceability agent
+12. Evidence Retrieval agent
+13. RCA Analyst
+14. Investigation state machine
+
+By the end of Day 1:
+
+NCR
+ ↓
+Product
+ ↓
+Component
+ ↓
+Genealogy
+ ↓
+Evidence
+ ↓
+RAG/Graph retrieval
+ ↓
+Cause hypotheses
+Day 2 — Make it credible and demonstrable
+
+Morning
+
+Evidence provenance
+Confidence scoring
+Conflict detection
+Evidence-gap detection
+HITL gate
+Investigation report
+
+Afternoon
+7. 30 evaluation cases
+8. Retrieval/grounding evaluation
+9. Security tests
+10. Observability
+11. Cost/latency tracking
+
+Evening
+12. Docker
+13. Smoke test
+14. README
+15. Architecture diagrams
+16. Final end-to-end demo
+17. Fix critical failures
+
+Final demo:
+
+┌──────────────────────────────┐
+│ NCR-2026-0017                │
+└──────────────┬───────────────┘
+               ↓
+      Product Identification
+               ↓
+       Traceability / BOM
+               ↓
+       Evidence Collection
+               ↓
+       Hybrid RAG + Graph
+               ↓
+        RCA Analysis
+               ↓
+     Conflict / Gap Detection
+               ↓
+       Confidence Assessment
+               ↓
+          HUMAN REVIEW
+               ↓
+    Traceable Investigation
+          Recommendation
+What we deliberately DON'T build in 48 hours
+
+We won't waste time implementing:
+
+real ERP/MES/QMS integrations
+Kubernetes
+complex cloud infrastructure
+sophisticated multi-agent swarm
+enterprise authentication
+production-scale vector infrastructure
+fancy UI
+elaborate CI/CD infrastructure
+unnecessary framework complexity
+
+Those can be documented as production extensions.
+
+Mostly 5 things:
+
+Manufacturing synthetic data
+Product
+BOM
+component
+serial/lot
+manufacturing operation
+inspection
+NCR
+documents
+Manufacturing-specific tools
+identify_product
+get_bom
+get_serial_genealogy
+get_ncr
+get_inspection
+get_process_measurements
+search_evidence
+Manufacturing investigation workflow
+Graph + hybrid retrieval integration
+Agents that reason over this manufacturing evidence
+
+Day 1 — Core intelligence
+09:00  Project setup
+10:00  Manufacturing dataset
+11:30  Database/models
+13:00  Manufacturing tools
+15:00  Graph relationships
+16:30  Document ingestion
+18:00  Hybrid retrieval
+20:00  Agents
+22:00  End-to-end investigation
+Day 2 — Engineering + proof
+09:00  Evidence provenance
+10:00  HITL
+11:00  Conflict/gap handling
+12:00  Investigation report
+14:00  Evaluation
+16:00  Security
+17:00  Observability
+18:00  Docker
+19:00  Smoke test
+20:00  README/demo
+22:00  Final end-to-end test
+reuse patterns and proven modules → adapt interfaces → integrate into one clean capstone architecture.
+
+The implementation roadmap
+PHASE 9
+Deployment structure
+        ↓
+1. PROJECT FOUNDATION
+        ↓
+2. SYNTHETIC MANUFACTURING DATA
+        ↓
+3. DATABASE + DATA ACCESS
+        ↓
+4. MANUFACTURING TOOLS
+        ↓
+5. GRAPH RELATIONSHIPS
+        ↓
+6. DOCUMENT INGESTION + HYBRID RAG
+        ↓
+7. AGENTS + ORCHESTRATOR
+        ↓
+8. INVESTIGATION WORKFLOW
+        ↓
+9. EVIDENCE + HITL
+        ↓
+10. EVALUATION
+        ↓
+11. SECURITY
+        ↓
+12. OBSERVABILITY
+        ↓
+13. DOCKER + SMOKE TEST
+        ↓
+14. END-TO-END DEMO
+Step 1 — Create the capstone foundation
+
+We first create one clean repository.
+
+capstone/
+│
+├── README.md
+├── pyproject.toml
+├── .env.example
+├── .gitignore
+│
+├── app/
+│   ├── api/
+│   ├── config/
+│   ├── schemas/
+│   ├── workflow/
+│   ├── agents/
+│   ├── tools/
+│   ├── retrieval/
+│   ├── graph/
+│   ├── policy/
+│   ├── evidence/
+│   ├── audit/
+│   └── observability/
+│
+├── data/
+│   ├── manufacturing/
+│   └── documents/
+│
+├── tests/
+│   ├── unit/
+│   ├── integration/
+│   └── security/
+│
+├── evaluation/
+│   ├── cases/
+│   ├── evaluators/
+│   ├── baseline/
+│   └── reports/
+│
+├── deployment/
+│   ├── Dockerfile
+│   ├── compose.yaml
+│   ├── smoke_test.py
+│   └── rollback.md
+│
+└── docs/
+
+Reuse: your FastAPI, configuration, testing, Docker, security and observability patterns.
+
+Step 2 — Build the manufacturing world
+
+This is the biggest new part.
+
+We create a synthetic NordWind manufacturing environment.
+
+Example:
+
+Product
+NW-250
+
+Revision
+B
+
+Serial
+NW250-SN-10017
+       │
+       ├── Generator
+       │      └── Lot GEN-2408
+       │
+       ├── Gearbox
+       │      └── Serial GBX-8831
+       │
+       ├── Main Shaft
+       │
+       └── Bearing
+              └── Lot BRG-5512
+
+Then manufacturing history:
+
+Product
+ ↓
+Manufacturing Order
+ ↓
+Operation
+ ↓
+Machine
+ ↓
+Process parameters
+ ↓
+Inspection
+ ↓
+NCR
+
+And documents:
+
+NCR
+8D report
+Work instruction
+Inspection specification
+Supplier report
+Historical NCR
+Maintenance report
+
+We intentionally create:
+
+correct evidence
+distractor evidence
+conflicting evidence
+missing evidence
+superseded revision
+prompt-injection document
+
+This gives us something meaningful to evaluate.
+
+Step 3 — Database
+
+Don't start with a complicated enterprise database.
+
+For the 2-day prototype:
+
+SQLite/PostgreSQL-compatible data model is enough.
+
+Tables/entities:
+
+products
+bom
+components
+serial_genealogy
+manufacturing_orders
+operations
+process_measurements
+inspections
+ncrs
+documents
+evidence
+rca_cases
+
+The important thing is that the business model follows Phase 2, not whichever database technology we happen to use.
+
+Step 4 — Build the tools
+
+This is critical.
+
+The LLM should not query the database directly.
+
+We expose controlled tools.
+
+For example:
+
+identify_product()
+get_bom()
+get_component()
+get_serial_genealogy()
+get_manufacturing_history()
+get_process_measurements()
+get_inspection_results()
+get_ncr()
+search_documents()
+get_evidence()
+
+Each tool:
+
+Agent
+ ↓
+Tool request
+ ↓
+Authorization
+ ↓
+Schema validation
+ ↓
+Query
+ ↓
+Result validation
+ ↓
+Evidence object
+ ↓
+Agent
+
+This directly implements your Phase 4 + Phase 8 principles.
+
+Step 5 — Graph relationships
+
+We don't need to immediately deploy Neo4j just to claim "Graph RAG."
+
+For the prototype we can represent the graph explicitly.
+
+Example:
+
+NCR-017
+   ↓ affects
+NW250-SN-10017
+   ↓ contains
+GBX-8831
+   ↓ manufactured in
+MO-4501
+   ↓ operation
+OP-30
+   ↓ performed on
+Machine-M12
+
+The graph retrieval function can answer:
+
+What manufacturing operation is connected to the component involved in NCR-017?
+
+That is where graph retrieval provides something vector search cannot reliably provide.
+
+Step 6 — Document ingestion
+
+Now we introduce the actual RAG component.
+
+We create synthetic documents such as:
+
+docs/
+├── NCR-017_8D.pdf
+├── NW250_WorkInstruction.pdf
+├── Gearbox_Inspection.pdf
+├── Historical_NCR_042.pdf
+├── Supplier_Report.pdf
+└── Inspection_Spec_RevB.pdf
+
+And we do not chunk everything identically.
+
+Text
+
+Section-aware chunks.
+
+Tables
+
+Preserve:
+
+Characteristic | Nominal | Lower | Upper | Actual
+
+rather than destroying the table structure.
+
+Procedures
+
+Keep:
+
+Step 1
+Step 2
+Step 3
+
+together logically.
+
+Specifications
+
+Preserve:
+
+Characteristic
+Unit
+Limit
+Revision
+Effective date
+Figures/diagrams
+
+Store:
+
+figure ID
+caption
+page
+surrounding text
+optional derived description
+
+This implements the document-aware RAG design from Phase 6.
+
+Step 7 — Hybrid retrieval
+
+Now combine everything.
+
+                NCR
+                 │
+                 ▼
+        Extract identifiers
+                 │
+        ┌────────┼─────────┐
+        ↓        ↓         ↓
+   Structured   Graph    Metadata
+   retrieval   retrieval filtering
+        │        │         │
+        └────────┼─────────┘
+                 ↓
+          Vector retrieval
+                 ↓
+          Keyword retrieval
+                 ↓
+           Fusion/Rerank
+                 ↓
+         Evidence validation
+                 ↓
+          Evidence objects
+
+The key rule:
+
+Vector similarity is not proof.
+
+The evidence must have provenance.
+
+Step 8 — Build the agents
+
+Keep it small.
+
+Agent 1 — Orchestrator
+
+Controls the investigation.
+
+Agent 2 — Product & Traceability
+
+Answers:
+
+What product/component is affected?
+
+Agent 3 — Evidence Retrieval
+
+Answers:
+
+What evidence do we need and where is it?
+
+Agent 4 — RCA Analyst
+
+Answers:
+
+What hypotheses are supported by the evidence?
+
+Agent 5 — Reviewer
+
+Answers:
+
+Are the conclusions actually supported?
+
+Not 15 agents.
+
+Five bounded responsibilities are enough.
+
+Step 9 — Connect the investigation workflow
+
+Use the Phase 3 workflow:
+
+INTAKE
+  ↓
+IDENTIFY_PRODUCT
+  ↓
+TRACE_SCOPE
+  ↓
+COLLECT_EVIDENCE
+  ↓
+ANALYZE
+  ↓
+CHECK_CONFLICTS
+  ↓
+ASSESS_CONFIDENCE
+  ↓
+REVIEW
+  ↓
+RECOMMEND
+  ↓
+CLOSE / ESCALATE
+
+The orchestrator controls this.
+
+The LLM does not decide arbitrary workflow states.
+
+Step 10 — Evidence contract
+
+Every important result should look conceptually like:
+
+Evidence
+---------
+evidence_id: E-104
+source: inspection_result
+source_id: INS-883
+product: NW250-SN-10017
+component: GBX-8831
+revision: B
+location: characteristic_12
+retrieved_at: ...
+authority: QMS
+
+Then the final reasoning becomes:
+
+FACT
+↓
+FACT
+↓
+FACT
+↓
+HYPOTHESIS
+↓
+VALIDATED FINDING
+↓
+RECOMMENDATION
+
+Not:
+
+LLM says gearbox is faulty.
+Step 11 — HITL
+
+Reuse your Stage 7 pattern.
+
+For example:
+
+Confidence < threshold
+        OR
+Material evidence conflict
+        OR
+High-impact recommendation
+        ↓
+     HUMAN REVIEW
+
+Reviewer sees:
+
+Investigation summary
+Evidence
+Hypotheses
+Conflicts
+Missing evidence
+Recommendation
+Approve / Edit / Reject
+Step 12 — Evaluation
+
+Reuse the Stage 8 approach.
+
+Run the 30 cases we already designed.
+
+Measure:
+
+Product identification
+Component identification
+Graph path
+Retrieval Precision@K
+Retrieval Recall@K
+Evidence grounding
+Unsupported claims
+Workflow transitions
+Tool selection
+HITL
+Security
+Latency
+Cost
+
+And:
+
+PASS / FAIL
+
+Not just "the answer looks good."
+
+Step 13 — Security
+
+Reuse the Stage 10/11 security patterns.
+
+Test:
+
+Prompt injection
+       ↓
+Retrieved malicious document
+       ↓
+Agent attempts unsafe action
+       ↓
+Policy layer blocks it
+       ↓
+Audit event
+
+Also:
+
+unauthorized tool
+arbitrary SQL
+malicious filesystem request
+unapproved network request
+fake evidence ID
+malformed tool response
+secret leakage
+excessive tool calls
+write without approval
+Step 14 — Observability
+
+Reuse your Stage 9 design.
+
+One investigation:
+
+run_id
+ │
+ ├── workflow
+ │
+ ├── agent calls
+ │
+ ├── tool calls
+ │
+ ├── retrieval
+ │
+ ├── model calls
+ │
+ ├── evidence IDs
+ │
+ ├── HITL
+ │
+ └── final outcome
+
+Then we can actually explain why the agent produced its result.
+
+Step 15 — Docker + smoke test
+
+Finally:
+
+docker build
+      ↓
+docker run
+      ↓
+/health
+      ↓
+/ready
+      ↓
+submit NCR
+      ↓
+investigation
+      ↓
+evidence
+      ↓
+HITL
+      ↓
+result
+
+Reuse your existing Docker/smoke-test knowledge rather than learning it again.
+
+Step 16 — One complete demo
+
+This is our finish line.
+
+We give it:
+
+NCR-2026-0017: abnormal gearbox vibration during final inspection
+
+The system should autonomously:
+
+1. Identify NW-250
+2. Identify affected serial
+3. Identify gearbox
+4. Trace gearbox genealogy
+5. Find manufacturing operation
+6. Retrieve vibration measurements
+7. Retrieve inspection results
+8. Retrieve historical NCRs
+9. Retrieve relevant 8D/work instructions
+10. Detect conflicting evidence if present
+11. Build hypotheses
+12. Identify missing evidence
+13. Calculate confidence
+14. Stop for human review
+15. Produce evidence-backed investigation report
+
+That is the capstone.
+
+And this is why 2 days is realistic
+
+We're not building:
+
+FastAPI + HITL + evaluation + security + Docker + observability + RAG + agents from zero.
+
+We're building:
+
+EXISTING ENGINEERING CAPABILITIES
+                +
+NEW MANUFACTURING INTELLIGENCE
+                =
+       FINAL CAPSTONE
+
+The new work is mainly the manufacturing domain layer, tools, graph/RAG integration and agent orchestration.
+
+So I agree with your correction: we should aim for a 2-day MVP and use your previous stages aggressively.
+
+Our immediate next action
+
+Do not build more documentation now.
+
+We should start with:
+
+Step 1 — inspect/reuse your existing Stage 5, 7, 8, 9, 10/11 project structures and create the capstone foundation.
+
+Then we build one vertical slice at a time, testing each slice before moving on.
+
+Step 1 — Create the actual capstone repository + environment/dependency verification.
+
+Then immediately:
+
+Repository
+   ↓
+Dependencies
+   ↓
+Synthetic manufacturing data
+   ↓
+Database
+   ↓
+Manufacturing tools
+   ↓
+Graph
+   ↓
+Hybrid RAG
+   ↓
+Agents
+   ↓
+Investigation workflow
+   ↓
+HITL
+   ↓
+Evaluation
+   ↓
+Security
+   ↓
+Observability
+   ↓
+Docker
+   ↓
+Final demo
+
+
+
+
+
+DAY 1
+────────────────────────────────────────
+
+01  Environment + dependency verification
+02  Repository foundation
+03  Configuration
+04  FastAPI skeleton
+05  API contracts
+06  Synthetic manufacturing dataset
+07  Database/schema
+08  Manufacturing data access
+09  Controlled tools
+10  Tool authorization/validation
+11  Graph relationships
+12  Document corpus
+13  Document-aware chunking
+14  Vector/keyword retrieval
+15  Graph retrieval
+16  Hybrid retrieval + reranking
+17  Evidence object
+18  Context compression
+19  First end-to-end retrieval test
+
+
+DAY 2
+────────────────────────────────────────
+
+20  Workflow state machine
+21  Agent state/handoff contract
+22  Orchestrator
+23  Product/Traceability agent
+24  Evidence Retrieval agent
+25  RCA Analyst
+26  Reviewer
+27  Model routing
+28  Evidence classes
+29  Conflict/gap detection
+30  Confidence assessment
+31  HITL
+32  Investigation report
+33  30-case evaluation
+34  Regression baseline
+35  Security tests
+36  Fail-closed tests
+37  Observability/tracing/audit
+38  Cost/latency metrics
+39  Docker
+40  Health/readiness/metrics
+41  Smoke test
+42  CI gate
+43  End-to-end test
+44  Fix critical failures
+45  README
+46  Architecture diagrams
+47  Demo script
+48  Final portfolio package
+
+
+NCR → Evidence + Historical 8Ds → RCA + Pattern Detection → Improvement Recommendation → Human Review → Corrective/Preventive Action → Effectiveness Verification → Future 8D/NCR Knowledge
+
+
+                    ┌── Manufacturing Evidence
+                    ├── Traceability / BOM
+NCR ──► Scope ──────┼── Inspection / Process Data
+                    ├── Historical NCRs
+                    └── Historical 8D Reports
+                              │
+                              ▼
+                     Hybrid Investigation
+                              │
+                    ┌─────────┴─────────┐
+                    ▼                   ▼
+              Current RCA         Historical Pattern
+                    │                   │
+                    └─────────┬─────────┘
+                              ▼
+                   Evidence-backed findings
+                              │
+                              ▼
+                 Improvement Recommendations
+                              │
+                              ▼
+                       HUMAN REVIEW
+                              │
+                              ▼
+                Corrective / Preventive Action
+                              │
+                              ▼
+                 Effectiveness Verification
+                              │
+                              ▼
+                  Future 8D / NCR Knowledge
+
+I have not put Neo4j, LangChain, LangGraph, a vector database, PostgreSQL, or cloud SDKs into the core requirements yet.
+
+That's intentional.
+
+
+STEP 3
+Project foundation
+        ↓
+STEP 3A
+FastAPI + config
+        ↓
+STEP 3B
+SQLite connection
+        ↓
+STEP 3C
+SQLAlchemy canonical models
+        ↓
+STEP 3D
+Create schema
+        ↓
+STEP 3E
+Health/readiness tests
+        ↓
+STEP 4
+NordWind synthetic data
+        ↓
+STEP 4A
+Products/components/BOM
+        ↓
+STEP 4B
+Serial/lot/production
+        ↓
+STEP 4C
+Measurements/inspection
+        ↓
+STEP 4D
+NCR/8D/RCA/CAPA
+        ↓
+STEP 4E
+Documents/evidence links
+        ↓
+Validate the complete dataset
+
+Tools
+---------------
+
+01 common.py
+02 errors.py
+03 authorization.py
+04 validation.py        ← NOW
+05 evidence.py
+06 ncr.py
+07 product.py
+08 bom.py
+09 genealogy.py
+10 manufacturing_history.py
+11 inspection.py
+12 process_measurements.py
+13 historical_ncr.py
+14 eight_d.py
+
+Database
+   ↓
+Tool
+   ↓
+Typed result
+   ↓
+Evidence ID
+   ↓
+Provenance
+
+Then we test all nine.
+
+There are also two issues in the existing NordWind schema that the tool implementation has exposed:
+
+SerialUnit → Lot consumption is missing, so true material genealogy cannot yet be proven.
+Document has a polymorphic related_table/related_id reference rather than a real FK/evidence relationship, so document provenance still needs to be strengthened.
+
+Those are data-model implementation gaps, not reasons to redesign the tool layer.
+
+The next implementation step should therefore be a tool test harness that calls all 9 tools against the real database and reports PASS/FAIL, before we touch agents or RAG.
+
+1. Finish controlled-tool tests             ← NOW
+2. Fix schema gaps discovered by tests
+3. Seed coherent NordWind dataset
+4. Validate complete traceability
+5. Build graph projection
+6. Build keyword retrieval
+7. Build vector retrieval
+8. Build hybrid retrieval
+9. Evidence validation
+10. Context compression
+11. Agent reasoning
+12. Evaluation
+
+                    INVESTIGATION QUERY
+                           │
+                           ▼
+                  Investigation Planner
+                           │
+             ┌─────────────┼─────────────┐
+             │             │             │
+             ▼             ▼             ▼
+      Structured       Graph          Retrieval
+      retrieval       retrieval       retrieval
+             │             │        ┌────┴────┐
+             │             │        │         │
+             │             │     Keyword    Vector
+             │             │        │       /Semantic
+             └─────────────┴────────┴─────────┘
+                           │
+                           ▼
+                    Hybrid Evidence
+                           │
+                           ▼
+                 Evidence Validation
+                           │
+                           ▼
+                 Context Compression
+                           │
+                           ▼
+                 Investigation Context
+                           │
+                           ▼
+                     Agent Reasoning
+
+
+| Layer                   | Purpose                             | Example                                                           |
+| ----------------------- | ----------------------------------- | ----------------------------------------------------------------- |
+| **Structured**          | Exact authoritative facts           | NCR `NCR-2026-0012`, serial, MO, inspection result                |
+| **Graph**               | Relationships and paths             | NCR → serial → MO → operation → component → historical NCR        |
+| **Keyword**             | Exact terminology                   | `"bearing overheating"`, `"vibration"`                            |
+| **Vector/Semantic**     | Meaning similarity                  | Find reports describing similar failure without identical wording |
+| **Hybrid evidence**     | Combine results                     | Exact records + related entities + similar documents              |
+| **Evidence validation** | Remove unsupported/invalid evidence | Check source, ID, provenance, freshness, relationship             |
+| **Context compression** | Reduce LLM context                  | Keep only evidence relevant to current investigation              |
+
+
+                         ┌─────────────┐
+                         │   Product   │
+                         └──────┬──────┘
+                                │
+                              HAS_BOM
+                                │
+                                ▼
+                         ┌─────────────┐
+                         │     BOM     │
+                         └──────┬──────┘
+                                │
+                         CONTAINS_COMPONENT
+                                │
+                                ▼
+                         ┌─────────────┐
+                         │  Component  │
+                         └─────────────┘
+
+
+┌─────────┐
+│   NCR   │
+└────┬────┘
+     │
+     ├── AFFECTS ───────► SerialUnit
+     │                       │
+     │                       ├── PRODUCED_BY ──► ManufacturingOrder
+     │                       │                      │
+     │                       │                      └── HAS_OPERATION
+     │                       │                             │
+     │                       │                             ▼
+     │                       │                       ProcessMeasurement
+     │                       │
+     │                       └── HAS_INSPECTION ──► Inspection
+     │
+     ├── HAS_8D ─────────► EightDReport
+     │                         │
+     │                         ├── HAS_RCA ──► RCA
+     │                         │
+     │                         └── HAS_CAPA ► CAPA
+     │
+     └── AFFECTS_LOT ────► Lot
+
+Product
+   │
+   └── HAS_HISTORICAL_NCR ──► NCR
+                                  │
+                                  └── HAS_8D ──► 8D ──► RCA/CAPA
+
+
+
+NCR-001
+  ├─ AFFECTS → Serial SN001
+  │               └─ PRODUCED_BY → MO100
+  │                                  └─ HAS_OPERATION → OP20
+  │                                      └─ HAS_MEASUREMENT → PM500
+  │
+  ├─ IDENTIFIED_BY → Inspection 17
+  │
+  ├─ HAS_8D → 8D-001
+  │             ├─ HAS_RCA → RCA-001
+  │             └─ HAS_CAPA → CAPA-001
+  │
+  └─ RELATES_TO_PRODUCT → Product P100
+                            └─ HAS_BOM → BOM-12
+                                         └─ CONTAINS_COMPONENT
+                                                → Component C45
+
+NCR → Serial
+NCR → MO
+MO → Operation
+Operation → ProcessMeasurement
+NCR → 8D
+8D → RCA
+8D → CAPA
+Product → BOM → Component
+Historical NCR
+NO fabricated Serial → Component Lot
+Graph → RetrievalEvidence
+Graph + Structured → combine_evidence()
+
+
+
+
+Manufacturing documents
+        │
+        ▼
+Document ingestion
+        │
+        ├── text extraction
+        ├── table extraction
+        ├── 8D section extraction
+        └── metadata/provenance
+        │
+        ▼
+Manufacturing-aware chunks
+        │
+        ▼
+Embedding model
+        │
+        ▼
+Vector index
+        │
+        ▼
+Semantic search
+        │
+        ▼
+RetrievalEvidence
+        │
+        ▼
+Existing Hybrid RAG pipeline
+
+
+
+                    NordWind SQLite
+                         │
+             ┌───────────┼────────────┐
+             │           │            │
+            NCR         8D          RCA/CAPA
+             │           │            │
+             └───────────┼────────────┘
+                         ▼
+             ManufacturingDocument
+                         │
+                         ▼
+          Manufacturing-aware chunking
+                         │
+                         ▼
+                  Embeddings
+                         │
+                         ▼
+              data/vector_index/
+                 ├── vectors.npy
+                 └── chunks.json
+                         │
+                         ▼
+             SentenceTransformerRetriever
+                         │
+                         ▼
+                 Hybrid RAG Pipeline
+
+
+                  INVESTIGATION QUERY
+                          │
+          ┌───────────────┼────────────────┐
+          ▼               ▼                ▼
+      Structured        Graph            Vector
+          │               │                │
+     exact facts      relationships    semantic evidence
+          │               │                │
+          └───────────────┼────────────────┘
+                          ▼
+                   Hybrid Evidence
+                          ▼
+                 Investigation Context
+                          ▼
+                       Agent
+
+
+                    NORDWIND DATABASE
+                           │
+       ┌───────────────────┼────────────────────┐
+       │                   │                    │
+     Quality            Production          Actions
+       │                   │                    │
+ NCR / 8D / RCA      Inspection / MO      RCA / CAPA
+       │              Measurement/Operation      │
+       └───────────────────┼────────────────────┘
+                           │
+                           ▼
+              DATABASE INGESTION
+                           │
+                           ▼
+             MANUFACTURING DOCUMENT
+                           │
+                           ▼
+          MANUFACTURING-AWARE CHUNKING
+                           │
+                           ▼
+                    EMBEDDINGS
+                           │
+                           ▼
+                  VECTOR INDEX
+                           │
+                           ▼
+                SEMANTIC RETRIEVAL
+                           │
+                           ▼
+             ┌─────────────┴─────────────┐
+             │                           │
+        GRAPH RAG                    VECTOR RAG
+             │                           │
+             └─────────────┬─────────────┘
+                           │
+                    HYBRID RETRIEVAL
+                           │
+                           ▼
+                  EVIDENCE VALIDATION
+                           │
+                           ▼
+                 CONTEXT COMPRESSION
+                           │
+                           ▼
+                 INVESTIGATION AGENT
+
+
+app/
+├── agents/
+│   ├── __init__.py
+│   ├── models.py
+│   ├── orchestrator.py
+│   ├── traceability_agent.py
+│   ├── evidence_agent.py
+│   ├── rca_agent.py
+│   └── reviewer.py
+│
+└── workflow/
+    ├── __init__.py
+    ├── states.py
+    └── investigation_workflow.py
+
+1. Agent models
+       ↓
+2. Product/Traceability Agent
+       ↓
+3. Evidence Retrieval Agent
+       ↓
+4. RCA Analyst
+       ↓
+5. Reviewer
+       ↓
+6. HITL state
+       ↓
+7. Orchestrator
+       ↓
+8. Complete investigation workflow
+
+
+
+
+                    NCR
+                     │
+                     ▼
+              ┌─────────────┐
+              │ Orchestrator│
+              └──────┬──────┘
+                     │
+                     ▼
+        ┌─────────────────────────┐
+        │ Product / Traceability  │
+        │          Agent          │
+        └────────────┬────────────┘
+                     │
+                     │ controlled tools
+                     ▼
+          NCR / Product / BOM /
+          Genealogy / History
+                     │
+                     ▼
+        ┌─────────────────────────┐
+        │   Evidence Retrieval    │
+        │          Agent          │
+        └────────────┬────────────┘
+                     │
+          ┌──────────┼──────────┐
+          ▼          ▼          ▼
+      Structured   Graph     Vector
+          │          │          │
+          └──────────┼──────────┘
+                     ▼
+              Hybrid Evidence
+                     │
+                     ▼
+        ┌─────────────────────────┐
+        │       RCA Analyst       │
+        └────────────┬────────────┘
+                     │
+                     ▼
+              Candidate causes
+              Evidence
+              Gaps
+              Next steps
+                     │
+                     ▼
+              ┌────────────┐
+              │  Reviewer  │
+              └─────┬──────┘
+                    │
+                    ▼
+             ┌─────────────┐
+             │     HITL    │
+             └──────┬──────┘
+                    │
+             ┌──────┴──────┐
+             ▼             ▼
+          APPROVE        REJECT
+             │
+             ▼
+         COMPLETED
+
+
+                 CONTROLLED WORKFLOW
+                        │
+       ┌────────────────┴────────────────┐
+       │                                 │
+   deterministic                    AI reasoning
+       │                                 │
+ tools / retrieval                  RCA Analyst
+ validation / review                    │
+       │                                 │
+       └──────────────┬──────────────────┘
+                      ▼
+                     HITL
+
+
+Evidence Retrieval Agent
+        ↓
+Hybrid Retrieval Pipeline
+        ↓
+Structured
+Graph
+Keyword
+Vector ──→ sentence-transformers
+             ↓
+        data/vector_index
+
+
+evaluation/
+├── cases/
+│   └── investigation_cases.json
+├── baseline/
+│   └── baseline.json
+├── reports/
+│   └── latest_report.json
+├── evaluator.py
+├── regression.py
+└── run_evaluation.py
+
+Security implementation
+
+Target:
+
+Security
+├── Input validation
+├── Authorization
+├── Prompt-injection protection
+├── Tool boundary protection
+├── Retrieval limits
+├── Evidence/provenance validation
+├── Fail-closed behavior
+└── Security evaluation cases
+
+Create:
+
+app/
+└── security/
+    ├── __init__.py
+    ├── input_guard.py
+    ├── prompt_guard.py
+    ├── tool_guard.py
+    └── audit.py
+
+evaluation/
+└── security/
+    ├── __init__.py
+    └── run_security.py
+
+FastAPI
+   ↓
+Investigation Workflow
+   ↓
+Repository
+   ↓
+SQLite/PostgreSQL
+   ├── investigations
+   ├── investigation_trace_events
+   └── investigation_audit_records
+
+
+POST /investigations
+        ↓
+HUMAN_REVIEW
+        ↓
+Application restart
+        ↓
+GET /investigations/{id}
+        ↓
+Database
+        ↓
+HUMAN_REVIEW
+        ↓
+POST /investigations/{id}/hitl
+        ↓
+COMPLETED / BLOCKED
+
+Manufacturing-Quality-Investigation-Agent/
+│
+├── Dockerfile
+├── docker-compose.yml
+├── .dockerignore
+├── .env.docker.example
+│
+├── app/
+│   ├── agents/
+│   ├── api/
+│   ├── config/
+│   ├── db/
+│   │   ├── database.py
+│   │   ├── investigation_models.py
+│   │   └── investigation_repository.py
+│   │
+│   ├── observability/
+│   ├── retrieval/
+│   ├── security/
+│   ├── tools/
+│   ├── workflow/
+│   └── main.py
+│
+├── deployment/
+│   ├── docker-entrypoint.sh
+│   ├── docker_initialize.py
+│   ├── docker_up.bat
+│   ├── docker_down.bat
+│   ├── docker_status.bat
+│   └── ...
+│
+├── data/
+│
+├── evaluation/
+│
+└── docs/
+
+
+
+
+CI PASS
+   ↓
+Docker Image
+   ↓
+Registry
+   ↓
+Deployment Environment
+   ↓
+Health / Readiness
+   ↓
+Canary
+   ↓
+Rollback
+
+
+PROJECT FOUNDATION
+       ↓
+Python version
+       ↓
+Dependency compatibility
+       ↓
+Install dependencies
+       ↓
+Import verification
+       ↓
+Compile verification
+       ↓
+Lint
+       ↓
+Database verification
+       ↓
+Test infrastructure
+       ↓
+ONLY THEN
+       ↓
+Implementation
+
+
+1. EvidenceRetrievalAgent
+   CompressedEvidence vs dict
+                 ↓
+   FIXED
+
+2. RCAAnalystAgent
+   orchestrator arguments vs RCA signature
+                 ↓
+   FIXED
+
+3. InvestigationReviewer
+   EvidencePackage dict vs .provenance attribute
+                 ↓
+   FIXING NOW
+
+
+
+
+
+POST /investigations
+        ↓
+Input Security Validation
+        ↓
+Orchestrator
+        ↓
+Product / Traceability Agent
+        ↓
+Evidence Retrieval Agent
+        ↓
+Hybrid Retrieval
+        ├── Structured
+        ├── Graph
+        ├── Keyword
+        └── Vector
+        ↓
+RCA Analyst
+        ↓
+Reviewer
+        ↓
+HITL
+
+
+
+But from a manufacturing investigation perspective, we eventually need:
+
+Current NCR
+     ↓
+Relevant historical patterns
+     ↓
+Evidence correlation
+     ↓
+Candidate causes
+     ↓
+Supporting evidence
+     ↓
+Contradictory evidence
+     ↓
+Evidence gaps
+     ↓
+Recommended investigation actions
+
+Right now we're only doing:
+
+Retrieved evidence
+     ↓
+"Not enough evidence"

@@ -1,0 +1,645 @@
+{
+  "evaluation": {
+    "total_cases": 30,
+    "passed": 30,
+    "failed": 0,
+    "pass_rate": 1.0,
+    "total_duration_ms": 205697.11
+  },
+  "cases": [
+    {
+      "case_id": "MQI-V2-001",
+      "name": "Valid NCR investigation",
+      "passed": true,
+      "failures": [],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "HUMAN_REVIEW",
+        "hitl_required": true,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "EVIDENCE_RETRIEVAL",
+          "RCA_ANALYSIS",
+          "REVIEW",
+          "HUMAN_REVIEW"
+        ],
+        "errors": []
+      },
+      "duration_ms": 24763.63
+    },
+    {
+      "case_id": "MQI-V2-002",
+      "name": "Second valid NCR",
+      "passed": true,
+      "failures": [],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "HUMAN_REVIEW",
+        "hitl_required": true,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "EVIDENCE_RETRIEVAL",
+          "RCA_ANALYSIS",
+          "REVIEW",
+          "HUMAN_REVIEW"
+        ],
+        "errors": []
+      },
+      "duration_ms": 6903.73
+    },
+    {
+      "case_id": "MQI-V2-003",
+      "name": "Third valid NCR",
+      "passed": true,
+      "failures": [],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "HUMAN_REVIEW",
+        "hitl_required": true,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "EVIDENCE_RETRIEVAL",
+          "RCA_ANALYSIS",
+          "REVIEW",
+          "HUMAN_REVIEW"
+        ],
+        "errors": []
+      },
+      "duration_ms": 6817.1
+    },
+    {
+      "case_id": "MQI-V2-004",
+      "name": "Fourth valid NCR",
+      "passed": true,
+      "failures": [],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "HUMAN_REVIEW",
+        "hitl_required": true,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "EVIDENCE_RETRIEVAL",
+          "RCA_ANALYSIS",
+          "REVIEW",
+          "HUMAN_REVIEW"
+        ],
+        "errors": []
+      },
+      "duration_ms": 6479.32
+    },
+    {
+      "case_id": "MQI-V2-005",
+      "name": "Fifth valid NCR",
+      "passed": true,
+      "failures": [],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "HUMAN_REVIEW",
+        "hitl_required": true,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "EVIDENCE_RETRIEVAL",
+          "RCA_ANALYSIS",
+          "REVIEW",
+          "HUMAN_REVIEW"
+        ],
+        "errors": []
+      },
+      "duration_ms": 6388.8
+    },
+    {
+      "case_id": "MQI-V2-006",
+      "name": "Missing NCR",
+      "passed": true,
+      "failures": [],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "BLOCKED",
+        "hitl_required": false,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "EVIDENCE_RETRIEVAL",
+          "RCA_ANALYSIS",
+          "REVIEW",
+          "BLOCKED"
+        ],
+        "errors": []
+      },
+      "duration_ms": 6949.14
+    },
+    {
+      "case_id": "MQI-V2-007",
+      "name": "Empty NCR",
+      "passed": true,
+      "failures": [],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "FAILED",
+        "hitl_required": false,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "FAILED"
+        ],
+        "errors": [
+          "NCR number is required."
+        ]
+      },
+      "duration_ms": 70.02
+    },
+    {
+      "case_id": "MQI-V2-008",
+      "name": "Whitespace NCR",
+      "passed": true,
+      "failures": [],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "FAILED",
+        "hitl_required": false,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "FAILED"
+        ],
+        "errors": [
+          "NCR number is required."
+        ]
+      },
+      "duration_ms": 71.99
+    },
+    {
+      "case_id": "MQI-V2-009",
+      "name": "Nonexistent NCR",
+      "passed": true,
+      "failures": [],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "BLOCKED",
+        "hitl_required": false,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "EVIDENCE_RETRIEVAL",
+          "RCA_ANALYSIS",
+          "REVIEW",
+          "BLOCKED"
+        ],
+        "errors": []
+      },
+      "duration_ms": 6565.76
+    },
+    {
+      "case_id": "MQI-V2-010",
+      "name": "Malformed NCR identifier",
+      "passed": true,
+      "failures": [],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "BLOCKED",
+        "hitl_required": false,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "EVIDENCE_RETRIEVAL",
+          "RCA_ANALYSIS",
+          "REVIEW",
+          "BLOCKED"
+        ],
+        "errors": []
+      },
+      "duration_ms": 6768.46
+    },
+    {
+      "case_id": "MQI-V2-011",
+      "name": "Valid NCR with investigation ID",
+      "passed": true,
+      "failures": [],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "HUMAN_REVIEW",
+        "hitl_required": true,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "EVIDENCE_RETRIEVAL",
+          "RCA_ANALYSIS",
+          "REVIEW",
+          "HUMAN_REVIEW"
+        ],
+        "errors": []
+      },
+      "duration_ms": 7076.31
+    },
+    {
+      "case_id": "MQI-V2-012",
+      "name": "Valid NCR with low retrieval limit",
+      "passed": true,
+      "failures": [],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "HUMAN_REVIEW",
+        "hitl_required": true,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "EVIDENCE_RETRIEVAL",
+          "RCA_ANALYSIS",
+          "REVIEW",
+          "HUMAN_REVIEW"
+        ],
+        "errors": []
+      },
+      "duration_ms": 6714.85
+    },
+    {
+      "case_id": "MQI-V2-013",
+      "name": "Valid NCR with standard retrieval limit",
+      "passed": true,
+      "failures": [],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "HUMAN_REVIEW",
+        "hitl_required": true,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "EVIDENCE_RETRIEVAL",
+          "RCA_ANALYSIS",
+          "REVIEW",
+          "HUMAN_REVIEW"
+        ],
+        "errors": []
+      },
+      "duration_ms": 6614.5
+    },
+    {
+      "case_id": "MQI-V2-014",
+      "name": "Historical evidence investigation",
+      "passed": true,
+      "failures": [],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "HUMAN_REVIEW",
+        "hitl_required": true,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "EVIDENCE_RETRIEVAL",
+          "RCA_ANALYSIS",
+          "REVIEW",
+          "HUMAN_REVIEW"
+        ],
+        "errors": []
+      },
+      "duration_ms": 6645.21
+    },
+    {
+      "case_id": "MQI-V2-015",
+      "name": "8D evidence investigation",
+      "passed": true,
+      "failures": [],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "HUMAN_REVIEW",
+        "hitl_required": true,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "EVIDENCE_RETRIEVAL",
+          "RCA_ANALYSIS",
+          "REVIEW",
+          "HUMAN_REVIEW"
+        ],
+        "errors": []
+      },
+      "duration_ms": 6700.31
+    },
+    {
+      "case_id": "MQI-V2-016",
+      "name": "Inspection evidence investigation",
+      "passed": true,
+      "failures": [],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "HUMAN_REVIEW",
+        "hitl_required": true,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "EVIDENCE_RETRIEVAL",
+          "RCA_ANALYSIS",
+          "REVIEW",
+          "HUMAN_REVIEW"
+        ],
+        "errors": []
+      },
+      "duration_ms": 6517.88
+    },
+    {
+      "case_id": "MQI-V2-017",
+      "name": "Process evidence investigation",
+      "passed": true,
+      "failures": [],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "HUMAN_REVIEW",
+        "hitl_required": true,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "EVIDENCE_RETRIEVAL",
+          "RCA_ANALYSIS",
+          "REVIEW",
+          "HUMAN_REVIEW"
+        ],
+        "errors": []
+      },
+      "duration_ms": 6483.21
+    },
+    {
+      "case_id": "MQI-V2-018",
+      "name": "Traceability investigation",
+      "passed": true,
+      "failures": [],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "HUMAN_REVIEW",
+        "hitl_required": true,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "EVIDENCE_RETRIEVAL",
+          "RCA_ANALYSIS",
+          "REVIEW",
+          "HUMAN_REVIEW"
+        ],
+        "errors": []
+      },
+      "duration_ms": 6886.82
+    },
+    {
+      "case_id": "MQI-V2-019",
+      "name": "Graph retrieval investigation",
+      "passed": true,
+      "failures": [],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "HUMAN_REVIEW",
+        "hitl_required": true,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "EVIDENCE_RETRIEVAL",
+          "RCA_ANALYSIS",
+          "REVIEW",
+          "HUMAN_REVIEW"
+        ],
+        "errors": []
+      },
+      "duration_ms": 6399.13
+    },
+    {
+      "case_id": "MQI-V2-020",
+      "name": "Vector retrieval investigation",
+      "passed": true,
+      "failures": [],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "HUMAN_REVIEW",
+        "hitl_required": true,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "EVIDENCE_RETRIEVAL",
+          "RCA_ANALYSIS",
+          "REVIEW",
+          "HUMAN_REVIEW"
+        ],
+        "errors": []
+      },
+      "duration_ms": 6556.17
+    },
+    {
+      "case_id": "MQI-V2-021",
+      "name": "Hybrid retrieval investigation",
+      "passed": true,
+      "failures": [],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "HUMAN_REVIEW",
+        "hitl_required": true,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "EVIDENCE_RETRIEVAL",
+          "RCA_ANALYSIS",
+          "REVIEW",
+          "HUMAN_REVIEW"
+        ],
+        "errors": []
+      },
+      "duration_ms": 6487.74
+    },
+    {
+      "case_id": "MQI-V2-022",
+      "name": "Evidence gap handling",
+      "passed": true,
+      "failures": [],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "HUMAN_REVIEW",
+        "hitl_required": true,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "EVIDENCE_RETRIEVAL",
+          "RCA_ANALYSIS",
+          "REVIEW",
+          "HUMAN_REVIEW"
+        ],
+        "errors": []
+      },
+      "duration_ms": 6537.56
+    },
+    {
+      "case_id": "MQI-V2-023",
+      "name": "RCA evidence handling",
+      "passed": true,
+      "failures": [],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "HUMAN_REVIEW",
+        "hitl_required": true,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "EVIDENCE_RETRIEVAL",
+          "RCA_ANALYSIS",
+          "REVIEW",
+          "HUMAN_REVIEW"
+        ],
+        "errors": []
+      },
+      "duration_ms": 6778.25
+    },
+    {
+      "case_id": "MQI-V2-024",
+      "name": "CAPA evidence handling",
+      "passed": true,
+      "failures": [],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "HUMAN_REVIEW",
+        "hitl_required": true,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "EVIDENCE_RETRIEVAL",
+          "RCA_ANALYSIS",
+          "REVIEW",
+          "HUMAN_REVIEW"
+        ],
+        "errors": []
+      },
+      "duration_ms": 6803.77
+    },
+    {
+      "case_id": "MQI-V2-025",
+      "name": "Reviewer gate",
+      "passed": true,
+      "failures": [],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "HUMAN_REVIEW",
+        "hitl_required": true,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "EVIDENCE_RETRIEVAL",
+          "RCA_ANALYSIS",
+          "REVIEW",
+          "HUMAN_REVIEW"
+        ],
+        "errors": []
+      },
+      "duration_ms": 6906.33
+    },
+    {
+      "case_id": "MQI-V2-026",
+      "name": "HITL required",
+      "passed": true,
+      "failures": [],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "HUMAN_REVIEW",
+        "hitl_required": true,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "EVIDENCE_RETRIEVAL",
+          "RCA_ANALYSIS",
+          "REVIEW",
+          "HUMAN_REVIEW"
+        ],
+        "errors": []
+      },
+      "duration_ms": 6559.89
+    },
+    {
+      "case_id": "MQI-V2-027",
+      "name": "Repeat investigation",
+      "passed": true,
+      "failures": [],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "HUMAN_REVIEW",
+        "hitl_required": true,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "EVIDENCE_RETRIEVAL",
+          "RCA_ANALYSIS",
+          "REVIEW",
+          "HUMAN_REVIEW"
+        ],
+        "errors": []
+      },
+      "duration_ms": 6625.23
+    },
+    {
+      "case_id": "MQI-V2-028",
+      "name": "Controlled evidence retrieval",
+      "passed": true,
+      "failures": [],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "HUMAN_REVIEW",
+        "hitl_required": true,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "EVIDENCE_RETRIEVAL",
+          "RCA_ANALYSIS",
+          "REVIEW",
+          "HUMAN_REVIEW"
+        ],
+        "errors": []
+      },
+      "duration_ms": 7455.79
+    },
+    {
+      "case_id": "MQI-V2-029",
+      "name": "Fail-closed missing evidence",
+      "passed": true,
+      "failures": [],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "BLOCKED",
+        "hitl_required": false,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "EVIDENCE_RETRIEVAL",
+          "RCA_ANALYSIS",
+          "REVIEW",
+          "BLOCKED"
+        ],
+        "errors": []
+      },
+      "duration_ms": 6694.56
+    },
+    {
+      "case_id": "MQI-V2-030",
+      "name": "End-to-end investigation",
+      "passed": true,
+      "failures": [],
+      "actual": {
+        "workflow_started": true,
+        "final_state": "HUMAN_REVIEW",
+        "hitl_required": true,
+        "history": [
+          "CREATED",
+          "TRACEABILITY",
+          "EVIDENCE_RETRIEVAL",
+          "RCA_ANALYSIS",
+          "REVIEW",
+          "HUMAN_REVIEW"
+        ],
+        "errors": []
+      },
+      "duration_ms": 6475.65
+    }
+  ],
+  "regression": {
+    "regression_pass": true,
+    "baseline_passed": 30,
+    "current_passed": 30,
+    "new_regressions": []
+  }
+}

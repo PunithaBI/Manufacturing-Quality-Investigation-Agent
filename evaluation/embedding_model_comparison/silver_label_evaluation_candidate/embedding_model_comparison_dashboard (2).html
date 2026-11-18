@@ -1,0 +1,1625 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Embedding Model Comparison | MQI</title>
+
+<style>
+:root {
+  --teal: #004753;
+  --orange: #F25B24;
+  --yellow: #E9CB47;
+  --slate: #51626F;
+  --ink: #18272d;
+  --muted: #62727a;
+  --paper: #f4f7f7;
+  --line: #dce5e6;
+  --white: #fff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 15px/1.45 Inter, Segoe UI, Arial, sans-serif;
+}
+
+header {
+  background: var(--teal);
+  color: white;
+  padding: 25px clamp(18px, 4vw, 52px) 22px;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-size: 11px;
+  font-weight: 700;
+  opacity: .8;
+}
+
+h1 {
+  font-size: clamp(25px, 3vw, 38px);
+  line-height: 1.1;
+  margin: 8px 0 9px;
+  letter-spacing: -.03em;
+}
+
+header p {
+  margin: 0;
+  color: #e2eeee;
+  max-width: 850px;
+}
+
+main {
+  max-width: 1600px;
+  margin: auto;
+  padding: 22px clamp(14px, 3vw, 38px) 42px;
+}
+
+/* PAGE NAVIGATION */
+
+.page-navigation {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+  padding: 8px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.page-navigation button {
+  background: transparent;
+  color: var(--teal);
+  border: 1px solid transparent;
+}
+
+.page-navigation button.active {
+  background: var(--teal);
+  color: white;
+}
+
+.page-navigation button:hover:not(.active) {
+  background: #e7eff0;
+}
+
+.page[hidden] {
+  display: none !important;
+}
+
+/* TOOLBAR */
+
+.toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 16px;
+}
+
+input[type=file] {
+  max-width: 100%;
+  font-size: 13px;
+}
+
+button {
+  border: 0;
+  border-radius: 9px;
+  background: var(--orange);
+  color: white;
+  padding: 10px 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button.secondary {
+  background: #e7eff0;
+  color: var(--teal);
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--yellow);
+  outline-offset: 2px;
+}
+
+.status {
+  font-size: 13px;
+  color: var(--muted);
+  flex: 1;
+  min-width: 220px;
+}
+
+.status strong { color: var(--teal); }
+
+.notice {
+  border-left: 4px solid var(--yellow);
+  padding: 11px 14px;
+  background: #fff9df;
+  border-radius: 0 10px 10px 0;
+  margin: 0 0 16px;
+  font-size: 13px;
+}
+
+/* DASHBOARD LAYOUT */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 15px;
+}
+
+.card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 17px;
+  min-width: 0;
+  box-shadow: 0 2px 8px #0a34400a;
+}
+
+.span-12 { grid-column: span 12; }
+.span-8 { grid-column: span 8; }
+.span-6 { grid-column: span 6; }
+.span-4 { grid-column: span 4; }
+
+.card h2 {
+  font-size: 16px;
+  margin: 0 0 4px;
+  color: var(--teal);
+}
+
+.card h3 {
+  font-size: 16px;
+  color: var(--teal);
+  overflow-wrap: anywhere;
+  margin: 12px 0;
+}
+
+.sub {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0 0 14px;
+}
+
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.kpi {
+  background: #f5f8f8;
+  border: 1px solid #e8eeee;
+  border-radius: 11px;
+  padding: 13px;
+}
+
+.kpi .label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.kpi .value {
+  font-size: 24px;
+  font-weight: 750;
+  color: var(--teal);
+  margin: 4px 0 0;
+  overflow-wrap: anywhere;
+}
+
+.kpi .detail {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 8px 0 12px;
+}
+
+.controls label {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.controls select {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+  padding: 8px;
+  color: var(--ink);
+  max-width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 12px;
+}
+
+th, td {
+  padding: 10px 8px;
+  text-align: left;
+  border-bottom: 1px solid #e8eeee;
+  vertical-align: top;
+}
+
+th {
+  color: var(--muted);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  background: #f7f9f9;
+  position: sticky;
+  top: 0;
+}
+
+.table-wrap {
+  overflow: auto;
+  max-height: 360px;
+  border: 1px solid #edf1f1;
+  border-radius: 9px;
+}
+
+.pill {
+  display: inline-block;
+  padding: 3px 7px;
+  border-radius: 99px;
+  font-size: 10px;
+  font-weight: 800;
+  background: #e4f2ef;
+  color: #075b4f;
+}
+
+.pill.warn {
+  background: #fff1d6;
+  color: #855500;
+}
+
+.case-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.case-button {
+  text-align: left;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 11px;
+  background: white;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.case-button.active {
+  border-color: var(--orange);
+  box-shadow: 0 0 0 2px #f25b2420;
+}
+
+.case-button small {
+  display: block;
+  color: var(--muted);
+  font-weight: 400;
+  margin-top: 4px;
+  line-height: 1.35;
+}
+
+.empty {
+  padding: 26px 12px;
+  text-align: center;
+  color: var(--muted);
+  border: 1px dashed #cbd8d9;
+  border-radius: 10px;
+  font-size: 13px;
+}
+
+ul.clean {
+  padding-left: 18px;
+  margin: 8px 0;
+}
+
+ul.clean li { margin: 5px 0; }
+
+footer {
+  color: var(--muted);
+  font-size: 11px;
+  margin: 18px 2px 0;
+}
+
+details { max-width: 420px; }
+
+details p {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* BEST MODEL AND SCORE COMPARISON */
+
+.best-model-layout {
+  grid-column: span 12;
+  display: grid;
+  grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.5fr);
+  gap: 15px;
+  align-items: stretch;
+  min-width: 0;
+}
+
+.best-model-layout > .card {
+  min-width: 0;
+  height: 100%;
+}
+
+#bestModel {
+  overflow-wrap: anywhere;
+}
+
+#embeddingScores {
+  min-width: 0;
+}
+
+#embeddingScores .table-wrap {
+  max-height: none;
+  overflow-x: auto;
+}
+
+#embeddingScores table {
+  min-width: 530px;
+  font-size: 11px;
+}
+
+#embeddingScores th {
+  background: var(--teal);
+  color: white;
+  position: static;
+  white-space: nowrap;
+}
+
+#embeddingScores th,
+#embeddingScores td {
+  padding: 10px 7px;
+}
+
+#embeddingScores td:first-child {
+  overflow-wrap: anywhere;
+  min-width: 135px;
+}
+
+#embeddingScores .best-row {
+  background: #e4f2ef;
+  font-weight: 700;
+}
+
+.winner-label {
+  display: inline-block;
+  background: #e4f2ef;
+  color: #075b4f;
+  padding: 4px 9px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+/* PAGE 2: SVG MIND MAP */
+
+.mindmap-card {
+  padding: clamp(14px, 2.5vw, 26px);
+}
+
+.mindmap-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.mindmap-header h2 {
+  font-size: 22px;
+  color: var(--teal);
+  margin: 0 0 6px;
+}
+
+.mindmap-frame {
+  width: 100%;
+  min-height: 300px;
+  max-height: 78vh;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: white;
+  padding: 12px;
+  text-align: center;
+}
+
+.mindmap-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 74vh;
+  object-fit: contain;
+  object-position: top center;
+  margin: 0 auto;
+}
+
+.mindmap-help {
+  color: var(--muted);
+  font-size: 12px;
+  margin: 12px 0 0;
+}
+
+@media (max-width: 850px) {
+  .span-8, .span-6, .span-4 {
+    grid-column: span 12;
+  }
+
+  .best-model-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mindmap-frame {
+    max-height: 72vh;
+  }
+
+  .mindmap-image {
+    max-height: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .kpi .value { font-size: 20px; }
+
+  .page-navigation button {
+    flex: 1;
+  }
+
+  .mindmap-frame {
+    padding: 6px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="eyebrow">
+    Manufacturing Quality Investigation Agent · Evaluation Lab
+  </div>
+  <h1>Embedding Model Comparison</h1>
+  <p id="headerDescription">
+    Compare retrieval quality for individual benchmark queries, inspect
+    retrieved evidence and audit silver-label coverage.
+  </p>
+</header>
+
+<main>
+
+  <!-- NAVIGATION BETWEEN THE TWO PAGES -->
+
+  <nav class="page-navigation" aria-label="Dashboard pages">
+    <button
+      type="button"
+      id="dashboardTab"
+      class="active"
+      aria-current="page"
+      onclick="showPage('dashboardPage')">
+      1. Model Comparison
+    </button>
+
+    <button
+      type="button"
+      id="mindmapTab"
+      onclick="showPage('mindmapPage')">
+      2. Evaluation Mind Map
+    </button>
+  </nav>
+
+  <!-- =======================================================
+       PAGE 1: EXISTING MODEL COMPARISON DASHBOARD
+       ======================================================= -->
+
+  <section id="dashboardPage" class="page">
+
+    <section class="toolbar">
+      <div>
+        <strong>Load your latest evaluation report</strong><br>
+        <input id="file" type="file" accept=".json,application/json"
+               aria-label="Choose silver evaluation report JSON">
+      </div>
+
+      <button id="reset" class="secondary" type="button">
+        Reset view
+      </button>
+
+      <div class="status" id="status" role="status">
+        <strong>No report loaded.</strong>
+        Select silver_evaluation_report.json from your project output folder.
+      </div>
+    </section>
+
+    <div class="notice">
+      <strong>Interpretation guardrail:</strong>
+      This experiment uses automatically generated silver labels, not
+      human-validated gold ground truth. Grade 0 means “not proven relevant,”
+      not necessarily irrelevant. Treat the metrics as exploratory.
+    </div>
+
+    <section class="grid">
+
+      <div class="card span-12">
+        <h2>Experiment snapshot</h2>
+        <p class="sub">
+          Candidate index experiment. No production-index changes are performed
+          by this dashboard.
+        </p>
+
+        <div class="kpis">
+          <div class="kpi">
+            <div class="label">Candidate chunks</div>
+            <div class="value" id="chunks">1,226</div>
+            <div class="detail">Candidate index only</div>
+          </div>
+
+          <div class="kpi">
+            <div class="label">Benchmark queries</div>
+            <div class="value" id="queryCount">5</div>
+            <div class="detail">EMB-001 to EMB-005</div>
+          </div>
+
+          <div class="kpi">
+            <div class="label">Methods in report</div>
+            <div class="value" id="methodCount">—</div>
+            <div class="detail">Available retrieval methods</div>
+          </div>
+
+          <div class="kpi">
+            <div class="label">Runtime</div>
+            <div class="value" id="runtime">—</div>
+            <div class="detail">Seconds, if reported</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card span-4">
+        <h2>Benchmark query selector</h2>
+        <p class="sub">
+          Select a query to update the metrics and evidence shown on the right.
+        </p>
+
+        <div id="caseList" class="case-list">
+          <div class="empty">
+            Load the evaluation report to show benchmark cases.
+          </div>
+        </div>
+      </div>
+
+      <div class="card span-8">
+        <h2>Selected query comparison</h2>
+        <p class="sub">
+          Per-query results for each method. Missing metrics are shown as
+          unavailable, not zero.
+        </p>
+
+        <div id="selectedQuery">
+          <div class="empty">
+            Load the JSON report and select a benchmark query.
+          </div>
+        </div>
+      </div>
+
+      <div class="card span-12">
+        <h2>Ranked evidence</h2>
+        <p class="sub">
+          Evidence retrieved for the selected query and method, when retrieval
+          details are present in the report.
+        </p>
+
+        <div class="controls">
+          <label for="methodSelect">Retrieval method</label>
+          <select id="methodSelect" disabled>
+            <option value="">Load a report first</option>
+          </select>
+        </div>
+
+        <div id="evidence">
+          <div class="empty">
+            Evidence details will appear here when provided by the report.
+          </div>
+        </div>
+      </div>
+
+      <!-- SIDE-BY-SIDE RECOMMENDATION AND SCORE COMPARISON -->
+
+      <div class="best-model-layout">
+
+        <div class="card">
+          <h2>Best Model &amp; Selection Rationale</h2>
+          <p class="sub">
+            The recommendation is calculated from the loaded report.
+            Ranking uses macro-average graded nDCG@10.
+          </p>
+
+          <div id="bestModel">
+            <div class="empty">
+              Load silver_evaluation_report.json to evaluate eligible models.
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Embedding Model Score Comparison</h2>
+          <p class="sub">
+            Aggregate results across benchmark queries. Higher is better for
+            retrieval metrics; runtime is shown in seconds.
+          </p>
+
+          <div id="embeddingScores">
+            <div class="empty">
+              Load the evaluation report to show scores.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="card span-6">
+        <h2>Silver-label audit</h2>
+        <p class="sub">
+          Coverage is not correctness. Inspect unusually broad labels before
+          interpreting rankings.
+        </p>
+
+        <div id="labelAudit">
+          <div class="empty">
+            Label summary will appear here when available.
+          </div>
+        </div>
+      </div>
+
+      <div class="card span-12">
+        <h2>Experiment integrity checks</h2>
+
+        <div id="safety">
+          <ul class="clean">
+            <li>Expected corpus: <code>data/vector_index_candidate</code></li>
+            <li>Production index must not be read or modified during comparison.</li>
+            <li>Source database should be read-only.</li>
+            <li>Results remain exploratory until labels are validated.</li>
+          </ul>
+        </div>
+      </div>
+
+    </section>
+  </section>
+
+  <!-- =======================================================
+       PAGE 2: SVG MIND MAP
+       Keep embedding_mindmap.svg beside index.html.
+       ======================================================= -->
+
+  <section id="mindmapPage" class="page" hidden>
+
+    <div class="card mindmap-card">
+
+      <div class="mindmap-header">
+        <div>
+          <h2>Embedding Model Evaluation Mind Map</h2>
+          <p class="sub">
+            From source data and benchmark queries to model comparison,
+            evaluation results and limitations.
+          </p>
+        </div>
+
+        <button
+          type="button"
+          class="secondary"
+          onclick="showPage('dashboardPage')">
+          Back to Model Comparison
+        </button>
+      </div>
+
+      <div class="mindmap-frame">
+        <img
+          id="mindmapImage"
+          class="mindmap-image"
+          src="./embedding_mindmap.svg"
+          alt="Mind map showing data and sources, test queries, silver labels, models compared, metrics, and results and limitations"
+          loading="lazy">
+
+        <div id="mindmapError" class="empty" hidden>
+          <strong>Mind map SVG could not be loaded.</strong>
+          <p>
+            Check that the SVG file is named
+            <code>embedding_mindmap.svg</code> and is in the same folder
+            as <code>index.html</code>.
+          </p>
+        </div>
+      </div>
+
+      <p class="mindmap-help">
+        If the diagram contains small text, zoom in using your browser
+        or scroll within the diagram area.
+      </p>
+
+    </div>
+
+  </section>
+
+  <footer>
+    Local-only dashboard: the selected JSON is processed in your browser and
+    is not uploaded anywhere. Open this HTML file in Chrome or Edge and load
+    the report JSON on Page 1.
+  </footer>
+
+</main>
+
+<script>
+"use strict";
+
+const $ = id => document.getElementById(id);
+
+let report = null;
+let selectedCase = null;
+let selectedMethod = null;
+
+/* =========================================================
+   PAGE NAVIGATION
+   ========================================================= */
+
+function showPage(pageId) {
+  const dashboard = $("dashboardPage");
+  const mindmap = $("mindmapPage");
+  const dashboardTab = $("dashboardTab");
+  const mindmapTab = $("mindmapTab");
+  const headerDescription = $("headerDescription");
+
+  if (!dashboard || !mindmap) return;
+
+  const showDashboard = pageId === "dashboardPage";
+
+  dashboard.hidden = !showDashboard;
+  mindmap.hidden = showDashboard;
+
+  dashboardTab.classList.toggle("active", showDashboard);
+  mindmapTab.classList.toggle("active", !showDashboard);
+
+  if (showDashboard) {
+    dashboardTab.setAttribute("aria-current", "page");
+    mindmapTab.removeAttribute("aria-current");
+
+    headerDescription.textContent =
+      "Compare retrieval quality for individual benchmark queries, inspect retrieved evidence and audit silver-label coverage.";
+  } else {
+    mindmapTab.setAttribute("aria-current", "page");
+    dashboardTab.removeAttribute("aria-current");
+
+    headerDescription.textContent =
+      "Explore the evaluation workflow from data sources and test queries to model results and limitations.";
+  }
+
+  window.scrollTo({ top: 0, behavior: "auto" });
+}
+
+/* =========================================================
+   REPORT AND DASHBOARD LOGIC
+   ========================================================= */
+
+const METRICS = {
+  precision_at_10: {
+    aliases: ["precision_at_10", "precision@10", "p_at_10"]
+  },
+  recall_at_10: {
+    aliases: ["recall_at_10", "recall@10", "r_at_10"]
+  },
+  mrr: {
+    aliases: ["mrr", "mean_reciprocal_rank"]
+  },
+  ndcg_at_10_graded: {
+    aliases: [
+      "ndcg_at_10_graded",
+      "graded_ndcg_at_10",
+      "macro_ndcg_at_10_graded",
+      "macro_average_ndcg_at_10_graded",
+      "ndcg@10",
+      "ndcg_at_10"
+    ]
+  }
+};
+
+function esc(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  }[char]));
+}
+
+function num(value) {
+  return typeof value === "number" && Number.isFinite(value)
+    ? value.toFixed(3)
+    : "—";
+}
+
+function setText(id, value) {
+  const element = $(id);
+  if (element) element.textContent = value;
+}
+
+function setHTML(id, value) {
+  const element = $(id);
+  if (element) element.innerHTML = value;
+}
+
+function getMethods() {
+  return Array.isArray(report?.methods) ? report.methods : [];
+}
+
+function methodName(method) {
+  return method?.method ||
+    method?.model ||
+    method?.model_name ||
+    method?.name ||
+    "Unnamed method";
+}
+
+function queryId(query) {
+  return query?.case_id ?? query?.query_id ?? query?.id ?? null;
+}
+
+function getMetricsObject(result) {
+  return result?.metrics ||
+    result?.metric_values ||
+    result?.evaluation_metrics ||
+    result?.aggregate_metrics ||
+    result ||
+    {};
+}
+
+function getMetricValue(object, key) {
+  if (!object || typeof object !== "object") return null;
+
+  for (const alias of METRICS[key]?.aliases || [key]) {
+    const value = object[alias];
+
+    if (typeof value === "number" && Number.isFinite(value)) {
+      return value;
+    }
+  }
+
+  return null;
+}
+
+function getCaseResults(method) {
+  const raw = method?.per_case ??
+    method?.case_results ??
+    method?.query_results ??
+    method?.results_by_case ??
+    [];
+
+  if (Array.isArray(raw)) return raw;
+
+  if (raw && typeof raw === "object") {
+    return Object.entries(raw).map(([id, value]) => {
+      if (!value || typeof value !== "object") {
+        return { case_id: id };
+      }
+
+      return {
+        ...value,
+        case_id: value.case_id ?? value.query_id ?? value.id ?? id
+      };
+    });
+  }
+
+  return [];
+}
+
+function getCaseResult(method, id) {
+  return getCaseResults(method).find(
+    result => String(queryId(result)) === String(id)
+  ) || null;
+}
+
+function getQueries() {
+  if (Array.isArray(report?.queries) && report.queries.length) {
+    return report.queries;
+  }
+
+  const seen = new Map();
+
+  for (const method of getMethods()) {
+    for (const result of getCaseResults(method)) {
+      const id = queryId(result);
+
+      if (id == null || seen.has(String(id))) continue;
+
+      seen.set(String(id), {
+        case_id: id,
+        query: result.query ?? result.question ?? result.description ?? ""
+      });
+    }
+  }
+
+  return [...seen.values()];
+}
+
+function htmlTable(headers, rows) {
+  if (!rows.length) {
+    return '<div class="empty">No results available.</div>';
+  }
+
+  return `
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>${headers.map(h => `<th>${esc(h)}</th>`).join("")}</tr>
+        </thead>
+        <tbody>
+          ${rows.map(row => `
+            <tr>${row.map(cell =>
+              `<td>${cell == null || cell === "" ? "—" : cell}</td>`
+            ).join("")}</tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>`;
+}
+
+function getEvidence(result) {
+  if (!result || typeof result !== "object") return [];
+
+  const candidates = [
+    result.top_10,
+    result.top10,
+    result.top_k_results,
+    result.ranked_evidence,
+    result.retrieved_evidence,
+    result.retrieved_chunks,
+    result.evidence,
+    result.results
+  ];
+
+  for (const candidate of candidates) {
+    if (Array.isArray(candidate) && candidate.length) {
+      return candidate;
+    }
+  }
+
+  return [];
+}
+
+function render() {
+  const methods = getMethods();
+  const queries = getQueries();
+
+  const chunkCount =
+    report?.corpus?.chunk_count ??
+    report?.silver_label_summary?.corpus?.chunk_count ??
+    1226;
+
+  setText("chunks", Number(chunkCount).toLocaleString());
+  setText("queryCount", queries.length || "—");
+  setText("methodCount", methods.length || "—");
+
+  const runtime = report?.total_runtime_seconds ??
+    report?.runtime_seconds ??
+    report?.total_runtime;
+
+  setText(
+    "runtime",
+    typeof runtime === "number" && Number.isFinite(runtime)
+      ? runtime.toFixed(1) + "s"
+      : "—"
+  );
+
+  if (!queries.some(
+    q => String(queryId(q)) === String(selectedCase)
+  )) {
+    selectedCase = queryId(queries[0]);
+  }
+
+  if (!methods.some(m => methodName(m) === selectedMethod)) {
+    selectedMethod = methods.length ? methodName(methods[0]) : null;
+  }
+
+  renderCases();
+  renderSelectedQuery();
+  renderEvidence();
+  renderBestModel();
+  renderEmbeddingScores();
+  renderLabelAudit();
+  renderSafety();
+}
+
+function renderCases() {
+  const target = $("caseList");
+  if (!target) return;
+
+  const queries = getQueries();
+
+  if (!queries.length) {
+    target.innerHTML =
+      '<div class="empty">No benchmark query list or per-query results found.</div>';
+    return;
+  }
+
+  target.innerHTML = queries.map(query => {
+    const id = queryId(query);
+    const text = query.query || query.question ||
+      query.description || "Query text not included";
+
+    return `
+      <button type="button"
+        class="case-button ${String(id) === String(selectedCase) ? "active" : ""}"
+        data-case="${esc(id)}">
+        ${esc(id || "Case")}
+        <small>${esc(text)}</small>
+      </button>`;
+  }).join("");
+
+  target.querySelectorAll("[data-case]").forEach(button => {
+    button.addEventListener("click", () => {
+      selectedCase = button.dataset.case;
+      renderCases();
+      renderSelectedQuery();
+      renderEvidence();
+    });
+  });
+}
+
+function renderSelectedQuery() {
+  const target = $("selectedQuery");
+  if (!target) return;
+
+  const query = getQueries().find(
+    item => String(queryId(item)) === String(selectedCase)
+  );
+
+  if (!query) {
+    target.innerHTML =
+      '<div class="empty">No query selected or no query details found.</div>';
+    return;
+  }
+
+  const queryText = query.query || query.question ||
+    query.description || "Query text not included";
+
+  const rows = getMethods().map(method => {
+    const result = getCaseResult(method, selectedCase);
+    const metrics = getMetricsObject(result);
+    const status = result?.status ?? method.status ?? "metrics available";
+
+    return [
+      esc(methodName(method)),
+      `<span class="pill ${
+        /success|complete|pass|available/i.test(String(status)) ? "" : "warn"
+      }">${esc(status)}</span>`,
+      num(getMetricValue(metrics, "precision_at_10")),
+      num(getMetricValue(metrics, "recall_at_10")),
+      num(getMetricValue(metrics, "mrr")),
+      num(getMetricValue(metrics, "ndcg_at_10_graded"))
+    ];
+  });
+
+  target.innerHTML = `
+    <p><strong>${esc(queryId(query))}</strong></p>
+    <p>${esc(queryText)}</p>
+    ${htmlTable(
+      ["Method", "Status", "P@10", "R@10", "MRR", "Graded nDCG@10"],
+      rows
+    )}
+    <p class="sub" style="margin-top:10px">
+      Missing per-query metrics are unavailable, not zero. Aggregate metrics
+      are not substituted for per-query values.
+    </p>`;
+}
+
+function renderEvidence() {
+  const select = $("methodSelect");
+  if (!select) return;
+
+  const methods = getMethods();
+
+  select.innerHTML = methods.map(method => `
+    <option value="${esc(methodName(method))}"
+      ${methodName(method) === selectedMethod ? "selected" : ""}>
+      ${esc(methodName(method))}
+    </option>
+  `).join("");
+
+  select.disabled = methods.length === 0;
+
+  const method = methods.find(
+    item => methodName(item) === selectedMethod
+  );
+
+  const result = method
+    ? getCaseResult(method, selectedCase)
+    : null;
+
+  if (!result) {
+    setHTML("evidence",
+      '<div class="empty">No per-query result found for this method and query. The report may contain aggregate metrics only.</div>');
+    return;
+  }
+
+  const evidence = getEvidence(result);
+
+  if (!evidence.length) {
+    setHTML("evidence", `
+      <div class="empty">
+        A per-query result exists, but no recognized ranked evidence list
+        was found. The report may contain metrics only.
+      </div>`);
+    return;
+  }
+
+  const rows = evidence.map((item, index) => {
+    const rank = item.rank ?? item.position ?? index + 1;
+    const sourceType =
+      item.source_type ?? item.document_type ?? item.type ?? "—";
+    const sourceId =
+      item.source_id ?? item.document_id ?? item.chunk_id ?? item.id ?? "—";
+    const title = item.title ?? item.name ?? item.content_title ?? "—";
+    const grade =
+      item.silver_grade ?? item.grade ?? item.relevance_grade ?? "—";
+    const score =
+      item.score ?? item.similarity_score ?? item.retrieval_score;
+    const content = item.content ?? item.text ?? item.snippet ?? "";
+
+    return [
+      esc(rank),
+      esc(sourceType),
+      esc(sourceId),
+      esc(title),
+      esc(grade),
+      esc(num(score)),
+      content
+        ? `<details><summary>View content</summary><p>${esc(content)}</p></details>`
+        : "—"
+    ];
+  });
+
+  setHTML("evidence", htmlTable(
+    ["Rank", "Source type", "Source ID", "Title", "Silver grade", "Score", "Content"],
+    rows
+  ));
+}
+
+function renderBestModel() {
+  const container = $("bestModel");
+  if (!container) return;
+
+  const methods = getMethods();
+
+  const candidates = methods.filter(method => {
+    const score = method?.macro_average?.ndcg_at_10_graded;
+
+    return method.status === "success" &&
+      methodName(method) !== "keyword_tfidf_baseline" &&
+      typeof score === "number" &&
+      Number.isFinite(score);
+  }).sort((a, b) =>
+    b.macro_average.ndcg_at_10_graded -
+    a.macro_average.ndcg_at_10_graded
+  );
+
+  if (!candidates.length) {
+    container.innerHTML = `
+      <div class="empty">
+        Cannot determine the winner. Successful embedding-model results
+        with valid graded NDCG@10 metrics were not found.
+      </div>`;
+    return;
+  }
+
+  const winner = candidates[0];
+  const metrics = winner.macro_average;
+
+  const baseline = methods.find(
+    method => methodName(method) === "keyword_tfidf_baseline"
+  );
+
+  const baselineScore = baseline?.macro_average?.ndcg_at_10_graded;
+  const score = metrics.ndcg_at_10_graded;
+
+  const comparison =
+    typeof baselineScore === "number" && Number.isFinite(baselineScore)
+      ? `${((score - baselineScore) * 100).toFixed(2)} percentage points ${
+          score >= baselineScore ? "higher" : "lower"
+        } than the TF-IDF baseline.`
+      : "TF-IDF baseline score unavailable.";
+
+  container.innerHTML = `
+    <div class="winner-label">RECOMMENDED EMBEDDING MODEL</div>
+    <h3>${esc(methodName(winner))}</h3>
+    <p><strong>Selected by:</strong> Highest macro-average NDCG@10</p>
+    <p><strong>NDCG@10:</strong> ${format4(metrics.ndcg_at_10_graded)}</p>
+    <p><strong>Precision@5:</strong> ${format4(metrics.precision_at_5)}</p>
+    <p><strong>Recall@10:</strong> ${format4(metrics.recall_at_10)}</p>
+    <p><strong>MRR:</strong> ${format4(metrics.mrr)}</p>
+    <p><strong>Runtime:</strong> ${formatRuntime(winner.runtime_seconds)}</p>
+    <p>${esc(comparison)}</p>
+    <p><em>Selection is based on automatic silver labels, not human-validated gold labels.</em></p>
+  `;
+}
+
+function format4(value) {
+  return typeof value === "number" && Number.isFinite(value)
+    ? value.toFixed(4)
+    : "—";
+}
+
+function formatRuntime(value) {
+  return typeof value === "number" && Number.isFinite(value)
+    ? value.toFixed(3) + " seconds"
+    : "Not reported";
+}
+
+function renderEmbeddingScores() {
+  const container = $("embeddingScores");
+  if (!container) return;
+
+  const methods = getMethods().filter(method =>
+    method.status === "success" && method.macro_average
+  );
+
+  if (!methods.length) {
+    container.innerHTML =
+      '<div class="empty">No successful aggregate scores found.</div>';
+    return;
+  }
+
+  const baselineName = "keyword_tfidf_baseline";
+
+  const eligibleModels = methods.filter(method => {
+    const score = method.macro_average?.ndcg_at_10_graded;
+
+    return methodName(method) !== baselineName &&
+      typeof score === "number" &&
+      Number.isFinite(score);
+  });
+
+  const winner = [...eligibleModels].sort((a, b) =>
+    b.macro_average.ndcg_at_10_graded -
+    a.macro_average.ndcg_at_10_graded
+  )[0];
+
+  const columns = [
+    "Method",
+    "Precision@5",
+    "Recall@10",
+    "MRR",
+    "NDCG@10",
+    "Runtime (s)"
+  ];
+
+  const sortedMethods = [...methods].sort((a, b) => {
+    if (methodName(a) === baselineName) return -1;
+    if (methodName(b) === baselineName) return 1;
+
+    const scoreA = a.macro_average?.ndcg_at_10_graded;
+    const scoreB = b.macro_average?.ndcg_at_10_graded;
+
+    return (typeof scoreB === "number" ? scoreB : -Infinity) -
+      (typeof scoreA === "number" ? scoreA : -Infinity);
+  });
+
+  const rows = sortedMethods.map(method => {
+    const metrics = method.macro_average;
+    const isWinner = winner &&
+      methodName(method) === methodName(winner);
+
+    return `
+      <tr class="${isWinner ? "best-row" : ""}">
+        <td>
+          ${esc(methodName(method))}
+          ${isWinner ? '<br><span class="pill">BEST EMBEDDING</span>' : ""}
+        </td>
+        <td>${format4(metrics.precision_at_5)}</td>
+        <td>${format4(metrics.recall_at_10)}</td>
+        <td>${format4(metrics.mrr)}</td>
+        <td>${format4(metrics.ndcg_at_10_graded)}</td>
+        <td>${format4(method.runtime_seconds)}</td>
+      </tr>`;
+  });
+
+  container.innerHTML = `
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>${columns.map(column =>
+            `<th>${esc(column)}</th>`
+          ).join("")}</tr>
+        </thead>
+        <tbody>${rows.join("")}</tbody>
+      </table>
+    </div>
+    <p class="sub" style="margin-top:10px">
+      Higher retrieval scores are generally better. Runtime is in seconds.
+      Winner is selected by graded NDCG@10 among embedding models;
+      TF-IDF is the baseline.
+    </p>`;
+}
+
+function renderLabelAudit() {
+  const target = $("labelAudit");
+  if (!target) return;
+
+  const summary = report?.silver_label_summary;
+
+  if (!summary) {
+    target.innerHTML =
+      '<div class="empty">No silver_label_summary object was found. The label audit cannot be inferred from missing data.</div>';
+    return;
+  }
+
+  const rawCases = summary.case_summary ?? summary.cases ?? [];
+  const cases = Array.isArray(rawCases) ? rawCases : [];
+
+  let html = `
+    <div class="kpis" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+      <div class="kpi">
+        <div class="label">Candidate chunks</div>
+        <div class="value">${
+          esc(summary.corpus?.chunk_count ??
+            summary.candidate_chunk_count ??
+            summary.chunk_count ?? "—")
+        }</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Case summaries</div>
+        <div class="value">${cases.length || "—"}</div>
+      </div>
+    </div>`;
+
+  if (cases.length) {
+    const rows = cases.map(item => [
+      esc(item.case_id ?? item.query_id ?? "—"),
+      esc(item.silver_relevant_chunk_count_grade_2_plus ?? "—"),
+      esc(item.silver_relevant_chunk_count_grade_1_plus ?? "—"),
+      esc(item.matching_ncr_count ?? "—")
+    ]);
+
+    html += `<div style="margin-top:12px">${
+      htmlTable(["Case", "Grade ≥2", "Grade ≥1", "Matching NCRs"], rows)
+    }</div>`;
+  }
+
+  target.innerHTML = html + `
+    <p class="sub" style="margin-top:12px">
+      Coverage is not correctness. Inspect unusually broad labels and validate
+      relevance judgments before interpreting model rankings.
+    </p>`;
+}
+
+function renderSafety() {
+  const target = $("safety");
+  if (!target) return;
+
+  const safety = report?.safety ?? {};
+  const corpus = report?.corpus ?? {};
+  const database = report?.database ?? {};
+
+  const corpusPath = corpus.path ?? "Not recorded";
+
+  const corpusOkay = String(corpusPath)
+    .replace(/\\/g, "/")
+    .includes("vector_index_candidate");
+
+  const checks = [
+    ["Candidate corpus", corpusPath, corpusOkay],
+    [
+      "Production index untouched",
+      safety.production_index_read_or_modified === false
+        ? "Report says: No"
+        : safety.production_index_read_or_modified === true
+          ? "WARNING: production index read/modified"
+          : "Not recorded",
+      safety.production_index_read_or_modified === false
+    ],
+    [
+      "Source database read-only",
+      database.read_only === true
+        ? "Report says: Yes"
+        : database.read_only === false
+          ? "WARNING: database not read-only"
+          : "Not recorded",
+      database.read_only === true
+    ],
+    [
+      "Candidate index unchanged",
+      safety.candidate_index_modified === false
+        ? "Report says: No"
+        : safety.candidate_index_modified === true
+          ? "WARNING: candidate index modified"
+          : "Not recorded",
+      safety.candidate_index_modified === false
+    ],
+    [
+      "Model download status",
+      "Yes — models downloaded locally",
+      true
+    ]
+  ];
+
+  target.innerHTML = htmlTable(
+    ["Check", "Report value", "Status"],
+    checks.map(([name, value, okay]) => [
+      esc(name),
+      esc(value),
+      `<span class="pill ${okay ? "" : "warn"}">${
+        okay ? "PASS / reported" : "CHECK"
+      }</span>`
+    ])
+  );
+}
+
+function resetDashboard() {
+  report = null;
+  selectedCase = null;
+  selectedMethod = null;
+
+  setText("chunks", "1,226");
+  setText("queryCount", "5");
+  setText("methodCount", "—");
+  setText("runtime", "—");
+
+  setHTML("caseList",
+    '<div class="empty">Load the evaluation report to show benchmark cases.</div>');
+
+  setHTML("selectedQuery",
+    '<div class="empty">Load the JSON report and select a benchmark query.</div>');
+
+  setHTML("evidence",
+    '<div class="empty">Evidence details will appear here when provided by the report.</div>');
+
+  setHTML("bestModel",
+    '<div class="empty">Load silver_evaluation_report.json to evaluate eligible models.</div>');
+
+  setHTML("embeddingScores",
+    '<div class="empty">Load the evaluation report to show scores.</div>');
+
+  setHTML("labelAudit",
+    '<div class="empty">Label summary will appear here when available.</div>');
+
+  setHTML("methodSelect",
+    '<option value="">Load a report first</option>');
+
+  setHTML("safety", `
+    <ul class="clean">
+      <li>Expected corpus: <code>data/vector_index_candidate</code></li>
+      <li>Production index must not be read or modified during comparison.</li>
+      <li>Source database should be read-only.</li>
+      <li>Results remain exploratory until labels are validated.</li>
+    </ul>`);
+
+  setHTML("status",
+    '<strong>No report loaded.</strong> Select silver_evaluation_report.json from your project output folder.');
+
+  const fileInput = $("file");
+  if (fileInput) fileInput.value = "";
+
+  const methodSelect = $("methodSelect");
+  if (methodSelect) methodSelect.disabled = true;
+}
+
+/* =========================================================
+   INITIALIZATION
+   ========================================================= */
+
+function initializeDashboard() {
+  const fileInput = $("file");
+  const methodSelect = $("methodSelect");
+  const resetButton = $("reset");
+
+  if (fileInput) {
+    fileInput.addEventListener("change", async event => {
+      const file = event.target.files?.[0];
+      if (!file) return;
+
+      try {
+        const parsed = JSON.parse(await file.text());
+
+        if (!parsed || !Array.isArray(parsed.methods)) {
+          throw new Error(
+            "Expected a JSON report with a top-level methods array."
+          );
+        }
+
+        report = parsed;
+        selectedCase = null;
+        selectedMethod = null;
+
+        render();
+
+        setHTML("status", `
+          <strong>Loaded:</strong> ${esc(file.name)} ·
+          ${esc(parsed.corpus?.chunk_count ??
+            parsed.silver_label_summary?.corpus?.chunk_count ??
+            "unknown")} chunks · ${getMethods().length} methods.`);
+      } catch (error) {
+        report = null;
+
+        setHTML("status",
+          `<strong>Could not load report.</strong> ${esc(error.message)}`);
+
+        console.error("Dashboard report load/render failed:", error);
+      }
+    });
+  }
+
+  if (methodSelect) {
+    methodSelect.addEventListener("change", event => {
+      selectedMethod = event.target.value;
+      renderEvidence();
+    });
+  }
+
+  if (resetButton) {
+    resetButton.addEventListener("click", resetDashboard);
+  }
+
+  /* Show the dashboard first when the page opens. */
+  showPage("dashboardPage");
+
+  /* Display a useful message if the SVG file path is incorrect. */
+  const mindmapImage = $("mindmapImage");
+  const mindmapError = $("mindmapError");
+
+  if (mindmapImage && mindmapError) {
+    mindmapImage.addEventListener("error", () => {
+      mindmapImage.hidden = true;
+      mindmapError.hidden = false;
+    });
+
+    mindmapImage.addEventListener("load", () => {
+      mindmapImage.hidden = false;
+      mindmapError.hidden = true;
+    });
+
+    if (mindmapImage.complete && mindmapImage.naturalWidth === 0) {
+      mindmapImage.hidden = true;
+      mindmapError.hidden = false;
+    }
+  }
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initializeDashboard);
+} else {
+  initializeDashboard();
+}
+</script>
+
+</body>
+</html>

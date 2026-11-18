@@ -1,0 +1,28 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+torch
+
+# Manufacturing Quality Investigation Agent
+# Primary Python target: 3.12.x
+
+
+fastapi==0.115.0
+uvicorn[standard]==0.32.0
+pydantic==2.13.5
+pydantic-settings==2.10.1
+httpx==0.27.2
+python-multipart==0.0.32
+
+SQLAlchemy>=2.0.52,<2.1
+aiosqlite==0.20.0
+
+openai==3.14.0
+python-dotenv==1.2.3
+
+scikit-learn==1.8.0
+pypdf==6.18.1
+numpy==2.5.3
+scipy==1.18.1
+sentence-transformers>=5.1,<6
+numpy>=2.0,<3
+psycopg[binary]>=3.2,<4

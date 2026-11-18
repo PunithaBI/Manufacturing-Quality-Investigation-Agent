@@ -1,0 +1,15 @@
+
+============================================================
+MANUFACTURING QUALITY INVESTIGATION EVALUATION
+============================================================
+
+Cases : 30
+Passed: 0
+Failed: 30
+Rate  : 0.00%
+
+REGRESSION: FAIL
+  - MQI-007: previously passing case now fails
+
+Report: C:\Users\punit\Desktop\canva style resume\Punitha 2026 - Canva style\Feat Systems\Manufacturing-Quality-Investigation-Agent\evaluation\reports\latest_report.json
+

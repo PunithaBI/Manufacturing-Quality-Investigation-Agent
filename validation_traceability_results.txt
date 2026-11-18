@@ -1,0 +1,277 @@
+================================================ 
+TRACEABILITY VALIDATION RESULTS 
+Date: 23-09-2026 15:03:39.42 
+================================================ 
+ 
+[1/5] Database record counts... 
+NCRs: 43
+Serial Units: 209
+Lots: 29
+Manufacturing Orders: 15
+Products: 5
+[2/5] Valid NCR traceability... 
+{
+  "status": "SUCCESS",
+  "ncr_number": "NCR-20260001",
+  "product": {
+    "id": 1,
+    "product_code": "PRD-1001",
+    "name": "NordWind Turbine Blade Assembly TB-40",
+    "description": "40m composite wind turbine blade assembly",
+    "revision": "B"
+  },
+  "component": null,
+  "serial_unit": {
+    "serial_number": "SN-1001-000001",
+    "product_code": "PRD-1001",
+    "manufacturing_order": "MO-202600001",
+    "status": "Shipped",
+    "operations": [
+      {
+        "operation_id": 1,
+        "sequence": 1,
+        "name": "Layup / Assembly",
+        "work_center": "WC-07",
+        "status": "Completed"
+      },
+      {
+        "operation_id": 2,
+        "sequence": 2,
+        "name": "Packaging",
+        "work_center": "WC-02",
+        "status": "Completed"
+      },
+      {
+        "operation_id": 3,
+        "sequence": 3,
+        "name": "Calibration",
+        "work_center": "WC-06",
+        "status": "Completed"
+      },
+      {
+        "operation_id": 4,
+        "sequence": 4,
+        "name": "Curing / Heat Treatment",
+        "work_center": "WC-04",
+        "status": "Completed"
+      }
+    ],
+    "process_measurements": [
+      {
+        "measurement_id": 1,
+        "operation_id": 4,
+        "parameter": "Bolt Torque",
+        "nominal": 450.0,
+        "actual": 459.28,
+        "unit": "Nm",
+        "lsl": 430.0,
+        "usl": 470.0,
+        "in_spec": true,
+        "measured_at": "2025-11-26T23:00:00"
+      },
+      {
+        "measurement_id": 2,
+        "operation_id": 2,
+        "parameter": "Vibration RMS",
+        "nominal": 2.0,
+        "actual": 2.08,
+        "unit": "mm/s",
+        "lsl": 1.5,
+        "usl": 2.5,
+        "in_spec": true,
+        "measured_at": "2025-11-26T10:00:00"
+      }
+    ],
+    "inspections": [
+      {
+        "inspection_id": 1,
+        "type": "In-Process",
+        "result": "Pass",
+        "inspector": "K. Svendsen",
+        "date": "2025-12-08T00:00:00"
+      },
+      {
+        "inspection_id": 2,
+        "type": "Final",
+        "result": "Fail",
+        "inspector": "R. Haugen",
+        "date": "2025-12-08T00:00:00"
+      }
+    ],
+    "ncrs": [
+      {
+        "ncr_id": 1,
+        "ncr_number": "NCR-20260001",
+        "severity": "Minor",
+        "status": "Under Review"
+      }
+    ],
+    "bom_components": [
+      {
+        "bom_id": 1,
+        "component_code": "CMP-2001",
+        "quantity_per_unit": 8.0
+      },
+      {
+        "bom_id": 2,
+        "component_code": "CMP-2002",
+        "quantity_per_unit": 1.3
+      },
+      {
+        "bom_id": 3,
+        "component_code": "CMP-2003",
+        "quantity_per_unit": 4.0
+      }
+    ],
+    "lot_traceability_status": "NOT_AVAILABLE: current schema does not contain serial/MO-to-lot consumption records"
+  },
+  "manufacturing_order": {
+    "manufacturing_order": "MO-202600001"
+  },
+  "lot": null,
+  "relationships": [
+    {
+      "relationship": "product_has_bom",
+      "data": [
+        {
+          "bom_id": 1,
+          "product_code": "PRD-1001",
+          "component_code": "CMP-2001",
+          "component_name": "Carbon Fiber Spar Cap",
+          "quantity_per_unit": 8.0,
+          "bom_revision": "B"
+        },
+        {
+          "bom_id": 2,
+          "product_code": "PRD-1001",
+          "component_code": "CMP-2002",
+          "component_name": "Epoxy Resin System",
+          "quantity_per_unit": 1.3,
+          "bom_revision": "B"
+        },
+        {
+          "bom_id": 3,
+          "product_code": "PRD-1001",
+          "component_code": "CMP-2003",
+          "component_name": "Root Insert Bolt M36",
+          "quantity_per_unit": 4.0,
+          "bom_revision": "B"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "EV-8C5DC95EB54C7616",
+      "source_type": "ncr",
+      "source_id": "NCR-20260001",
+      "provenance": {
+        "table": "ncrs",
+        "record_id": 1,
+        "query_scope": "get_ncr:ncr_number=NCR-20260001"
+      }
+    },
+    {
+      "evidence_id": "EV-81834B960F2BE7DD",
+      "source_type": "serial_unit",
+      "source_id": "SN-1001-000001",
+      "provenance": {
+        "table": "serial_units",
+        "record_id": 1,
+        "query_scope": "get_serial_genealogy:serial_number=SN-1001-000001"
+      }
+    },
+    {
+      "evidence_id": "EV-78ECB4DA6B40E691",
+      "source_type": "product",
+      "source_id": "PRD-1001",
+      "provenance": {
+        "table": "products",
+        "record_id": 1,
+        "query_scope": "get_product:product_code=PRD-1001"
+      }
+    },
+    {
+      "evidence_id": "EV-2B062DC61DFF4A1D",
+      "source_type": "manufacturing_order",
+      "source_id": "MO-202600001",
+      "provenance": {
+        "table": "manufacturing_orders",
+        "record_id": 1,
+        "query_scope": "get_manufacturing_history:serial_number=SN-1001-000001"
+      }
+    },
+    {
+      "evidence_id": "EV-CEA238687DA0D051",
+      "source_type": "bom",
+      "source_id": "1",
+      "provenance": {
+        "table": "bom",
+        "record_id": 1,
+        "query_scope": "get_bom:product_code=PRD-1001"
+      }
+    },
+    {
+      "evidence_id": "EV-99AE9AF2FB322968",
+      "source_type": "bom",
+      "source_id": "2",
+      "provenance": {
+        "table": "bom",
+        "record_id": 2,
+        "query_scope": "get_bom:product_code=PRD-1001"
+      }
+    },
+    {
+      "evidence_id": "EV-58028C3E1AEABB67",
+      "source_type": "bom",
+      "source_id": "3",
+      "provenance": {
+        "table": "bom",
+        "record_id": 3,
+        "query_scope": "get_bom:product_code=PRD-1001"
+      }
+    }
+  ],
+  "evidence_gaps": [],
+  "errors": []
+}
+[3/5] Nonexistent NCR fail-closed test... 
+{
+  "status": "BLOCKED",
+  "ncr_number": "NCR-999999",
+  "product": null,
+  "component": null,
+  "serial_unit": null,
+  "manufacturing_order": null,
+  "lot": null,
+  "relationships": [],
+  "evidence": [],
+  "evidence_gaps": [],
+  "errors": [
+    "NCR could not be retrieved."
+  ]
+}
+[4/5] Empty NCR validation... 
+{
+  "status": "FAILED",
+  "ncr_number": "",
+  "product": null,
+  "component": null,
+  "serial_unit": null,
+  "manufacturing_order": null,
+  "lot": null,
+  "relationships": [],
+  "evidence": [],
+  "evidence_gaps": [],
+  "errors": [
+    "NCR number is required."
+  ]
+}
+[5/5] Direct NCR genealogy data... 
+NCR: NCR-20260001
+NCR ID: 1
+NCR object: {'_sa_instance_state': <sqlalchemy.orm.state.InstanceState object at 0x000002B6441E6720>, 'ncr_number': 'NCR-20260001', 'serial_unit_id': 1, 'mo_id': 1, 'description': 'Dimensional non-conformance found on final inspection.', 'status': 'Under Review', 'date_closed': None, 'id': 1, 'lot_id': None, 'inspection_id': 2, 'severity': 'Minor', 'date_opened': datetime.datetime(2025, 12, 8, 0, 0)}
+ 
+================================================ 
+TRACEABILITY VALIDATION COMPLETE 
+================================================ 

@@ -1,0 +1,3457 @@
+{
+  "experiment": "five_query_candidate_embedding_comparison_with_silver_labels",
+  "corpus": {
+    "path": "data\\vector_index_candidate\\chunks.json",
+    "chunk_count": 1226
+  },
+  "database": {
+    "path": "data\\Northwind_db\\nordwind.db",
+    "read_only": true
+  },
+  "queries": [
+    {
+      "case_id": "EMB-001",
+      "query": "Find historical manufacturing evidence related to dimensional non-conformance found during final inspection."
+    },
+    {
+      "case_id": "EMB-002",
+      "query": "Find manufacturing evidence related to process measurements outside specification."
+    },
+    {
+      "case_id": "EMB-003",
+      "query": "Find previous quality investigations involving root cause and corrective action for manufacturing problems."
+    },
+    {
+      "case_id": "EMB-004",
+      "query": "Find inspection evidence associated with dimensional quality problems."
+    },
+    {
+      "case_id": "EMB-005",
+      "query": "Find historical NCR evidence that is similar to a dimensional non-conformance found during final inspection."
+    }
+  ],
+  "top_k": 10,
+  "relevance_policy": {
+    "silver_labels": true,
+    "grade_0_is_not_proven_irrelevant": true,
+    "binary_metrics_relevant_threshold": "silver grade >= 2",
+    "ndcg_uses_graded_relevance": true
+  },
+  "methods": [
+    {
+      "method": "keyword_tfidf_baseline",
+      "status": "success",
+      "description": "Local TF-IDF cosine baseline; not BM25 and uses no embedding model.",
+      "query_count": 5,
+      "case_results": [
+        {
+          "case_id": "EMB-001",
+          "query": "Find historical manufacturing evidence related to dimensional non-conformance found during final inspection.",
+          "metrics": {
+            "precision_at_5": 1.0,
+            "precision_at_10": 1.0,
+            "recall_at_5": 0.1852,
+            "recall_at_10": 0.3704,
+            "mrr": 1.0,
+            "ndcg_at_10_graded": 1.0,
+            "silver_relevant_chunks_grade_2_plus": 27
+          },
+          "top_10": [
+            {
+              "rank": 1,
+              "chunk_id": "ncr:NCR-20260004:chunk:0",
+              "source_id": "NCR-20260004",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260004",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.3662745
+            },
+            {
+              "rank": 2,
+              "chunk_id": "ncr:NCR-20260007:chunk:0",
+              "source_id": "NCR-20260007",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260007",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.3662745
+            },
+            {
+              "rank": 3,
+              "chunk_id": "ncr:NCR-20260010:chunk:0",
+              "source_id": "NCR-20260010",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260010",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.3662745
+            },
+            {
+              "rank": 4,
+              "chunk_id": "ncr:NCR-20260012:chunk:0",
+              "source_id": "NCR-20260012",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260012",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.3662745
+            },
+            {
+              "rank": 5,
+              "chunk_id": "ncr:NCR-20260002:chunk:0",
+              "source_id": "NCR-20260002",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260002",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Open",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.36458389
+            },
+            {
+              "rank": 6,
+              "chunk_id": "ncr:NCR-20260001:chunk:0",
+              "source_id": "NCR-20260001",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260001",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Under Review",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.35498757
+            },
+            {
+              "rank": 7,
+              "chunk_id": "ncr:NCR-20260015:chunk:0",
+              "source_id": "NCR-20260015",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260015",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Under Review",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.35498757
+            },
+            {
+              "rank": 8,
+              "chunk_id": "ncr:NCR-20260040:chunk:0",
+              "source_id": "NCR-20260040",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260040",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.35357962
+            },
+            {
+              "rank": 9,
+              "chunk_id": "ncr:NCR-20260028:chunk:0",
+              "source_id": "NCR-20260028",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260028",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Critical\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.35053973
+            },
+            {
+              "rank": 10,
+              "chunk_id": "ncr:NCR-20260037:chunk:0",
+              "source_id": "NCR-20260037",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260037",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Major\nStatus: Open",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.3499513
+            }
+          ]
+        },
+        {
+          "case_id": "EMB-002",
+          "query": "Find manufacturing evidence related to process measurements outside specification.",
+          "metrics": {
+            "precision_at_5": 0.0,
+            "precision_at_10": 0.0,
+            "recall_at_5": 0.0,
+            "recall_at_10": 0.0,
+            "mrr": 0.0,
+            "ndcg_at_10_graded": 0.0,
+            "silver_relevant_chunks_grade_2_plus": 58
+          },
+          "top_10": [
+            {
+              "rank": 1,
+              "chunk_id": "manufacturing_order:2:chunk:0",
+              "source_id": "2",
+              "source_type": "manufacturing_order",
+              "title": "Manufacturing Order 2",
+              "content": "Status: Open\nStart Date: 2026-05-22 00:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.30356349
+            },
+            {
+              "rank": 2,
+              "chunk_id": "manufacturing_order:5:chunk:0",
+              "source_id": "5",
+              "source_type": "manufacturing_order",
+              "title": "Manufacturing Order 5",
+              "content": "Status: In Progress\nStart Date: 2026-07-03 00:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.30351559
+            },
+            {
+              "rank": 3,
+              "chunk_id": "manufacturing_order:15:chunk:0",
+              "source_id": "15",
+              "source_type": "manufacturing_order",
+              "title": "Manufacturing Order 15",
+              "content": "Status: In Progress\nStart Date: 2025-12-13 00:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.30210252
+            },
+            {
+              "rank": 4,
+              "chunk_id": "manufacturing_order:8:chunk:0",
+              "source_id": "8",
+              "source_type": "manufacturing_order",
+              "title": "Manufacturing Order 8",
+              "content": "Status: In Progress\nStart Date: 2025-11-09 00:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.27170136
+            },
+            {
+              "rank": 5,
+              "chunk_id": "manufacturing_order:12:chunk:0",
+              "source_id": "12",
+              "source_type": "manufacturing_order",
+              "title": "Manufacturing Order 12",
+              "content": "Status: Closed\nStart Date: 2026-07-13 00:00:00\nEnd Date: 2026-07-19 00:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.26493259
+            },
+            {
+              "rank": 6,
+              "chunk_id": "manufacturing_order:1:chunk:0",
+              "source_id": "1",
+              "source_type": "manufacturing_order",
+              "title": "Manufacturing Order 1",
+              "content": "Status: Closed\nStart Date: 2025-11-26 00:00:00\nEnd Date: 2025-12-08 00:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.26430654
+            },
+            {
+              "rank": 7,
+              "chunk_id": "manufacturing_order:13:chunk:0",
+              "source_id": "13",
+              "source_type": "manufacturing_order",
+              "title": "Manufacturing Order 13",
+              "content": "Status: Closed\nStart Date: 2026-07-07 00:00:00\nEnd Date: 2026-07-18 00:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.26416742
+            },
+            {
+              "rank": 8,
+              "chunk_id": "manufacturing_order:10:chunk:0",
+              "source_id": "10",
+              "source_type": "manufacturing_order",
+              "title": "Manufacturing Order 10",
+              "content": "Status: Closed\nStart Date: 2026-07-11 00:00:00\nEnd Date: 2026-07-19 00:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.26219251
+            },
+            {
+              "rank": 9,
+              "chunk_id": "manufacturing_order:11:chunk:0",
+              "source_id": "11",
+              "source_type": "manufacturing_order",
+              "title": "Manufacturing Order 11",
+              "content": "Status: Closed\nStart Date: 2026-04-17 00:00:00\nEnd Date: 2026-04-29 00:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.26110801
+            },
+            {
+              "rank": 10,
+              "chunk_id": "manufacturing_order:14:chunk:0",
+              "source_id": "14",
+              "source_type": "manufacturing_order",
+              "title": "Manufacturing Order 14",
+              "content": "Status: Closed\nStart Date: 2026-04-25 00:00:00\nEnd Date: 2026-05-06 00:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.26044988
+            }
+          ]
+        },
+        {
+          "case_id": "EMB-003",
+          "query": "Find previous quality investigations involving root cause and corrective action for manufacturing problems.",
+          "metrics": {
+            "precision_at_5": 1.0,
+            "precision_at_10": 1.0,
+            "recall_at_5": 0.0877,
+            "recall_at_10": 0.1754,
+            "mrr": 1.0,
+            "ndcg_at_10_graded": 0.4286,
+            "silver_relevant_chunks_grade_2_plus": 57
+          },
+          "top_10": [
+            {
+              "rank": 1,
+              "chunk_id": "8d:8D-20260002:chunk:0",
+              "source_id": "8D-20260002",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260002",
+              "content": "Problem description: Bore diameter measured out of tolerance.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.41532744
+            },
+            {
+              "rank": 2,
+              "chunk_id": "8d:8D-20260012:chunk:0",
+              "source_id": "8D-20260012",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260012",
+              "content": "Problem description: Dimensional non-conformance found on final inspection.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.40998279
+            },
+            {
+              "rank": 3,
+              "chunk_id": "8d:8D-20260010:chunk:0",
+              "source_id": "8D-20260010",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260010",
+              "content": "Problem description: Incoming material lot failed acceptance criteria.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.40820597
+            },
+            {
+              "rank": 4,
+              "chunk_id": "8d:8D-20260015:chunk:0",
+              "source_id": "8D-20260015",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260015",
+              "content": "Problem description: Incoming material lot failed acceptance criteria.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.40820597
+            },
+            {
+              "rank": 5,
+              "chunk_id": "8d:8D-20260019:chunk:0",
+              "source_id": "8D-20260019",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260019",
+              "content": "Problem description: Incoming material lot failed acceptance criteria.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.40820597
+            },
+            {
+              "rank": 6,
+              "chunk_id": "8d:8D-20260009:chunk:0",
+              "source_id": "8D-20260009",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260009",
+              "content": "Problem description: Vibration reading exceeded upper spec limit during test.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.40709769
+            },
+            {
+              "rank": 7,
+              "chunk_id": "8d:8D-20260011:chunk:0",
+              "source_id": "8D-20260011",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260011",
+              "content": "Problem description: Vibration reading exceeded upper spec limit during test.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.40709769
+            },
+            {
+              "rank": 8,
+              "chunk_id": "8d:8D-20260016:chunk:0",
+              "source_id": "8D-20260016",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260016",
+              "content": "Problem description: Vibration reading exceeded upper spec limit during test.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.40709769
+            },
+            {
+              "rank": 9,
+              "chunk_id": "8d:8D-20260008:chunk:0",
+              "source_id": "8D-20260008",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260008",
+              "content": "Problem description: Surface defect detected on composite layup.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.40595938
+            },
+            {
+              "rank": 10,
+              "chunk_id": "8d:8D-20260018:chunk:0",
+              "source_id": "8D-20260018",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260018",
+              "content": "Problem description: Surface defect detected on composite layup.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.40595938
+            }
+          ]
+        },
+        {
+          "case_id": "EMB-004",
+          "query": "Find inspection evidence associated with dimensional quality problems.",
+          "metrics": {
+            "precision_at_5": 1.0,
+            "precision_at_10": 1.0,
+            "recall_at_5": 0.122,
+            "recall_at_10": 0.2439,
+            "mrr": 1.0,
+            "ndcg_at_10_graded": 0.4286,
+            "silver_relevant_chunks_grade_2_plus": 41
+          },
+          "top_10": [
+            {
+              "rank": 1,
+              "chunk_id": "ncr:NCR-20260004:chunk:0",
+              "source_id": "NCR-20260004",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260004",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.23985853
+            },
+            {
+              "rank": 2,
+              "chunk_id": "ncr:NCR-20260007:chunk:0",
+              "source_id": "NCR-20260007",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260007",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.23985853
+            },
+            {
+              "rank": 3,
+              "chunk_id": "ncr:NCR-20260010:chunk:0",
+              "source_id": "NCR-20260010",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260010",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.23985853
+            },
+            {
+              "rank": 4,
+              "chunk_id": "ncr:NCR-20260012:chunk:0",
+              "source_id": "NCR-20260012",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260012",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.23985853
+            },
+            {
+              "rank": 5,
+              "chunk_id": "ncr:NCR-20260002:chunk:0",
+              "source_id": "NCR-20260002",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260002",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Open",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.23875142
+            },
+            {
+              "rank": 6,
+              "chunk_id": "ncr:NCR-20260001:chunk:0",
+              "source_id": "NCR-20260001",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260001",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Under Review",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.23246718
+            },
+            {
+              "rank": 7,
+              "chunk_id": "ncr:NCR-20260015:chunk:0",
+              "source_id": "NCR-20260015",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260015",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Under Review",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.23246718
+            },
+            {
+              "rank": 8,
+              "chunk_id": "ncr:NCR-20260040:chunk:0",
+              "source_id": "NCR-20260040",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260040",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.23154517
+            },
+            {
+              "rank": 9,
+              "chunk_id": "ncr:NCR-20260028:chunk:0",
+              "source_id": "NCR-20260028",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260028",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Critical\nStatus: Closed",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.22955446
+            },
+            {
+              "rank": 10,
+              "chunk_id": "ncr:NCR-20260037:chunk:0",
+              "source_id": "NCR-20260037",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260037",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Major\nStatus: Open",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.22916912
+            }
+          ]
+        },
+        {
+          "case_id": "EMB-005",
+          "query": "Find historical NCR evidence that is similar to a dimensional non-conformance found during final inspection.",
+          "metrics": {
+            "precision_at_5": 1.0,
+            "precision_at_10": 1.0,
+            "recall_at_5": 0.2941,
+            "recall_at_10": 0.5882,
+            "mrr": 1.0,
+            "ndcg_at_10_graded": 1.0,
+            "silver_relevant_chunks_grade_2_plus": 17
+          },
+          "top_10": [
+            {
+              "rank": 1,
+              "chunk_id": "ncr:NCR-20260004:chunk:0",
+              "source_id": "NCR-20260004",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260004",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.54241357
+            },
+            {
+              "rank": 2,
+              "chunk_id": "ncr:NCR-20260007:chunk:0",
+              "source_id": "NCR-20260007",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260007",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.54241357
+            },
+            {
+              "rank": 3,
+              "chunk_id": "ncr:NCR-20260010:chunk:0",
+              "source_id": "NCR-20260010",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260010",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.54241357
+            },
+            {
+              "rank": 4,
+              "chunk_id": "ncr:NCR-20260012:chunk:0",
+              "source_id": "NCR-20260012",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260012",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.54241357
+            },
+            {
+              "rank": 5,
+              "chunk_id": "ncr:NCR-20260002:chunk:0",
+              "source_id": "NCR-20260002",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260002",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Open",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.53990996
+            },
+            {
+              "rank": 6,
+              "chunk_id": "ncr:NCR-20260001:chunk:0",
+              "source_id": "NCR-20260001",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260001",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Under Review",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.52569883
+            },
+            {
+              "rank": 7,
+              "chunk_id": "ncr:NCR-20260015:chunk:0",
+              "source_id": "NCR-20260015",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260015",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Under Review",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.52569883
+            },
+            {
+              "rank": 8,
+              "chunk_id": "ncr:NCR-20260040:chunk:0",
+              "source_id": "NCR-20260040",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260040",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.52361381
+            },
+            {
+              "rank": 9,
+              "chunk_id": "ncr:NCR-20260028:chunk:0",
+              "source_id": "NCR-20260028",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260028",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Critical\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.51911205
+            },
+            {
+              "rank": 10,
+              "chunk_id": "ncr:NCR-20260037:chunk:0",
+              "source_id": "NCR-20260037",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260037",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Major\nStatus: Open",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.51824065
+            }
+          ]
+        }
+      ],
+      "macro_average": {
+        "precision_at_5": 0.8,
+        "precision_at_10": 0.8,
+        "recall_at_5": 0.1378,
+        "recall_at_10": 0.2756,
+        "mrr": 0.8,
+        "ndcg_at_10_graded": 0.5714
+      },
+      "runtime_seconds": 0.308
+    },
+    {
+      "method": "all-MiniLM-L6-v2",
+      "status": "success",
+      "index_path": "data\\embedding_experiments\\single_query_comparison_8d_candidate\\all-MiniLM-L6-v2",
+      "query_count": 5,
+      "case_results": [
+        {
+          "case_id": "EMB-001",
+          "query": "Find historical manufacturing evidence related to dimensional non-conformance found during final inspection.",
+          "metrics": {
+            "precision_at_5": 1.0,
+            "precision_at_10": 1.0,
+            "recall_at_5": 0.1852,
+            "recall_at_10": 0.3704,
+            "mrr": 1.0,
+            "ndcg_at_10_graded": 1.0,
+            "silver_relevant_chunks_grade_2_plus": 27
+          },
+          "top_10": [
+            {
+              "rank": 1,
+              "chunk_id": "ncr:NCR-20260037:chunk:0",
+              "source_id": "NCR-20260037",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260037",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Major\nStatus: Open",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.53379261
+            },
+            {
+              "rank": 2,
+              "chunk_id": "ncr:NCR-20260015:chunk:0",
+              "source_id": "NCR-20260015",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260015",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Under Review",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.52289855
+            },
+            {
+              "rank": 3,
+              "chunk_id": "ncr:NCR-20260012:chunk:0",
+              "source_id": "NCR-20260012",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260012",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.51523173
+            },
+            {
+              "rank": 4,
+              "chunk_id": "ncr:NCR-20260040:chunk:0",
+              "source_id": "NCR-20260040",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260040",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.5111419
+            },
+            {
+              "rank": 5,
+              "chunk_id": "ncr:NCR-20260002:chunk:0",
+              "source_id": "NCR-20260002",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260002",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Open",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.51069629
+            },
+            {
+              "rank": 6,
+              "chunk_id": "ncr:NCR-20260007:chunk:0",
+              "source_id": "NCR-20260007",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260007",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.5098291
+            },
+            {
+              "rank": 7,
+              "chunk_id": "ncr:NCR-20260010:chunk:0",
+              "source_id": "NCR-20260010",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260010",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.50919062
+            },
+            {
+              "rank": 8,
+              "chunk_id": "ncr:NCR-20260004:chunk:0",
+              "source_id": "NCR-20260004",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260004",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.50916672
+            },
+            {
+              "rank": 9,
+              "chunk_id": "ncr:NCR-20260001:chunk:0",
+              "source_id": "NCR-20260001",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260001",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Under Review",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.49951679
+            },
+            {
+              "rank": 10,
+              "chunk_id": "ncr:NCR-20260028:chunk:0",
+              "source_id": "NCR-20260028",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260028",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Critical\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.49100155
+            }
+          ]
+        },
+        {
+          "case_id": "EMB-002",
+          "query": "Find manufacturing evidence related to process measurements outside specification.",
+          "metrics": {
+            "precision_at_5": 0.4,
+            "precision_at_10": 0.2,
+            "recall_at_5": 0.0345,
+            "recall_at_10": 0.0345,
+            "mrr": 1.0,
+            "ndcg_at_10_graded": 0.359,
+            "silver_relevant_chunks_grade_2_plus": 58
+          },
+          "top_10": [
+            {
+              "rank": 1,
+              "chunk_id": "process_measurement:138:chunk:0",
+              "source_id": "138",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 138",
+              "content": "Parameter Name: Vibration RMS\nNominal Value: 2.0\nActual Value: 2.61\nUnit: mm/s\nLsl: 1.5\nUsl: 2.5\nIn Spec: False\nMeasured At: 2026-08-12 21:00:00",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.53621399
+            },
+            {
+              "rank": 2,
+              "chunk_id": "process_measurement:163:chunk:0",
+              "source_id": "163",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 163",
+              "content": "Parameter Name: Vibration RMS\nNominal Value: 2.0\nActual Value: 2.51\nUnit: mm/s\nLsl: 1.5\nUsl: 2.5\nIn Spec: False\nMeasured At: 2026-02-08 05:00:00",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.52863306
+            },
+            {
+              "rank": 3,
+              "chunk_id": "process_measurement:156:chunk:0",
+              "source_id": "156",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 156",
+              "content": "Parameter Name: Vibration RMS\nNominal Value: 2.0\nActual Value: 1.77\nUnit: mm/s\nLsl: 1.5\nUsl: 2.5\nIn Spec: True\nMeasured At: 2026-08-12 10:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.52790987
+            },
+            {
+              "rank": 4,
+              "chunk_id": "process_measurement:132:chunk:0",
+              "source_id": "132",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 132",
+              "content": "Parameter Name: Vibration RMS\nNominal Value: 2.0\nActual Value: 1.84\nUnit: mm/s\nLsl: 1.5\nUsl: 2.5\nIn Spec: True\nMeasured At: 2026-08-12 12:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.52732098
+            },
+            {
+              "rank": 5,
+              "chunk_id": "process_measurement:126:chunk:0",
+              "source_id": "126",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 126",
+              "content": "Parameter Name: Vibration RMS\nNominal Value: 2.0\nActual Value: 1.61\nUnit: mm/s\nLsl: 1.5\nUsl: 2.5\nIn Spec: True\nMeasured At: 2026-08-12 10:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.52254254
+            },
+            {
+              "rank": 6,
+              "chunk_id": "process_measurement:145:chunk:0",
+              "source_id": "145",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 145",
+              "content": "Parameter Name: Bore Diameter\nNominal Value: 3000.0\nActual Value: 3000.03\nUnit: mm\nLsl: 2999.5\nUsl: 3000.5\nIn Spec: True\nMeasured At: 2026-08-13 07:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.51992226
+            },
+            {
+              "rank": 7,
+              "chunk_id": "process_measurement:106:chunk:0",
+              "source_id": "106",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 106",
+              "content": "Parameter Name: Bore Diameter\nNominal Value: 3000.0\nActual Value: 2999.88\nUnit: mm\nLsl: 2999.5\nUsl: 3000.5\nIn Spec: True\nMeasured At: 2026-08-12 10:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.51965213
+            },
+            {
+              "rank": 8,
+              "chunk_id": "process_measurement:159:chunk:0",
+              "source_id": "159",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 159",
+              "content": "Parameter Name: Vibration RMS\nNominal Value: 2.0\nActual Value: 2.31\nUnit: mm/s\nLsl: 1.5\nUsl: 2.5\nIn Spec: True\nMeasured At: 2026-08-12 10:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.51915652
+            },
+            {
+              "rank": 9,
+              "chunk_id": "process_measurement:14:chunk:0",
+              "source_id": "14",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 14",
+              "content": "Parameter Name: Vibration RMS\nNominal Value: 2.0\nActual Value: 1.73\nUnit: mm/s\nLsl: 1.5\nUsl: 2.5\nIn Spec: True\nMeasured At: 2025-11-26 23:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.51826572
+            },
+            {
+              "rank": 10,
+              "chunk_id": "process_measurement:155:chunk:0",
+              "source_id": "155",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 155",
+              "content": "Parameter Name: Bore Diameter\nNominal Value: 3000.0\nActual Value: 3000.0\nUnit: mm\nLsl: 2999.5\nUsl: 3000.5\nIn Spec: True\nMeasured At: 2026-08-13 07:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.51576096
+            }
+          ]
+        },
+        {
+          "case_id": "EMB-003",
+          "query": "Find previous quality investigations involving root cause and corrective action for manufacturing problems.",
+          "metrics": {
+            "precision_at_5": 1.0,
+            "precision_at_10": 1.0,
+            "recall_at_5": 0.0877,
+            "recall_at_10": 0.1754,
+            "mrr": 1.0,
+            "ndcg_at_10_graded": 0.4915,
+            "silver_relevant_chunks_grade_2_plus": 57
+          },
+          "top_10": [
+            {
+              "rank": 1,
+              "chunk_id": "8d:8D-20260019:chunk:0",
+              "source_id": "8D-20260019",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260019",
+              "content": "Problem description: Incoming material lot failed acceptance criteria.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.47102493
+            },
+            {
+              "rank": 2,
+              "chunk_id": "8d:8D-20260015:chunk:0",
+              "source_id": "8D-20260015",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260015",
+              "content": "Problem description: Incoming material lot failed acceptance criteria.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.46787769
+            },
+            {
+              "rank": 3,
+              "chunk_id": "rca:17:chunk:0",
+              "source_id": "17",
+              "source_type": "rca",
+              "title": "RCA 17",
+              "content": "Root cause: Supplier process drift caused dimensional variation in raw material.\nAnalysis: Maintenance schedule adherence, operator workload, environmental humidity.",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.46216887
+            },
+            {
+              "rank": 4,
+              "chunk_id": "8d:8D-20260010:chunk:0",
+              "source_id": "8D-20260010",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260010",
+              "content": "Problem description: Incoming material lot failed acceptance criteria.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.4621543
+            },
+            {
+              "rank": 5,
+              "chunk_id": "8d:8D-20260012:chunk:0",
+              "source_id": "8D-20260012",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260012",
+              "content": "Problem description: Dimensional non-conformance found on final inspection.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.45924756
+            },
+            {
+              "rank": 6,
+              "chunk_id": "8d:8D-20260004:chunk:0",
+              "source_id": "8D-20260004",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260004",
+              "content": "Problem description: Incoming material lot failed acceptance criteria.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: Pending RCA\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Open",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.45602798
+            },
+            {
+              "rank": 7,
+              "chunk_id": "8d:8D-20260017:chunk:0",
+              "source_id": "8D-20260017",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260017",
+              "content": "Problem description: Dimensional non-conformance found on final inspection.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: Pending RCA\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Open",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.44460928
+            },
+            {
+              "rank": 8,
+              "chunk_id": "8d:8D-20260018:chunk:0",
+              "source_id": "8D-20260018",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260018",
+              "content": "Problem description: Surface defect detected on composite layup.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.43258214
+            },
+            {
+              "rank": 9,
+              "chunk_id": "8d:8D-20260008:chunk:0",
+              "source_id": "8D-20260008",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260008",
+              "content": "Problem description: Surface defect detected on composite layup.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.42341232
+            },
+            {
+              "rank": 10,
+              "chunk_id": "8d:8D-20260006:chunk:0",
+              "source_id": "8D-20260006",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260006",
+              "content": "Problem description: Surface defect detected on composite layup.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: Pending RCA\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Open",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.41080573
+            }
+          ]
+        },
+        {
+          "case_id": "EMB-004",
+          "query": "Find inspection evidence associated with dimensional quality problems.",
+          "metrics": {
+            "precision_at_5": 0.0,
+            "precision_at_10": 0.2,
+            "recall_at_5": 0.0,
+            "recall_at_10": 0.0488,
+            "mrr": 0.1667,
+            "ndcg_at_10_graded": 0.0609,
+            "silver_relevant_chunks_grade_2_plus": 41
+          },
+          "top_10": [
+            {
+              "rank": 1,
+              "chunk_id": "inspection:3:chunk:0",
+              "source_id": "3",
+              "source_type": "inspection",
+              "title": "Inspection 3",
+              "content": "Inspection Type: In-Process\nResult: Pass",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.48826224
+            },
+            {
+              "rank": 2,
+              "chunk_id": "inspection:337:chunk:0",
+              "source_id": "337",
+              "source_type": "inspection",
+              "title": "Inspection 337",
+              "content": "Inspection Type: In-Process\nResult: Pass",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.48625511
+            },
+            {
+              "rank": 3,
+              "chunk_id": "inspection:265:chunk:0",
+              "source_id": "265",
+              "source_type": "inspection",
+              "title": "Inspection 265",
+              "content": "Inspection Type: In-Process\nResult: Pass",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.4851808
+            },
+            {
+              "rank": 4,
+              "chunk_id": "inspection:145:chunk:0",
+              "source_id": "145",
+              "source_type": "inspection",
+              "title": "Inspection 145",
+              "content": "Inspection Type: In-Process\nResult: Pass",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.48368233
+            },
+            {
+              "rank": 5,
+              "chunk_id": "inspection:215:chunk:0",
+              "source_id": "215",
+              "source_type": "inspection",
+              "title": "Inspection 215",
+              "content": "Inspection Type: In-Process\nResult: Fail",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.48080194
+            },
+            {
+              "rank": 6,
+              "chunk_id": "8d:8D-20260017:chunk:0",
+              "source_id": "8D-20260017",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260017",
+              "content": "Problem description: Dimensional non-conformance found on final inspection.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: Pending RCA\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Open",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.48004383
+            },
+            {
+              "rank": 7,
+              "chunk_id": "inspection:387:chunk:0",
+              "source_id": "387",
+              "source_type": "inspection",
+              "title": "Inspection 387",
+              "content": "Inspection Type: In-Process\nResult: Fail",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.47815198
+            },
+            {
+              "rank": 8,
+              "chunk_id": "inspection:141:chunk:0",
+              "source_id": "141",
+              "source_type": "inspection",
+              "title": "Inspection 141",
+              "content": "Inspection Type: In-Process\nResult: Pass",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.47708601
+            },
+            {
+              "rank": 9,
+              "chunk_id": "inspection:253:chunk:0",
+              "source_id": "253",
+              "source_type": "inspection",
+              "title": "Inspection 253",
+              "content": "Inspection Type: In-Process\nResult: Pass",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.47599494
+            },
+            {
+              "rank": 10,
+              "chunk_id": "8d:8D-20260012:chunk:0",
+              "source_id": "8D-20260012",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260012",
+              "content": "Problem description: Dimensional non-conformance found on final inspection.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.47355679
+            }
+          ]
+        },
+        {
+          "case_id": "EMB-005",
+          "query": "Find historical NCR evidence that is similar to a dimensional non-conformance found during final inspection.",
+          "metrics": {
+            "precision_at_5": 1.0,
+            "precision_at_10": 1.0,
+            "recall_at_5": 0.2941,
+            "recall_at_10": 0.5882,
+            "mrr": 1.0,
+            "ndcg_at_10_graded": 1.0,
+            "silver_relevant_chunks_grade_2_plus": 17
+          },
+          "top_10": [
+            {
+              "rank": 1,
+              "chunk_id": "ncr:NCR-20260015:chunk:0",
+              "source_id": "NCR-20260015",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260015",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Under Review",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.73398232
+            },
+            {
+              "rank": 2,
+              "chunk_id": "ncr:NCR-20260012:chunk:0",
+              "source_id": "NCR-20260012",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260012",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.72388828
+            },
+            {
+              "rank": 3,
+              "chunk_id": "ncr:NCR-20260037:chunk:0",
+              "source_id": "NCR-20260037",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260037",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Major\nStatus: Open",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.72347188
+            },
+            {
+              "rank": 4,
+              "chunk_id": "ncr:NCR-20260004:chunk:0",
+              "source_id": "NCR-20260004",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260004",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.72138864
+            },
+            {
+              "rank": 5,
+              "chunk_id": "ncr:NCR-20260007:chunk:0",
+              "source_id": "NCR-20260007",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260007",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.71889597
+            },
+            {
+              "rank": 6,
+              "chunk_id": "ncr:NCR-20260001:chunk:0",
+              "source_id": "NCR-20260001",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260001",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Under Review",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.71837759
+            },
+            {
+              "rank": 7,
+              "chunk_id": "ncr:NCR-20260010:chunk:0",
+              "source_id": "NCR-20260010",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260010",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.71686918
+            },
+            {
+              "rank": 8,
+              "chunk_id": "ncr:NCR-20260040:chunk:0",
+              "source_id": "NCR-20260040",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260040",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.71623266
+            },
+            {
+              "rank": 9,
+              "chunk_id": "ncr:NCR-20260002:chunk:0",
+              "source_id": "NCR-20260002",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260002",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Open",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.71325874
+            },
+            {
+              "rank": 10,
+              "chunk_id": "ncr:NCR-20260028:chunk:0",
+              "source_id": "NCR-20260028",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260028",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Critical\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.7019403
+            }
+          ]
+        }
+      ],
+      "macro_average": {
+        "precision_at_5": 0.68,
+        "precision_at_10": 0.68,
+        "recall_at_5": 0.1203,
+        "recall_at_10": 0.2435,
+        "mrr": 0.8333,
+        "ndcg_at_10_graded": 0.5823
+      },
+      "runtime_seconds": 1.572
+    },
+    {
+      "method": "all-mpnet-base-v2",
+      "status": "success",
+      "index_path": "data\\embedding_experiments\\single_query_comparison_8d_candidate\\all-mpnet-base-v2",
+      "query_count": 5,
+      "case_results": [
+        {
+          "case_id": "EMB-001",
+          "query": "Find historical manufacturing evidence related to dimensional non-conformance found during final inspection.",
+          "metrics": {
+            "precision_at_5": 1.0,
+            "precision_at_10": 1.0,
+            "recall_at_5": 0.1852,
+            "recall_at_10": 0.3704,
+            "mrr": 1.0,
+            "ndcg_at_10_graded": 0.7949,
+            "silver_relevant_chunks_grade_2_plus": 27
+          },
+          "top_10": [
+            {
+              "rank": 1,
+              "chunk_id": "8d:8D-20260017:chunk:0",
+              "source_id": "8D-20260017",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260017",
+              "content": "Problem description: Dimensional non-conformance found on final inspection.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: Pending RCA\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Open",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.69700634
+            },
+            {
+              "rank": 2,
+              "chunk_id": "8d:8D-20260012:chunk:0",
+              "source_id": "8D-20260012",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260012",
+              "content": "Problem description: Dimensional non-conformance found on final inspection.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.68581581
+            },
+            {
+              "rank": 3,
+              "chunk_id": "ncr:NCR-20260015:chunk:0",
+              "source_id": "NCR-20260015",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260015",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Under Review",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.63331568
+            },
+            {
+              "rank": 4,
+              "chunk_id": "ncr:NCR-20260028:chunk:0",
+              "source_id": "NCR-20260028",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260028",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Critical\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.63157624
+            },
+            {
+              "rank": 5,
+              "chunk_id": "ncr:NCR-20260040:chunk:0",
+              "source_id": "NCR-20260040",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260040",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.63030708
+            },
+            {
+              "rank": 6,
+              "chunk_id": "ncr:NCR-20260001:chunk:0",
+              "source_id": "NCR-20260001",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260001",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Under Review",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.6302228
+            },
+            {
+              "rank": 7,
+              "chunk_id": "ncr:NCR-20260004:chunk:0",
+              "source_id": "NCR-20260004",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260004",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.62645429
+            },
+            {
+              "rank": 8,
+              "chunk_id": "ncr:NCR-20260012:chunk:0",
+              "source_id": "NCR-20260012",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260012",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.62596798
+            },
+            {
+              "rank": 9,
+              "chunk_id": "ncr:NCR-20260010:chunk:0",
+              "source_id": "NCR-20260010",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260010",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.62408352
+            },
+            {
+              "rank": 10,
+              "chunk_id": "ncr:NCR-20260007:chunk:0",
+              "source_id": "NCR-20260007",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260007",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.62190282
+            }
+          ]
+        },
+        {
+          "case_id": "EMB-002",
+          "query": "Find manufacturing evidence related to process measurements outside specification.",
+          "metrics": {
+            "precision_at_5": 0.4,
+            "precision_at_10": 0.2,
+            "recall_at_5": 0.0345,
+            "recall_at_10": 0.0345,
+            "mrr": 0.3333,
+            "ndcg_at_10_graded": 0.2048,
+            "silver_relevant_chunks_grade_2_plus": 58
+          },
+          "top_10": [
+            {
+              "rank": 1,
+              "chunk_id": "process_measurement:411:chunk:0",
+              "source_id": "411",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 411",
+              "content": "Parameter Name: Bore Diameter\nNominal Value: 3000.0\nActual Value: 2999.83\nUnit: mm\nLsl: 2999.5\nUsl: 3000.5\nIn Spec: True\nMeasured At: 2026-04-17 18:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.52187681
+            },
+            {
+              "rank": 2,
+              "chunk_id": "process_measurement:95:chunk:0",
+              "source_id": "95",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 95",
+              "content": "Parameter Name: Bore Diameter\nNominal Value: 3000.0\nActual Value: 2999.64\nUnit: mm\nLsl: 2999.5\nUsl: 3000.5\nIn Spec: True\nMeasured At: 2026-08-12 12:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.52184922
+            },
+            {
+              "rank": 3,
+              "chunk_id": "process_measurement:204:chunk:0",
+              "source_id": "204",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 204",
+              "content": "Parameter Name: Bore Diameter\nNominal Value: 3000.0\nActual Value: 3000.72\nUnit: mm\nLsl: 2999.5\nUsl: 3000.5\nIn Spec: False\nMeasured At: 2026-06-10 02:00:00",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.52101976
+            },
+            {
+              "rank": 4,
+              "chunk_id": "process_measurement:4:chunk:0",
+              "source_id": "4",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 4",
+              "content": "Parameter Name: Bore Diameter\nNominal Value: 3000.0\nActual Value: 3000.6\nUnit: mm\nLsl: 2999.5\nUsl: 3000.5\nIn Spec: False\nMeasured At: 2025-11-26 23:00:00",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.52076173
+            },
+            {
+              "rank": 5,
+              "chunk_id": "process_measurement:227:chunk:0",
+              "source_id": "227",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 227",
+              "content": "Parameter Name: Bore Diameter\nNominal Value: 3000.0\nActual Value: 3000.2\nUnit: mm\nLsl: 2999.5\nUsl: 3000.5\nIn Spec: True\nMeasured At: 2026-06-10 04:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.52025938
+            },
+            {
+              "rank": 6,
+              "chunk_id": "process_measurement:59:chunk:0",
+              "source_id": "59",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 59",
+              "content": "Parameter Name: Bore Diameter\nNominal Value: 3000.0\nActual Value: 2999.92\nUnit: mm\nLsl: 2999.5\nUsl: 3000.5\nIn Spec: True\nMeasured At: 2026-05-22 16:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.51960224
+            },
+            {
+              "rank": 7,
+              "chunk_id": "process_measurement:572:chunk:0",
+              "source_id": "572",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 572",
+              "content": "Parameter Name: Bore Diameter\nNominal Value: 3000.0\nActual Value: 3000.07\nUnit: mm\nLsl: 2999.5\nUsl: 3000.5\nIn Spec: True\nMeasured At: 2026-04-26 04:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.51756889
+            },
+            {
+              "rank": 8,
+              "chunk_id": "process_measurement:190:chunk:0",
+              "source_id": "190",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 190",
+              "content": "Parameter Name: Bore Diameter\nNominal Value: 3000.0\nActual Value: 3000.04\nUnit: mm\nLsl: 2999.5\nUsl: 3000.5\nIn Spec: True\nMeasured At: 2026-06-10 02:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.51729345
+            },
+            {
+              "rank": 9,
+              "chunk_id": "process_measurement:578:chunk:0",
+              "source_id": "578",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 578",
+              "content": "Parameter Name: Bore Diameter\nNominal Value: 3000.0\nActual Value: 3000.21\nUnit: mm\nLsl: 2999.5\nUsl: 3000.5\nIn Spec: True\nMeasured At: 2026-04-26 04:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.51545525
+            },
+            {
+              "rank": 10,
+              "chunk_id": "process_measurement:401:chunk:0",
+              "source_id": "401",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 401",
+              "content": "Parameter Name: Bore Diameter\nNominal Value: 3000.0\nActual Value: 3000.18\nUnit: mm\nLsl: 2999.5\nUsl: 3000.5\nIn Spec: True\nMeasured At: 2026-04-18 18:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.51491606
+            }
+          ]
+        },
+        {
+          "case_id": "EMB-003",
+          "query": "Find previous quality investigations involving root cause and corrective action for manufacturing problems.",
+          "metrics": {
+            "precision_at_5": 0.6,
+            "precision_at_10": 0.5,
+            "recall_at_5": 0.0526,
+            "recall_at_10": 0.0877,
+            "mrr": 1.0,
+            "ndcg_at_10_graded": 0.3901,
+            "silver_relevant_chunks_grade_2_plus": 57
+          },
+          "top_10": [
+            {
+              "rank": 1,
+              "chunk_id": "rca:17:chunk:0",
+              "source_id": "17",
+              "source_type": "rca",
+              "title": "RCA 17",
+              "content": "Root cause: Supplier process drift caused dimensional variation in raw material.\nAnalysis: Maintenance schedule adherence, operator workload, environmental humidity.",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.54699862
+            },
+            {
+              "rank": 2,
+              "chunk_id": "8d:8D-20260015:chunk:0",
+              "source_id": "8D-20260015",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260015",
+              "content": "Problem description: Incoming material lot failed acceptance criteria.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.49044907
+            },
+            {
+              "rank": 3,
+              "chunk_id": "8d:8D-20260019:chunk:0",
+              "source_id": "8D-20260019",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260019",
+              "content": "Problem description: Incoming material lot failed acceptance criteria.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.48753184
+            },
+            {
+              "rank": 4,
+              "chunk_id": "inspection:250:chunk:0",
+              "source_id": "250",
+              "source_type": "inspection",
+              "title": "Inspection 250",
+              "content": "Inspection Type: Final\nResult: Fail",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.48362195
+            },
+            {
+              "rank": 5,
+              "chunk_id": "inspection:2:chunk:0",
+              "source_id": "2",
+              "source_type": "inspection",
+              "title": "Inspection 2",
+              "content": "Inspection Type: Final\nResult: Fail",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.48315799
+            },
+            {
+              "rank": 6,
+              "chunk_id": "8d:8D-20260010:chunk:0",
+              "source_id": "8D-20260010",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260010",
+              "content": "Problem description: Incoming material lot failed acceptance criteria.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.48166046
+            },
+            {
+              "rank": 7,
+              "chunk_id": "inspection:4:chunk:0",
+              "source_id": "4",
+              "source_type": "inspection",
+              "title": "Inspection 4",
+              "content": "Inspection Type: Final\nResult: Fail",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.48120189
+            },
+            {
+              "rank": 8,
+              "chunk_id": "8d:8D-20260004:chunk:0",
+              "source_id": "8D-20260004",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260004",
+              "content": "Problem description: Incoming material lot failed acceptance criteria.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: Pending RCA\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Open",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.47160757
+            },
+            {
+              "rank": 9,
+              "chunk_id": "inspection:14:chunk:0",
+              "source_id": "14",
+              "source_type": "inspection",
+              "title": "Inspection 14",
+              "content": "Inspection Type: Final\nResult: Fail",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.47073901
+            },
+            {
+              "rank": 10,
+              "chunk_id": "inspection:298:chunk:0",
+              "source_id": "298",
+              "source_type": "inspection",
+              "title": "Inspection 298",
+              "content": "Inspection Type: Final\nResult: Fail",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.46145138
+            }
+          ]
+        },
+        {
+          "case_id": "EMB-004",
+          "query": "Find inspection evidence associated with dimensional quality problems.",
+          "metrics": {
+            "precision_at_5": 1.0,
+            "precision_at_10": 1.0,
+            "recall_at_5": 0.122,
+            "recall_at_10": 0.2439,
+            "mrr": 1.0,
+            "ndcg_at_10_graded": 0.4682,
+            "silver_relevant_chunks_grade_2_plus": 41
+          },
+          "top_10": [
+            {
+              "rank": 1,
+              "chunk_id": "8d:8D-20260012:chunk:0",
+              "source_id": "8D-20260012",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260012",
+              "content": "Problem description: Dimensional non-conformance found on final inspection.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.6540736
+            },
+            {
+              "rank": 2,
+              "chunk_id": "8d:8D-20260017:chunk:0",
+              "source_id": "8D-20260017",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260017",
+              "content": "Problem description: Dimensional non-conformance found on final inspection.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: Pending RCA\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Open",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.64729977
+            },
+            {
+              "rank": 3,
+              "chunk_id": "ncr:NCR-20260040:chunk:0",
+              "source_id": "NCR-20260040",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260040",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.56814057
+            },
+            {
+              "rank": 4,
+              "chunk_id": "ncr:NCR-20260010:chunk:0",
+              "source_id": "NCR-20260010",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260010",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.56722993
+            },
+            {
+              "rank": 5,
+              "chunk_id": "ncr:NCR-20260012:chunk:0",
+              "source_id": "NCR-20260012",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260012",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.56712651
+            },
+            {
+              "rank": 6,
+              "chunk_id": "ncr:NCR-20260004:chunk:0",
+              "source_id": "NCR-20260004",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260004",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.56635833
+            },
+            {
+              "rank": 7,
+              "chunk_id": "ncr:NCR-20260007:chunk:0",
+              "source_id": "NCR-20260007",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260007",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.56403446
+            },
+            {
+              "rank": 8,
+              "chunk_id": "inspection:4:chunk:0",
+              "source_id": "4",
+              "source_type": "inspection",
+              "title": "Inspection 4",
+              "content": "Inspection Type: Final\nResult: Fail",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.56383318
+            },
+            {
+              "rank": 9,
+              "chunk_id": "ncr:NCR-20260015:chunk:0",
+              "source_id": "NCR-20260015",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260015",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Under Review",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.55879426
+            },
+            {
+              "rank": 10,
+              "chunk_id": "ncr:NCR-20260001:chunk:0",
+              "source_id": "NCR-20260001",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260001",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Under Review",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.55240369
+            }
+          ]
+        },
+        {
+          "case_id": "EMB-005",
+          "query": "Find historical NCR evidence that is similar to a dimensional non-conformance found during final inspection.",
+          "metrics": {
+            "precision_at_5": 1.0,
+            "precision_at_10": 1.0,
+            "recall_at_5": 0.2941,
+            "recall_at_10": 0.5882,
+            "mrr": 1.0,
+            "ndcg_at_10_graded": 1.0,
+            "silver_relevant_chunks_grade_2_plus": 17
+          },
+          "top_10": [
+            {
+              "rank": 1,
+              "chunk_id": "ncr:NCR-20260004:chunk:0",
+              "source_id": "NCR-20260004",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260004",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.72808403
+            },
+            {
+              "rank": 2,
+              "chunk_id": "ncr:NCR-20260012:chunk:0",
+              "source_id": "NCR-20260012",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260012",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.72770083
+            },
+            {
+              "rank": 3,
+              "chunk_id": "ncr:NCR-20260015:chunk:0",
+              "source_id": "NCR-20260015",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260015",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Under Review",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.72742784
+            },
+            {
+              "rank": 4,
+              "chunk_id": "ncr:NCR-20260007:chunk:0",
+              "source_id": "NCR-20260007",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260007",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.72570288
+            },
+            {
+              "rank": 5,
+              "chunk_id": "ncr:NCR-20260010:chunk:0",
+              "source_id": "NCR-20260010",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260010",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.72365171
+            },
+            {
+              "rank": 6,
+              "chunk_id": "ncr:NCR-20260001:chunk:0",
+              "source_id": "NCR-20260001",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260001",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Under Review",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.72246373
+            },
+            {
+              "rank": 7,
+              "chunk_id": "ncr:NCR-20260037:chunk:0",
+              "source_id": "NCR-20260037",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260037",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Major\nStatus: Open",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.71795797
+            },
+            {
+              "rank": 8,
+              "chunk_id": "ncr:NCR-20260040:chunk:0",
+              "source_id": "NCR-20260040",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260040",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.71792358
+            },
+            {
+              "rank": 9,
+              "chunk_id": "ncr:NCR-20260028:chunk:0",
+              "source_id": "NCR-20260028",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260028",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Critical\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.71721792
+            },
+            {
+              "rank": 10,
+              "chunk_id": "ncr:NCR-20260002:chunk:0",
+              "source_id": "NCR-20260002",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260002",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Open",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.70528865
+            }
+          ]
+        }
+      ],
+      "macro_average": {
+        "precision_at_5": 0.8,
+        "precision_at_10": 0.74,
+        "recall_at_5": 0.1377,
+        "recall_at_10": 0.2649,
+        "mrr": 0.8667,
+        "ndcg_at_10_graded": 0.5716
+      },
+      "runtime_seconds": 3.639
+    },
+    {
+      "method": "bge-small-en-v1.5",
+      "status": "success",
+      "index_path": "data\\embedding_experiments\\single_query_comparison_8d_candidate\\bge-small-en-v1.5",
+      "query_count": 5,
+      "case_results": [
+        {
+          "case_id": "EMB-001",
+          "query": "Find historical manufacturing evidence related to dimensional non-conformance found during final inspection.",
+          "metrics": {
+            "precision_at_5": 1.0,
+            "precision_at_10": 1.0,
+            "recall_at_5": 0.1852,
+            "recall_at_10": 0.3704,
+            "mrr": 1.0,
+            "ndcg_at_10_graded": 0.7949,
+            "silver_relevant_chunks_grade_2_plus": 27
+          },
+          "top_10": [
+            {
+              "rank": 1,
+              "chunk_id": "8d:8D-20260012:chunk:0",
+              "source_id": "8D-20260012",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260012",
+              "content": "Problem description: Dimensional non-conformance found on final inspection.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.74714941
+            },
+            {
+              "rank": 2,
+              "chunk_id": "8d:8D-20260017:chunk:0",
+              "source_id": "8D-20260017",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260017",
+              "content": "Problem description: Dimensional non-conformance found on final inspection.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: Pending RCA\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Open",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.7471264
+            },
+            {
+              "rank": 3,
+              "chunk_id": "ncr:NCR-20260015:chunk:0",
+              "source_id": "NCR-20260015",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260015",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Under Review",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.7045387
+            },
+            {
+              "rank": 4,
+              "chunk_id": "ncr:NCR-20260010:chunk:0",
+              "source_id": "NCR-20260010",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260010",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.70359015
+            },
+            {
+              "rank": 5,
+              "chunk_id": "ncr:NCR-20260007:chunk:0",
+              "source_id": "NCR-20260007",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260007",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.70271277
+            },
+            {
+              "rank": 6,
+              "chunk_id": "ncr:NCR-20260004:chunk:0",
+              "source_id": "NCR-20260004",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260004",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.70270729
+            },
+            {
+              "rank": 7,
+              "chunk_id": "ncr:NCR-20260028:chunk:0",
+              "source_id": "NCR-20260028",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260028",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Critical\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.70139068
+            },
+            {
+              "rank": 8,
+              "chunk_id": "ncr:NCR-20260040:chunk:0",
+              "source_id": "NCR-20260040",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260040",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.70079362
+            },
+            {
+              "rank": 9,
+              "chunk_id": "ncr:NCR-20260037:chunk:0",
+              "source_id": "NCR-20260037",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260037",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Major\nStatus: Open",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.70032799
+            },
+            {
+              "rank": 10,
+              "chunk_id": "ncr:NCR-20260001:chunk:0",
+              "source_id": "NCR-20260001",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260001",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Under Review",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.69997478
+            }
+          ]
+        },
+        {
+          "case_id": "EMB-002",
+          "query": "Find manufacturing evidence related to process measurements outside specification.",
+          "metrics": {
+            "precision_at_5": 0.0,
+            "precision_at_10": 0.1,
+            "recall_at_5": 0.0,
+            "recall_at_10": 0.0172,
+            "mrr": 0.1667,
+            "ndcg_at_10_graded": 0.0784,
+            "silver_relevant_chunks_grade_2_plus": 58
+          },
+          "top_10": [
+            {
+              "rank": 1,
+              "chunk_id": "process_measurement:209:chunk:0",
+              "source_id": "209",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 209",
+              "content": "Parameter Name: Bore Diameter\nNominal Value: 3000.0\nActual Value: 3000.12\nUnit: mm\nLsl: 2999.5\nUsl: 3000.5\nIn Spec: True\nMeasured At: 2026-06-09 23:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.70063859
+            },
+            {
+              "rank": 2,
+              "chunk_id": "process_measurement:284:chunk:0",
+              "source_id": "284",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 284",
+              "content": "Parameter Name: Bore Diameter\nNominal Value: 3000.0\nActual Value: 3000.28\nUnit: mm\nLsl: 2999.5\nUsl: 3000.5\nIn Spec: True\nMeasured At: 2025-11-15 23:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.69871747
+            },
+            {
+              "rank": 3,
+              "chunk_id": "process_measurement:577:chunk:0",
+              "source_id": "577",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 577",
+              "content": "Parameter Name: Bore Diameter\nNominal Value: 3000.0\nActual Value: 2999.77\nUnit: mm\nLsl: 2999.5\nUsl: 3000.5\nIn Spec: True\nMeasured At: 2026-04-26 04:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.69839036
+            },
+            {
+              "rank": 4,
+              "chunk_id": "process_measurement:578:chunk:0",
+              "source_id": "578",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 578",
+              "content": "Parameter Name: Bore Diameter\nNominal Value: 3000.0\nActual Value: 3000.21\nUnit: mm\nLsl: 2999.5\nUsl: 3000.5\nIn Spec: True\nMeasured At: 2026-04-26 04:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.69777763
+            },
+            {
+              "rank": 5,
+              "chunk_id": "process_measurement:572:chunk:0",
+              "source_id": "572",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 572",
+              "content": "Parameter Name: Bore Diameter\nNominal Value: 3000.0\nActual Value: 3000.07\nUnit: mm\nLsl: 2999.5\nUsl: 3000.5\nIn Spec: True\nMeasured At: 2026-04-26 04:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.69579893
+            },
+            {
+              "rank": 6,
+              "chunk_id": "process_measurement:286:chunk:0",
+              "source_id": "286",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 286",
+              "content": "Parameter Name: Bore Diameter\nNominal Value: 3000.0\nActual Value: 2999.48\nUnit: mm\nLsl: 2999.5\nUsl: 3000.5\nIn Spec: False\nMeasured At: 2025-11-15 11:00:00",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.69406182
+            },
+            {
+              "rank": 7,
+              "chunk_id": "process_measurement:143:chunk:0",
+              "source_id": "143",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 143",
+              "content": "Parameter Name: Bore Diameter\nNominal Value: 3000.0\nActual Value: 3000.5\nUnit: mm\nLsl: 2999.5\nUsl: 3000.5\nIn Spec: True\nMeasured At: 2026-08-13 07:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.68977934
+            },
+            {
+              "rank": 8,
+              "chunk_id": "process_measurement:394:chunk:0",
+              "source_id": "394",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 394",
+              "content": "Parameter Name: Bore Diameter\nNominal Value: 3000.0\nActual Value: 3000.14\nUnit: mm\nLsl: 2999.5\nUsl: 3000.5\nIn Spec: True\nMeasured At: 2026-04-17 18:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.68845582
+            },
+            {
+              "rank": 9,
+              "chunk_id": "process_measurement:312:chunk:0",
+              "source_id": "312",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 312",
+              "content": "Parameter Name: Bore Diameter\nNominal Value: 3000.0\nActual Value: 3000.3\nUnit: mm\nLsl: 2999.5\nUsl: 3000.5\nIn Spec: True\nMeasured At: 2025-11-09 17:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.68810421
+            },
+            {
+              "rank": 10,
+              "chunk_id": "process_measurement:95:chunk:0",
+              "source_id": "95",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 95",
+              "content": "Parameter Name: Bore Diameter\nNominal Value: 3000.0\nActual Value: 2999.64\nUnit: mm\nLsl: 2999.5\nUsl: 3000.5\nIn Spec: True\nMeasured At: 2026-08-12 12:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.68794245
+            }
+          ]
+        },
+        {
+          "case_id": "EMB-003",
+          "query": "Find previous quality investigations involving root cause and corrective action for manufacturing problems.",
+          "metrics": {
+            "precision_at_5": 1.0,
+            "precision_at_10": 1.0,
+            "recall_at_5": 0.0877,
+            "recall_at_10": 0.1754,
+            "mrr": 1.0,
+            "ndcg_at_10_graded": 0.4286,
+            "silver_relevant_chunks_grade_2_plus": 57
+          },
+          "top_10": [
+            {
+              "rank": 1,
+              "chunk_id": "8d:8D-20260012:chunk:0",
+              "source_id": "8D-20260012",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260012",
+              "content": "Problem description: Dimensional non-conformance found on final inspection.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.69521886
+            },
+            {
+              "rank": 2,
+              "chunk_id": "8d:8D-20260018:chunk:0",
+              "source_id": "8D-20260018",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260018",
+              "content": "Problem description: Surface defect detected on composite layup.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.69308138
+            },
+            {
+              "rank": 3,
+              "chunk_id": "8d:8D-20260008:chunk:0",
+              "source_id": "8D-20260008",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260008",
+              "content": "Problem description: Surface defect detected on composite layup.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.69283783
+            },
+            {
+              "rank": 4,
+              "chunk_id": "8d:8D-20260015:chunk:0",
+              "source_id": "8D-20260015",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260015",
+              "content": "Problem description: Incoming material lot failed acceptance criteria.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.68852431
+            },
+            {
+              "rank": 5,
+              "chunk_id": "8d:8D-20260010:chunk:0",
+              "source_id": "8D-20260010",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260010",
+              "content": "Problem description: Incoming material lot failed acceptance criteria.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.68850636
+            },
+            {
+              "rank": 6,
+              "chunk_id": "8d:8D-20260019:chunk:0",
+              "source_id": "8D-20260019",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260019",
+              "content": "Problem description: Incoming material lot failed acceptance criteria.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.68748474
+            },
+            {
+              "rank": 7,
+              "chunk_id": "8d:8D-20260006:chunk:0",
+              "source_id": "8D-20260006",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260006",
+              "content": "Problem description: Surface defect detected on composite layup.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: Pending RCA\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Open",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.67303669
+            },
+            {
+              "rank": 8,
+              "chunk_id": "8d:8D-20260017:chunk:0",
+              "source_id": "8D-20260017",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260017",
+              "content": "Problem description: Dimensional non-conformance found on final inspection.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: Pending RCA\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Open",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.67286348
+            },
+            {
+              "rank": 9,
+              "chunk_id": "8d:8D-20260003:chunk:0",
+              "source_id": "8D-20260003",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260003",
+              "content": "Problem description: Surface defect detected on composite layup.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: Pending RCA\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Open",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.671857
+            },
+            {
+              "rank": 10,
+              "chunk_id": "8d:8D-20260004:chunk:0",
+              "source_id": "8D-20260004",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260004",
+              "content": "Problem description: Incoming material lot failed acceptance criteria.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: Pending RCA\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Open",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.66708529
+            }
+          ]
+        },
+        {
+          "case_id": "EMB-004",
+          "query": "Find inspection evidence associated with dimensional quality problems.",
+          "metrics": {
+            "precision_at_5": 0.4,
+            "precision_at_10": 0.4,
+            "recall_at_5": 0.0488,
+            "recall_at_10": 0.0976,
+            "mrr": 1.0,
+            "ndcg_at_10_graded": 0.257,
+            "silver_relevant_chunks_grade_2_plus": 41
+          },
+          "top_10": [
+            {
+              "rank": 1,
+              "chunk_id": "8d:8D-20260017:chunk:0",
+              "source_id": "8D-20260017",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260017",
+              "content": "Problem description: Dimensional non-conformance found on final inspection.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: Pending RCA\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Open",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.70905483
+            },
+            {
+              "rank": 2,
+              "chunk_id": "8d:8D-20260012:chunk:0",
+              "source_id": "8D-20260012",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260012",
+              "content": "Problem description: Dimensional non-conformance found on final inspection.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.70711029
+            },
+            {
+              "rank": 3,
+              "chunk_id": "inspection:298:chunk:0",
+              "source_id": "298",
+              "source_type": "inspection",
+              "title": "Inspection 298",
+              "content": "Inspection Type: Final\nResult: Fail",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.66014767
+            },
+            {
+              "rank": 4,
+              "chunk_id": "inspection:163:chunk:0",
+              "source_id": "163",
+              "source_type": "inspection",
+              "title": "Inspection 163",
+              "content": "Inspection Type: In-Process\nResult: Fail",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.65765482
+            },
+            {
+              "rank": 5,
+              "chunk_id": "inspection:238:chunk:0",
+              "source_id": "238",
+              "source_type": "inspection",
+              "title": "Inspection 238",
+              "content": "Inspection Type: Final\nResult: Fail",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.65322834
+            },
+            {
+              "rank": 6,
+              "chunk_id": "inspection:153:chunk:0",
+              "source_id": "153",
+              "source_type": "inspection",
+              "title": "Inspection 153",
+              "content": "Inspection Type: In-Process\nResult: Pass",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.65266466
+            },
+            {
+              "rank": 7,
+              "chunk_id": "inspection:364:chunk:0",
+              "source_id": "364",
+              "source_type": "inspection",
+              "title": "Inspection 364",
+              "content": "Inspection Type: Final\nResult: Fail",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.65253574
+            },
+            {
+              "rank": 8,
+              "chunk_id": "ncr:NCR-20260037:chunk:0",
+              "source_id": "NCR-20260037",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260037",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Major\nStatus: Open",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.65201449
+            },
+            {
+              "rank": 9,
+              "chunk_id": "inspection:165:chunk:0",
+              "source_id": "165",
+              "source_type": "inspection",
+              "title": "Inspection 165",
+              "content": "Inspection Type: In-Process\nResult: Pass",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.65160602
+            },
+            {
+              "rank": 10,
+              "chunk_id": "inspection:197:chunk:0",
+              "source_id": "197",
+              "source_type": "inspection",
+              "title": "Inspection 197",
+              "content": "Inspection Type: In-Process\nResult: Pass",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.64981639
+            }
+          ]
+        },
+        {
+          "case_id": "EMB-005",
+          "query": "Find historical NCR evidence that is similar to a dimensional non-conformance found during final inspection.",
+          "metrics": {
+            "precision_at_5": 1.0,
+            "precision_at_10": 1.0,
+            "recall_at_5": 0.2941,
+            "recall_at_10": 0.5882,
+            "mrr": 1.0,
+            "ndcg_at_10_graded": 1.0,
+            "silver_relevant_chunks_grade_2_plus": 17
+          },
+          "top_10": [
+            {
+              "rank": 1,
+              "chunk_id": "ncr:NCR-20260015:chunk:0",
+              "source_id": "NCR-20260015",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260015",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Under Review",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.78398967
+            },
+            {
+              "rank": 2,
+              "chunk_id": "ncr:NCR-20260028:chunk:0",
+              "source_id": "NCR-20260028",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260028",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Critical\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.78302664
+            },
+            {
+              "rank": 3,
+              "chunk_id": "ncr:NCR-20260001:chunk:0",
+              "source_id": "NCR-20260001",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260001",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Under Review",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.781847
+            },
+            {
+              "rank": 4,
+              "chunk_id": "ncr:NCR-20260010:chunk:0",
+              "source_id": "NCR-20260010",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260010",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.78022367
+            },
+            {
+              "rank": 5,
+              "chunk_id": "ncr:NCR-20260037:chunk:0",
+              "source_id": "NCR-20260037",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260037",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Major\nStatus: Open",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.779715
+            },
+            {
+              "rank": 6,
+              "chunk_id": "ncr:NCR-20260007:chunk:0",
+              "source_id": "NCR-20260007",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260007",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.77816921
+            },
+            {
+              "rank": 7,
+              "chunk_id": "ncr:NCR-20260040:chunk:0",
+              "source_id": "NCR-20260040",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260040",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.77742404
+            },
+            {
+              "rank": 8,
+              "chunk_id": "ncr:NCR-20260004:chunk:0",
+              "source_id": "NCR-20260004",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260004",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.77689898
+            },
+            {
+              "rank": 9,
+              "chunk_id": "ncr:NCR-20260012:chunk:0",
+              "source_id": "NCR-20260012",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260012",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.77594185
+            },
+            {
+              "rank": 10,
+              "chunk_id": "ncr:NCR-20260002:chunk:0",
+              "source_id": "NCR-20260002",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260002",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Open",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.7710951
+            }
+          ]
+        }
+      ],
+      "macro_average": {
+        "precision_at_5": 0.68,
+        "precision_at_10": 0.7,
+        "recall_at_5": 0.1232,
+        "recall_at_10": 0.2498,
+        "mrr": 0.8333,
+        "ndcg_at_10_graded": 0.5118
+      },
+      "runtime_seconds": 1.242
+    },
+    {
+      "method": "bge-base-en-v1.5",
+      "status": "success",
+      "index_path": "data\\embedding_experiments\\single_query_comparison_8d_candidate\\bge-base-en-v1.5",
+      "query_count": 5,
+      "case_results": [
+        {
+          "case_id": "EMB-001",
+          "query": "Find historical manufacturing evidence related to dimensional non-conformance found during final inspection.",
+          "metrics": {
+            "precision_at_5": 1.0,
+            "precision_at_10": 1.0,
+            "recall_at_5": 0.1852,
+            "recall_at_10": 0.3704,
+            "mrr": 1.0,
+            "ndcg_at_10_graded": 1.0,
+            "silver_relevant_chunks_grade_2_plus": 27
+          },
+          "top_10": [
+            {
+              "rank": 1,
+              "chunk_id": "ncr:NCR-20260001:chunk:0",
+              "source_id": "NCR-20260001",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260001",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Under Review",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.65793556
+            },
+            {
+              "rank": 2,
+              "chunk_id": "ncr:NCR-20260002:chunk:0",
+              "source_id": "NCR-20260002",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260002",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Open",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.65645725
+            },
+            {
+              "rank": 3,
+              "chunk_id": "ncr:NCR-20260037:chunk:0",
+              "source_id": "NCR-20260037",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260037",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Major\nStatus: Open",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.65278387
+            },
+            {
+              "rank": 4,
+              "chunk_id": "ncr:NCR-20260028:chunk:0",
+              "source_id": "NCR-20260028",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260028",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Critical\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.64813691
+            },
+            {
+              "rank": 5,
+              "chunk_id": "ncr:NCR-20260007:chunk:0",
+              "source_id": "NCR-20260007",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260007",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.64784664
+            },
+            {
+              "rank": 6,
+              "chunk_id": "ncr:NCR-20260015:chunk:0",
+              "source_id": "NCR-20260015",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260015",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Under Review",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.646276
+            },
+            {
+              "rank": 7,
+              "chunk_id": "ncr:NCR-20260010:chunk:0",
+              "source_id": "NCR-20260010",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260010",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.64545095
+            },
+            {
+              "rank": 8,
+              "chunk_id": "ncr:NCR-20260004:chunk:0",
+              "source_id": "NCR-20260004",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260004",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.64480138
+            },
+            {
+              "rank": 9,
+              "chunk_id": "ncr:NCR-20260040:chunk:0",
+              "source_id": "NCR-20260040",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260040",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.64324838
+            },
+            {
+              "rank": 10,
+              "chunk_id": "ncr:NCR-20260012:chunk:0",
+              "source_id": "NCR-20260012",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260012",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.64046204
+            }
+          ]
+        },
+        {
+          "case_id": "EMB-002",
+          "query": "Find manufacturing evidence related to process measurements outside specification.",
+          "metrics": {
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "recall_at_5": 0.0172,
+            "recall_at_10": 0.0172,
+            "mrr": 0.25,
+            "ndcg_at_10_graded": 0.0948,
+            "silver_relevant_chunks_grade_2_plus": 58
+          },
+          "top_10": [
+            {
+              "rank": 1,
+              "chunk_id": "process_measurement:507:chunk:0",
+              "source_id": "507",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 507",
+              "content": "Parameter Name: Cure Temperature\nNominal Value: 120.0\nActual Value: 118.62\nUnit: C\nLsl: 115.0\nUsl: 125.0\nIn Spec: True\nMeasured At: 2026-07-07 10:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.57738602
+            },
+            {
+              "rank": 2,
+              "chunk_id": "process_measurement:427:chunk:0",
+              "source_id": "427",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 427",
+              "content": "Parameter Name: Cure Temperature\nNominal Value: 120.0\nActual Value: 121.52\nUnit: C\nLsl: 115.0\nUsl: 125.0\nIn Spec: True\nMeasured At: 2026-04-18 18:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.57643443
+            },
+            {
+              "rank": 3,
+              "chunk_id": "process_measurement:392:chunk:0",
+              "source_id": "392",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 392",
+              "content": "Parameter Name: Cure Temperature\nNominal Value: 120.0\nActual Value: 122.26\nUnit: C\nLsl: 115.0\nUsl: 125.0\nIn Spec: True\nMeasured At: 2026-04-17 10:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.57589519
+            },
+            {
+              "rank": 4,
+              "chunk_id": "process_measurement:163:chunk:0",
+              "source_id": "163",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 163",
+              "content": "Parameter Name: Vibration RMS\nNominal Value: 2.0\nActual Value: 2.51\nUnit: mm/s\nLsl: 1.5\nUsl: 2.5\nIn Spec: False\nMeasured At: 2026-02-08 05:00:00",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.57568061
+            },
+            {
+              "rank": 5,
+              "chunk_id": "process_measurement:451:chunk:0",
+              "source_id": "451",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 451",
+              "content": "Parameter Name: Cure Temperature\nNominal Value: 120.0\nActual Value: 118.68\nUnit: C\nLsl: 115.0\nUsl: 125.0\nIn Spec: True\nMeasured At: 2026-04-19 04:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.57356644
+            },
+            {
+              "rank": 6,
+              "chunk_id": "process_measurement:63:chunk:0",
+              "source_id": "63",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 63",
+              "content": "Parameter Name: Cure Temperature\nNominal Value: 120.0\nActual Value: 121.42\nUnit: C\nLsl: 115.0\nUsl: 125.0\nIn Spec: True\nMeasured At: 2026-05-23 00:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.57312608
+            },
+            {
+              "rank": 7,
+              "chunk_id": "process_measurement:385:chunk:0",
+              "source_id": "385",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 385",
+              "content": "Parameter Name: Cure Temperature\nNominal Value: 120.0\nActual Value: 122.31\nUnit: C\nLsl: 115.0\nUsl: 125.0\nIn Spec: True\nMeasured At: 2026-07-12 09:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.5731051
+            },
+            {
+              "rank": 8,
+              "chunk_id": "process_measurement:307:chunk:0",
+              "source_id": "307",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 307",
+              "content": "Parameter Name: Cure Temperature\nNominal Value: 120.0\nActual Value: 116.78\nUnit: C\nLsl: 115.0\nUsl: 125.0\nIn Spec: True\nMeasured At: 2025-11-09 09:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.57309586
+            },
+            {
+              "rank": 9,
+              "chunk_id": "process_measurement:447:chunk:0",
+              "source_id": "447",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 447",
+              "content": "Parameter Name: Bore Diameter\nNominal Value: 3000.0\nActual Value: 3000.12\nUnit: mm\nLsl: 2999.5\nUsl: 3000.5\nIn Spec: True\nMeasured At: 2026-04-18 18:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.57305455
+            },
+            {
+              "rank": 10,
+              "chunk_id": "process_measurement:376:chunk:0",
+              "source_id": "376",
+              "source_type": "process_measurement",
+              "title": "Process Measurement 376",
+              "content": "Parameter Name: Cure Temperature\nNominal Value: 120.0\nActual Value: 117.81\nUnit: C\nLsl: 115.0\nUsl: 125.0\nIn Spec: True\nMeasured At: 2026-07-12 01:00:00",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.57298684
+            }
+          ]
+        },
+        {
+          "case_id": "EMB-003",
+          "query": "Find previous quality investigations involving root cause and corrective action for manufacturing problems.",
+          "metrics": {
+            "precision_at_5": 1.0,
+            "precision_at_10": 1.0,
+            "recall_at_5": 0.0877,
+            "recall_at_10": 0.1754,
+            "mrr": 1.0,
+            "ndcg_at_10_graded": 0.4286,
+            "silver_relevant_chunks_grade_2_plus": 57
+          },
+          "top_10": [
+            {
+              "rank": 1,
+              "chunk_id": "8d:8D-20260015:chunk:0",
+              "source_id": "8D-20260015",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260015",
+              "content": "Problem description: Incoming material lot failed acceptance criteria.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.61110514
+            },
+            {
+              "rank": 2,
+              "chunk_id": "8d:8D-20260003:chunk:0",
+              "source_id": "8D-20260003",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260003",
+              "content": "Problem description: Surface defect detected on composite layup.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: Pending RCA\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Open",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.60939372
+            },
+            {
+              "rank": 3,
+              "chunk_id": "8d:8D-20260008:chunk:0",
+              "source_id": "8D-20260008",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260008",
+              "content": "Problem description: Surface defect detected on composite layup.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.60917342
+            },
+            {
+              "rank": 4,
+              "chunk_id": "8d:8D-20260019:chunk:0",
+              "source_id": "8D-20260019",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260019",
+              "content": "Problem description: Incoming material lot failed acceptance criteria.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.60881191
+            },
+            {
+              "rank": 5,
+              "chunk_id": "8d:8D-20260010:chunk:0",
+              "source_id": "8D-20260010",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260010",
+              "content": "Problem description: Incoming material lot failed acceptance criteria.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.60848415
+            },
+            {
+              "rank": 6,
+              "chunk_id": "8d:8D-20260018:chunk:0",
+              "source_id": "8D-20260018",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260018",
+              "content": "Problem description: Surface defect detected on composite layup.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.60841674
+            },
+            {
+              "rank": 7,
+              "chunk_id": "8d:8D-20260004:chunk:0",
+              "source_id": "8D-20260004",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260004",
+              "content": "Problem description: Incoming material lot failed acceptance criteria.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: Pending RCA\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Open",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.60794687
+            },
+            {
+              "rank": 8,
+              "chunk_id": "8d:8D-20260006:chunk:0",
+              "source_id": "8D-20260006",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260006",
+              "content": "Problem description: Surface defect detected on composite layup.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: Pending RCA\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Open",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.6055581
+            },
+            {
+              "rank": 9,
+              "chunk_id": "8d:8D-20260007:chunk:0",
+              "source_id": "8D-20260007",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260007",
+              "content": "Problem description: Bore diameter measured out of tolerance.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: Pending RCA\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Open",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.60447299
+            },
+            {
+              "rank": 10,
+              "chunk_id": "8d:8D-20260002:chunk:0",
+              "source_id": "8D-20260002",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260002",
+              "content": "Problem description: Bore diameter measured out of tolerance.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.60439891
+            }
+          ]
+        },
+        {
+          "case_id": "EMB-004",
+          "query": "Find inspection evidence associated with dimensional quality problems.",
+          "metrics": {
+            "precision_at_5": 1.0,
+            "precision_at_10": 0.7,
+            "recall_at_5": 0.122,
+            "recall_at_10": 0.1707,
+            "mrr": 1.0,
+            "ndcg_at_10_graded": 0.5769,
+            "silver_relevant_chunks_grade_2_plus": 41
+          },
+          "top_10": [
+            {
+              "rank": 1,
+              "chunk_id": "8d:8D-20260017:chunk:0",
+              "source_id": "8D-20260017",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260017",
+              "content": "Problem description: Dimensional non-conformance found on final inspection.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: Pending RCA\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Open",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.64453697
+            },
+            {
+              "rank": 2,
+              "chunk_id": "8d:8D-20260012:chunk:0",
+              "source_id": "8D-20260012",
+              "source_type": "8d",
+              "title": "8D Report 8D-20260012",
+              "content": "Problem description: Dimensional non-conformance found on final inspection.\nContainment: Quarantined affected units/lot; halted downstream operations pending review.\nRoot cause: See linked RCA for root cause.\nCorrective action: See linked CAPA for corrective action plan.\nPreventive action: Updated work instructions and inspection checklist to prevent recurrence.\nCorrective action implementation: Corrective action implemented on production line.\nConclusion: Closed after effectiveness verification.",
+              "silver_grade": 2,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.6348753
+            },
+            {
+              "rank": 3,
+              "chunk_id": "inspection:64:chunk:0",
+              "source_id": "64",
+              "source_type": "inspection",
+              "title": "Inspection 64",
+              "content": "Inspection Type: Final\nResult: Fail",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.62305242
+            },
+            {
+              "rank": 4,
+              "chunk_id": "inspection:132:chunk:0",
+              "source_id": "132",
+              "source_type": "inspection",
+              "title": "Inspection 132",
+              "content": "Inspection Type: Final\nResult: Fail",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.62033612
+            },
+            {
+              "rank": 5,
+              "chunk_id": "inspection:324:chunk:0",
+              "source_id": "324",
+              "source_type": "inspection",
+              "title": "Inspection 324",
+              "content": "Inspection Type: Final\nResult: Fail",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.61817729
+            },
+            {
+              "rank": 6,
+              "chunk_id": "inspection:102:chunk:0",
+              "source_id": "102",
+              "source_type": "inspection",
+              "title": "Inspection 102",
+              "content": "Inspection Type: Final\nResult: Fail",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.61684453
+            },
+            {
+              "rank": 7,
+              "chunk_id": "inspection:285:chunk:0",
+              "source_id": "285",
+              "source_type": "inspection",
+              "title": "Inspection 285",
+              "content": "Inspection Type: In-Process\nResult: Pass",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.61630321
+            },
+            {
+              "rank": 8,
+              "chunk_id": "inspection:4:chunk:0",
+              "source_id": "4",
+              "source_type": "inspection",
+              "title": "Inspection 4",
+              "content": "Inspection Type: Final\nResult: Fail",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.61457133
+            },
+            {
+              "rank": 9,
+              "chunk_id": "inspection:317:chunk:0",
+              "source_id": "317",
+              "source_type": "inspection",
+              "title": "Inspection 317",
+              "content": "Inspection Type: In-Process\nResult: Fail",
+              "silver_grade": 0,
+              "silver_label_reason": "not_identified_by_silver_rules",
+              "score": 0.61420631
+            },
+            {
+              "rank": 10,
+              "chunk_id": "inspection:80:chunk:0",
+              "source_id": "80",
+              "source_type": "inspection",
+              "title": "Inspection 80",
+              "content": "Inspection Type: Final\nResult: Fail",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.61223626
+            }
+          ]
+        },
+        {
+          "case_id": "EMB-005",
+          "query": "Find historical NCR evidence that is similar to a dimensional non-conformance found during final inspection.",
+          "metrics": {
+            "precision_at_5": 1.0,
+            "precision_at_10": 1.0,
+            "recall_at_5": 0.2941,
+            "recall_at_10": 0.5882,
+            "mrr": 1.0,
+            "ndcg_at_10_graded": 1.0,
+            "silver_relevant_chunks_grade_2_plus": 17
+          },
+          "top_10": [
+            {
+              "rank": 1,
+              "chunk_id": "ncr:NCR-20260037:chunk:0",
+              "source_id": "NCR-20260037",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260037",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Major\nStatus: Open",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.73387784
+            },
+            {
+              "rank": 2,
+              "chunk_id": "ncr:NCR-20260002:chunk:0",
+              "source_id": "NCR-20260002",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260002",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Open",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.73253417
+            },
+            {
+              "rank": 3,
+              "chunk_id": "ncr:NCR-20260015:chunk:0",
+              "source_id": "NCR-20260015",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260015",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Under Review",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.72920531
+            },
+            {
+              "rank": 4,
+              "chunk_id": "ncr:NCR-20260001:chunk:0",
+              "source_id": "NCR-20260001",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260001",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Under Review",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.72817302
+            },
+            {
+              "rank": 5,
+              "chunk_id": "ncr:NCR-20260007:chunk:0",
+              "source_id": "NCR-20260007",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260007",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.72495419
+            },
+            {
+              "rank": 6,
+              "chunk_id": "ncr:NCR-20260010:chunk:0",
+              "source_id": "NCR-20260010",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260010",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.72321665
+            },
+            {
+              "rank": 7,
+              "chunk_id": "ncr:NCR-20260004:chunk:0",
+              "source_id": "NCR-20260004",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260004",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.72206122
+            },
+            {
+              "rank": 8,
+              "chunk_id": "ncr:NCR-20260012:chunk:0",
+              "source_id": "NCR-20260012",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260012",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.7198779
+            },
+            {
+              "rank": 9,
+              "chunk_id": "ncr:NCR-20260040:chunk:0",
+              "source_id": "NCR-20260040",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260040",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Minor\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.7171725
+            },
+            {
+              "rank": 10,
+              "chunk_id": "ncr:NCR-20260028:chunk:0",
+              "source_id": "NCR-20260028",
+              "source_type": "ncr",
+              "title": "NCR NCR-20260028",
+              "content": "NCR description: Dimensional non-conformance found on final inspection.\nSeverity: Critical\nStatus: Closed",
+              "silver_grade": 3,
+              "silver_label_reason": "rule_based_label",
+              "score": 0.71294963
+            }
+          ]
+        }
+      ],
+      "macro_average": {
+        "precision_at_5": 0.84,
+        "precision_at_10": 0.76,
+        "recall_at_5": 0.1412,
+        "recall_at_10": 0.2644,
+        "mrr": 0.85,
+        "ndcg_at_10_graded": 0.6201
+      },
+      "runtime_seconds": 3.059
+    }
+  ],
+  "silver_label_summary": {
+    "label_type": "automatic_silver_labels",
+    "human_review_performed": false,
+    "rules": {
+      "grade_3": "Direct query evidence; verified failed inspection; confirmed out-of-spec measurement; or substantive RCA/CAPA",
+      "grade_2": "Strong supporting evidence with query-relevant content or a verified relationship",
+      "grade_1": "Contextual evidence with a relevant relationship",
+      "grade_0": "Not identified as relevant by these rules; not proof of irrelevance"
+    },
+    "case_summary": [
+      {
+        "case_id": "EMB-001",
+        "query": "Find historical manufacturing evidence related to dimensional non-conformance found during final inspection.",
+        "silver_relevant_chunk_count_grade_1_plus": 27,
+        "silver_relevant_chunk_count_grade_2_plus": 27,
+        "silver_relevant_chunk_count_grade_3": 23,
+        "matching_ncr_count": 10,
+        "label_reason_counts": {
+          "specific_dimensional_final_inspection_ncr": 17,
+          "linked_8d_dimensional_problem": 2,
+          "linked_rca_capa_dimensional_context": 1,
+          "directly_linked_failed_final_inspection": 6,
+          "linked_out_of_spec_dimensional_measurement": 1
+        },
+        "matching_ncr_examples": [
+          "NCR-20260001",
+          "NCR-20260002",
+          "NCR-20260004",
+          "NCR-20260007",
+          "NCR-20260010",
+          "NCR-20260012",
+          "NCR-20260015",
+          "NCR-20260028",
+          "NCR-20260037",
+          "NCR-20260040"
+        ]
+      },
+      {
+        "case_id": "EMB-002",
+        "query": "Find manufacturing evidence related to process measurements outside specification.",
+        "silver_relevant_chunk_count_grade_1_plus": 58,
+        "silver_relevant_chunk_count_grade_2_plus": 58,
+        "silver_relevant_chunk_count_grade_3": 32,
+        "matching_ncr_count": 22,
+        "label_reason_counts": {
+          "quality_record_explicitly_reports_spec_breach": 26,
+          "structured_measurement_confirmed_out_of_spec": 32
+        },
+        "matching_ncr_examples": [
+          "NCR-20260002",
+          "NCR-20260005",
+          "NCR-20260006",
+          "NCR-20260008",
+          "NCR-20260011",
+          "NCR-20260012",
+          "NCR-20260013",
+          "NCR-20260014",
+          "NCR-20260017",
+          "NCR-20260020",
+          "NCR-20260021",
+          "NCR-20260023",
+          "NCR-20260024",
+          "NCR-20260025",
+          "NCR-20260026",
+          "NCR-20260027",
+          "NCR-20260029",
+          "NCR-20260031",
+          "NCR-20260032",
+          "NCR-20260034"
+        ]
+      },
+      {
+        "case_id": "EMB-003",
+        "query": "Find previous quality investigations involving root cause and corrective action for manufacturing problems.",
+        "silver_relevant_chunk_count_grade_1_plus": 76,
+        "silver_relevant_chunk_count_grade_2_plus": 57,
+        "silver_relevant_chunk_count_grade_3": 38,
+        "matching_ncr_count": 19,
+        "label_reason_counts": {
+          "ncr_linked_to_investigation": 19,
+          "8d_contains_substantive_investigation_or_action": 19,
+          "substantive_root_cause_finding": 19,
+          "substantive_corrective_or_preventive_action": 19
+        },
+        "matching_ncr_examples": [
+          "NCR-20260006",
+          "NCR-20260008",
+          "NCR-20260009",
+          "NCR-20260016",
+          "NCR-20260017",
+          "NCR-20260020",
+          "NCR-20260021",
+          "NCR-20260022",
+          "NCR-20260025",
+          "NCR-20260026",
+          "NCR-20260027",
+          "NCR-20260028",
+          "NCR-20260029",
+          "NCR-20260032",
+          "NCR-20260033",
+          "NCR-20260036",
+          "NCR-20260037",
+          "NCR-20260038",
+          "NCR-20260042"
+        ]
+      },
+      {
+        "case_id": "EMB-004",
+        "query": "Find inspection evidence associated with dimensional quality problems.",
+        "silver_relevant_chunk_count_grade_1_plus": 52,
+        "silver_relevant_chunk_count_grade_2_plus": 41,
+        "silver_relevant_chunk_count_grade_3": 17,
+        "matching_ncr_count": 17,
+        "label_reason_counts": {
+          "ncr_describes_dimensional_inspection_problem": 17,
+          "linked_8d_dimensional_problem": 6,
+          "linked_rca_capa_dimensional_context": 1,
+          "failed_inspection_directly_linked_to_dimensional_ncr": 17,
+          "linked_out_of_spec_dimensional_measurement": 1,
+          "contextual_linked_dimensional_measurement": 10
+        },
+        "matching_ncr_examples": [
+          "NCR-20260001",
+          "NCR-20260002",
+          "NCR-20260004",
+          "NCR-20260005",
+          "NCR-20260007",
+          "NCR-20260008",
+          "NCR-20260010",
+          "NCR-20260012",
+          "NCR-20260014",
+          "NCR-20260015",
+          "NCR-20260017",
+          "NCR-20260021",
+          "NCR-20260028",
+          "NCR-20260031",
+          "NCR-20260032",
+          "NCR-20260037",
+          "NCR-20260040"
+        ]
+      },
+      {
+        "case_id": "EMB-005",
+        "query": "Find historical NCR evidence that is similar to a dimensional non-conformance found during final inspection.",
+        "silver_relevant_chunk_count_grade_1_plus": 23,
+        "silver_relevant_chunk_count_grade_2_plus": 17,
+        "silver_relevant_chunk_count_grade_3": 17,
+        "matching_ncr_count": 10,
+        "label_reason_counts": {
+          "similar_historical_dimensional_final_inspection_ncr": 17,
+          "linked_8d_for_similar_historical_ncr": 2,
+          "linked_investigation_context_for_historical_ncr": 4
+        },
+        "matching_ncr_examples": [
+          "NCR-20260001",
+          "NCR-20260002",
+          "NCR-20260004",
+          "NCR-20260007",
+          "NCR-20260010",
+          "NCR-20260012",
+          "NCR-20260015",
+          "NCR-20260028",
+          "NCR-20260037",
+          "NCR-20260040"
+        ]
+      }
+    ],
+    "corpus": {
+      "path": "data\\vector_index_candidate\\chunks.json",
+      "chunk_count": 1226,
+      "source_type_counts": {
+        "ncr": 43,
+        "8d": 19,
+        "rca": 19,
+        "capa": 19,
+        "inspection": 418,
+        "process_measurement": 619,
+        "manufacturing_order": 15,
+        "operation": 74
+      }
+    },
+    "database_relationships": {
+      "database_path": "data\\Northwind_db\\nordwind.db",
+      "opened_read_only": true,
+      "record_link_count": 262,
+      "note": "Only identifiable foreign-key paths were used; records without resolvable links rely on source/text rules."
+    },
+    "limitations": [
+      "Labels are generated by deterministic rules and database links, not human review.",
+      "Grade 0 means the rules did not identify relevance; it does not prove irrelevance.",
+      "The database relationship map covers known NCR -> 8D -> RCA/CAPA paths and direct foreign keys; not every possible manufacturing relationship.",
+      "Text matching can miss synonyms and can assign relevance to generic or repeated wording.",
+      "Metrics are exploratory silver-label metrics, not validated retrieval accuracy.",
+      "The same corpus and labeling rules are used for all methods, but labels may favor the fields and terminology encoded in those rules.",
+      "Results are limited to five benchmark queries and the current candidate corpus.",
+      "Raw similarity scores from different methods are not comparable."
+    ]
+  },
+  "safety": {
+    "production_index_read_or_modified": false,
+    "candidate_index_modified": false,
+    "model_downloads_attempted": false,
+    "e5_base_v2_included": false
+  },
+  "total_runtime_seconds": 10.722
+}

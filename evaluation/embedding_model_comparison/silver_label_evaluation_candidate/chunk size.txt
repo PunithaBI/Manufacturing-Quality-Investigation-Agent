@@ -1,0 +1,427 @@
+
+  audit_capstone_integrity.py:74:
+  audit_capstone_integrity.py:75:        print("  Counts by source type:")
+> audit_capstone_integrity.py:76:        for name, count in sorted(counts.items()):
+  audit_capstone_integrity.py:77:            print(f"    {name}: {count}")
+  audit_capstone_integrity.py:78:
+  audit_capstone_integrity.py:193:
+  audit_capstone_integrity.py:194:    hits = []
+> audit_capstone_integrity.py:195:    for path in sorted(set(files)):
+  audit_capstone_integrity.py:196:        try:
+  audit_capstone_integrity.py:197:            lines = path.read_text(encoding="utf-8").splitlines()
+  audit_index_coverage.py:52:
+  audit_index_coverage.py:53:print("\nINDEX CHUNK COUNTS BY SOURCE")
+> audit_index_coverage.py:54:for source, count in sorted(counts.items()):
+  audit_index_coverage.py:55:    print(f"{source}: {count}")
+  audit_index_coverage.py:56:
+  audit_index_coverage.py:57:print("\nSAMPLES FOR RELEVANT SOURCES")
+> audit_index_coverage.py:58:for source, chunk in sorted(samples.items()):
+  audit_index_coverage.py:59:    if any(word in source.lower() for word in (
+  audit_index_coverage.py:60:        "eight", "8d", "rca", "capa", "inspection",
+  _audit_candidate_index.py:25:    raise ValueError("No chunk records found.")
+  _audit_candidate_index.py:26:
+> _audit_candidate_index.py:27:print("\nRecord fields:", sorted(chunks[0].keys()))
+  _audit_candidate_index.py:28:print("First record sample:")
+  _audit_candidate_index.py:29:print(json.dumps(chunks[0], ensure_ascii=False, indent=2)[:1800])
+  _audit_candidate_index.py:39:    x.split(":", 1)[0] for x in valid_ids
+  _audit_candidate_index.py:40:)
+> _audit_candidate_index.py:41:for name, count in sorted(prefix_counts.items()):
+  _audit_candidate_index.py:42:    print(f"  {name}: {count}")
+  _audit_candidate_index.py:43:
+> _audit_candidate_index.py:44:text_keys = ("text", "content", "chunk_text", "page_content")
+  _audit_candidate_index.py:45:text_key = next(
+  _audit_candidate_index.py:46:    (key for key in text_keys if any(key in c for c in chunks)),
+  app\main.py:104:            "status": "connected",
+  app\main.py:105:            "database_url": settings.database_url_safe,
+> app\main.py:106:            "tables": sorted(tables),
+  app\main.py:107:            "table_count": len(tables),
+  app\main.py:108:        }
+  app\agents\evidence_agent.py:90:        ]
+  app\agents\evidence_agent.py:91:
+> app\agents\evidence_agent.py:92:        retrieval_methods = sorted(
+  app\agents\evidence_agent.py:93:        {
+  app\agents\evidence_agent.py:94:            method
+  app\agents\traceability_agent.py:25:class ProductTraceabilityAgent:
+  app\agents\traceability_agent.py:26:    """
+> app\agents\traceability_agent.py:27:    Identifies the manufacturing entities connected to an NCR.
+  app\agents\traceability_agent.py:28:
+  app\agents\traceability_agent.py:29:    The agent does not directly query arbitrary SQL.
+  app\retrieval\build_vector_index.py:52:    total_chunks = 0
+  app\retrieval\build_vector_index.py:53:
+> app\retrieval\build_vector_index.py:54:    for path in sorted(
+  app\retrieval\build_vector_index.py:55:        input_directory.rglob("*")
+  app\retrieval\build_vector_index.py:56:    ):
+  app\retrieval\chunking.py:26:
+  app\retrieval\chunking.py:27:
+> app\retrieval\chunking.py:28:DEFAULT_CHUNK_SIZE = 1200
+> app\retrieval\chunking.py:29:DEFAULT_CHUNK_OVERLAP = 200
+  app\retrieval\chunking.py:30:
+  app\retrieval\chunking.py:31:
+  app\retrieval\chunking.py:33:    document,
+  app\retrieval\chunking.py:34:    *,
+> app\retrieval\chunking.py:35:    chunk_size: int = DEFAULT_CHUNK_SIZE,
+> app\retrieval\chunking.py:36:    overlap: int = DEFAULT_CHUNK_OVERLAP,
+  app\retrieval\chunking.py:37:) -> list[DocumentChunk]:
+  app\retrieval\chunking.py:38:
+  app\retrieval\chunking.py:42:        return []
+  app\retrieval\chunking.py:43:
+> app\retrieval\chunking.py:44:    if chunk_size <= 0:
+> app\retrieval\chunking.py:45:        raise ValueError("chunk_size must be greater than zero")
+  app\retrieval\chunking.py:46:
+  app\retrieval\chunking.py:47:    if overlap < 0:
+  app\retrieval\chunking.py:48:        raise ValueError("overlap cannot be negative")
+  app\retrieval\chunking.py:49:
+> app\retrieval\chunking.py:50:    if overlap >= chunk_size:
+  app\retrieval\chunking.py:51:        raise ValueError(
+> app\retrieval\chunking.py:52:            "overlap must be smaller than chunk_size"
+  app\retrieval\chunking.py:53:        )
+  app\retrieval\chunking.py:54:
+  app\retrieval\chunking.py:61:
+  app\retrieval\chunking.py:62:        end = min(
+> app\retrieval\chunking.py:63:            start + chunk_size,
+  app\retrieval\chunking.py:64:            len(content),
+  app\retrieval\chunking.py:65:        )
+  app\retrieval\chunking.py:66:
+> app\retrieval\chunking.py:67:        chunk_text = content[start:end].strip()
+  app\retrieval\chunking.py:68:
+> app\retrieval\chunking.py:69:        if chunk_text:
+  app\retrieval\chunking.py:70:
+  app\retrieval\chunking.py:71:            chunk_id = (
+  app\retrieval\chunking.py:84:                    ),
+  app\retrieval\chunking.py:85:                    title=document.title,
+> app\retrieval\chunking.py:86:                    content=chunk_text,
+  app\retrieval\chunking.py:87:                    chunk_type="text",
+  app\retrieval\chunking.py:88:                    metadata={
+  app\retrieval\graph.py:9:    node_id: str
+  app\retrieval\graph.py:10:    node_type: str
+> app\retrieval\graph.py:11:    properties: dict[str, Any] = field(
+  app\retrieval\graph.py:12:        default_factory=dict
+  app\retrieval\graph.py:13:    )
+  app\retrieval\graph_projection.py:27:    node_type: str,
+  app\retrieval\graph_projection.py:28:    source_id: object,
+> app\retrieval\graph_projection.py:29:    properties: dict | None = None,
+  app\retrieval\graph_projection.py:30:) -> str:
+  app\retrieval\graph_projection.py:31:    node_id = _node_id(node_type, source_id)
+  app\retrieval\graph_projection.py:35:            node_id=node_id,
+  app\retrieval\graph_projection.py:36:            node_type=node_type,
+> app\retrieval\graph_projection.py:37:            properties=properties or {},
+  app\retrieval\graph_projection.py:38:        )
+  app\retrieval\graph_projection.py:39:    )
+  app\retrieval\graph_projection.py:121:        node_type="ncr",
+  app\retrieval\graph_projection.py:122:        source_id=ncr_number_value,
+> app\retrieval\graph_projection.py:123:        properties={
+  app\retrieval\graph_projection.py:124:            "id": ncr.id,
+  app\retrieval\graph_projection.py:125:            "ncr_number": ncr_number_value,
+  app\retrieval\graph_projection.py:149:            node_type="serial",
+  app\retrieval\graph_projection.py:150:            source_id=serial_number,
+> app\retrieval\graph_projection.py:151:            properties={
+  app\retrieval\graph_projection.py:152:                "id": serial.id,
+  app\retrieval\graph_projection.py:153:                "serial_number": serial_number,
+  app\retrieval\graph_projection.py:185:                node_type="manufacturing_order",
+  app\retrieval\graph_projection.py:186:                source_id=mo_number,
+> app\retrieval\graph_projection.py:187:                properties={
+  app\retrieval\graph_projection.py:188:                    "id": manufacturing_order.id,
+  app\retrieval\graph_projection.py:189:                    "order_number": mo_number,
+  app\retrieval\graph_projection.py:227:            node_type="manufacturing_order",
+  app\retrieval\graph_projection.py:228:            source_id=mo_number,
+> app\retrieval\graph_projection.py:229:            properties={
+  app\retrieval\graph_projection.py:230:                "id": ncr_mo.id,
+  app\retrieval\graph_projection.py:231:                "order_number": mo_number,
+  app\retrieval\graph_projection.py:265:            node_type="lot",
+  app\retrieval\graph_projection.py:266:            source_id=lot_number,
+> app\retrieval\graph_projection.py:267:            properties={
+  app\retrieval\graph_projection.py:268:                "id": lot.id,
+  app\retrieval\graph_projection.py:269:                "lot_number": lot_number,
+  app\retrieval\graph_projection.py:298:                node_type="component",
+  app\retrieval\graph_projection.py:299:                source_id=component_code,
+> app\retrieval\graph_projection.py:300:                properties={
+  app\retrieval\graph_projection.py:301:                    "id": component.id,
+  app\retrieval\graph_projection.py:302:                    "component_code": component_code,
+  app\retrieval\graph_projection.py:330:            node_type="inspection",
+  app\retrieval\graph_projection.py:331:            source_id=inspection.id,
+> app\retrieval\graph_projection.py:332:            properties={
+  app\retrieval\graph_projection.py:333:                "id": inspection.id,
+  app\retrieval\graph_projection.py:334:                "result": _safe_value(
+  app\retrieval\graph_projection.py:385:                node_type="8d",
+  app\retrieval\graph_projection.py:386:                source_id=report_number,
+> app\retrieval\graph_projection.py:387:                properties={
+  app\retrieval\graph_projection.py:388:                    "id": report.id,
+  app\retrieval\graph_projection.py:389:                    "report_number": report_number,
+  app\retrieval\graph_projection.py:447:            node_type="product",
+  app\retrieval\graph_projection.py:448:            source_id=product_code,
+> app\retrieval\graph_projection.py:449:            properties={
+  app\retrieval\graph_projection.py:450:                "id": product.id,
+  app\retrieval\graph_projection.py:451:                "product_code": product_code,
+  app\retrieval\graph_projection.py:516:            node_type="operation",
+  app\retrieval\graph_projection.py:517:            source_id=operation_number,
+> app\retrieval\graph_projection.py:518:            properties={
+  app\retrieval\graph_projection.py:519:                "id": operation.id,
+  app\retrieval\graph_projection.py:520:                "operation_number": operation_number,
+  app\retrieval\graph_projection.py:554:                    node_type="process_measurement",
+  app\retrieval\graph_projection.py:555:                    source_id=measurement.id,
+> app\retrieval\graph_projection.py:556:                    properties={
+  app\retrieval\graph_projection.py:557:                        "id": measurement.id,
+  app\retrieval\graph_projection.py:558:                        "parameter": _safe_value(
+  app\retrieval\graph_projection.py:600:            node_type="rca",
+  app\retrieval\graph_projection.py:601:            source_id=rca.id,
+> app\retrieval\graph_projection.py:602:            properties={
+  app\retrieval\graph_projection.py:603:                "id": rca.id,
+  app\retrieval\graph_projection.py:604:                "method": _safe_value(
+  app\retrieval\graph_projection.py:633:            node_type="capa",
+  app\retrieval\graph_projection.py:634:            source_id=capa.id,
+> app\retrieval\graph_projection.py:635:            properties={
+  app\retrieval\graph_projection.py:636:                "id": capa.id,
+  app\retrieval\graph_projection.py:637:                "description": _safe_value(
+  app\retrieval\graph_projection.py:676:            node_type="bom",
+  app\retrieval\graph_projection.py:677:            source_id=bom.id,
+> app\retrieval\graph_projection.py:678:            properties={
+  app\retrieval\graph_projection.py:679:                "id": bom.id,
+  app\retrieval\graph_projection.py:680:                "quantity": _safe_value(
+  app\retrieval\graph_projection.py:714:            node_type="component",
+  app\retrieval\graph_projection.py:715:            source_id=component_code,
+> app\retrieval\graph_projection.py:716:            properties={
+  app\retrieval\graph_projection.py:717:                "id": component.id,
+  app\retrieval\graph_projection.py:718:                "component_code": component_code,
+  app\retrieval\graph_projection.py:766:            node_type="ncr",
+  app\retrieval\graph_projection.py:767:            source_id=ncr_number,
+> app\retrieval\graph_projection.py:768:            properties={
+  app\retrieval\graph_projection.py:769:                "id": ncr.id,
+  app\retrieval\graph_projection.py:770:                "ncr_number": ncr_number,
+  app\retrieval\graph_retrieval.py:156:    source_type = node.node_type
+  app\retrieval\graph_retrieval.py:157:
+> app\retrieval\graph_retrieval.py:158:    properties = node.properties
+  app\retrieval\graph_retrieval.py:159:
+  app\retrieval\graph_retrieval.py:160:    source_id = _source_id(
+  app\retrieval\graph_retrieval.py:201:                source_type,
+  app\retrieval\graph_retrieval.py:202:            ),
+> app\retrieval\graph_retrieval.py:203:            "record_id": properties.get(
+  app\retrieval\graph_retrieval.py:204:                "id",
+  app\retrieval\graph_retrieval.py:205:            ),
+  app\retrieval\graph_retrieval.py:229:def _source_id(node) -> str | None:
+  app\retrieval\graph_retrieval.py:230:
+> app\retrieval\graph_retrieval.py:231:    properties = node.properties
+  app\retrieval\graph_retrieval.py:232:
+  app\retrieval\graph_retrieval.py:233:    candidates = [
+> app\retrieval\graph_retrieval.py:234:        properties.get("ncr_number"),
+> app\retrieval\graph_retrieval.py:235:        properties.get("serial_number"),
+> app\retrieval\graph_retrieval.py:236:        properties.get("order_number"),
+> app\retrieval\graph_retrieval.py:237:        properties.get("component_code"),
+> app\retrieval\graph_retrieval.py:238:        properties.get("report_number"),
+> app\retrieval\graph_retrieval.py:239:        properties.get("id"),
+  app\retrieval\graph_retrieval.py:240:    ]
+  app\retrieval\graph_retrieval.py:241:
+  app\retrieval\graph_retrieval.py:298:def _content_for_node(node) -> str | None:
+  app\retrieval\graph_retrieval.py:299:
+> app\retrieval\graph_retrieval.py:300:    properties = node.properties
+  app\retrieval\graph_retrieval.py:301:
+  app\retrieval\graph_retrieval.py:302:    preferred_fields = [
+  app\retrieval\graph_retrieval.py:313:    for field in preferred_fields:
+  app\retrieval\graph_retrieval.py:314:
+> app\retrieval\graph_retrieval.py:315:        value = properties.get(field)
+  app\retrieval\graph_retrieval.py:316:
+  app\retrieval\graph_retrieval.py:317:        if value is None:
+  app\retrieval\hybrid.py:33:    for evidence_id, items in grouped.items():
+  app\retrieval\hybrid.py:34:
+> app\retrieval\hybrid.py:35:        methods = sorted(
+  app\retrieval\hybrid.py:36:            {
+  app\retrieval\hybrid.py:37:                item.retrieval_method
+  app\retrieval\hybrid.py:92:            "input_evidence_count": len(evidence),
+  app\retrieval\hybrid.py:93:            "unique_evidence_count": len(combined),
+> app\retrieval\hybrid.py:94:            "retrieval_methods": sorted(
+  app\retrieval\hybrid.py:95:                {
+  app\retrieval\hybrid.py:96:                    item.retrieval_method
+  app\retrieval\ingestion.py:66:        embeddings = self.model.encode(
+  app\retrieval\ingestion.py:67:            texts,
+> app\retrieval\ingestion.py:68:            normalize_embeddings=False,
+  app\retrieval\ingestion.py:69:            show_progress_bar=True,
+  app\retrieval\ingestion.py:70:        )
+  app\retrieval\vector.py:38:
+  app\retrieval\vector.py:39:    Embeddings are generated with Sentence Transformers
+> app\retrieval\vector.py:40:    and searched using cosine similarity.
+  app\retrieval\vector.py:41:    """
+  app\retrieval\vector.py:42:
+  app\retrieval\vector.py:75:        query_vector = self.model.encode(
+  app\retrieval\vector.py:76:            query,
+> app\retrieval\vector.py:77:            normalize_embeddings=False,
+  app\retrieval\vector.py:78:        )
+  app\retrieval\vector.py:79:
+  data\Northwind_db\seed.py:1:"""
+  data\Northwind_db\seed.py:2:Seed the NordWind manufacturing database with realistic, fully-connected
+> data\Northwind_db\seed.py:3:synthetic data across all 14 entities.
+  data\Northwind_db\seed.py:4:"""
+  data\Northwind_db\seed.py:5:import random
+  data\Northwind_db\seed.py:277:    ncr_counter += 1
+  data\Northwind_db\seed.py:278:
+> data\Northwind_db\seed.py:279:# A few NCRs tied to rejected/quarantined incoming lots
+  data\Northwind_db\seed.py:280:bad_lots = [l for l in lots if l.quality_status in ("Rejected", "Quarantine")]
+  data\Northwind_db\seed.py:281:for lot in bad_lots:
+  deployment\smoke_test.py:149:        raise SmokeTestFailure(
+  deployment\smoke_test.py:150:            "Required investigation tables "
+> deployment\smoke_test.py:151:            f"are missing: {sorted(missing)}"
+  deployment\smoke_test.py:152:        )
+  deployment\smoke_test.py:153:
+  evaluation\embedding_model_comparison\audit_silver_labels.py:170:                anomaly_rows.append(row)
+  evaluation\embedding_model_comparison\audit_silver_labels.py:171:
+> evaluation\embedding_model_comparison\audit_silver_labels.py:172:        print("  Grades:", dict(sorted(grade_counts.items())))
+> evaluation\embedding_model_comparison\audit_silver_labels.py:173:        print("  Sources:", dict(sorted(source_counts.items())))
+  evaluation\embedding_model_comparison\audit_silver_labels.py:174:
+  evaluation\embedding_model_comparison\audit_silver_labels.py:175:    fields = [
+  evaluation\embedding_model_comparison\metrics.py:4:
+  evaluation\embedding_model_comparison\metrics.py:5:
+> evaluation\embedding_model_comparison\metrics.py:6:def recall_at_k(
+  evaluation\embedding_model_comparison\metrics.py:7:    retrieved_ids: list[str],
+  evaluation\embedding_model_comparison\metrics.py:8:    relevant_ids: set[str],
+  evaluation\embedding_model_comparison\metrics.py:23:
+  evaluation\embedding_model_comparison\metrics.py:24:
+> evaluation\embedding_model_comparison\metrics.py:25:def reciprocal_rank(
+  evaluation\embedding_model_comparison\metrics.py:26:    retrieved_ids: list[str],
+  evaluation\embedding_model_comparison\metrics.py:27:    relevant_ids: set[str],
+  evaluation\embedding_model_comparison\metrics.py:54:
+  evaluation\embedding_model_comparison\metrics.py:55:
+> evaluation\embedding_model_comparison\metrics.py:56:def ndcg_at_k(
+  evaluation\embedding_model_comparison\metrics.py:57:    retrieved_ids: list[str],
+  evaluation\embedding_model_comparison\metrics.py:58:    relevant_ids: set[str],
+  evaluation\embedding_model_comparison\metrics.py:90:
+  evaluation\embedding_model_comparison\metrics.py:91:    return {
+> evaluation\embedding_model_comparison\metrics.py:92:        "recall_at_5": round(
+> evaluation\embedding_model_comparison\metrics.py:93:            recall_at_k(
+  evaluation\embedding_model_comparison\metrics.py:94:                retrieved_ids,
+  evaluation\embedding_model_comparison\metrics.py:95:                relevant_ids,
+  evaluation\embedding_model_comparison\metrics.py:98:            4,
+  evaluation\embedding_model_comparison\metrics.py:99:        ),
+> evaluation\embedding_model_comparison\metrics.py:100:        "recall_at_10": round(
+> evaluation\embedding_model_comparison\metrics.py:101:            recall_at_k(
+  evaluation\embedding_model_comparison\metrics.py:102:                retrieved_ids,
+  evaluation\embedding_model_comparison\metrics.py:103:                relevant_ids,
+  evaluation\embedding_model_comparison\metrics.py:107:        ),
+  evaluation\embedding_model_comparison\metrics.py:108:        "mrr": round(
+> evaluation\embedding_model_comparison\metrics.py:109:            reciprocal_rank(
+  evaluation\embedding_model_comparison\metrics.py:110:                retrieved_ids,
+  evaluation\embedding_model_comparison\metrics.py:111:                relevant_ids,
+  evaluation\embedding_model_comparison\metrics.py:113:            4,
+  evaluation\embedding_model_comparison\metrics.py:114:        ),
+> evaluation\embedding_model_comparison\metrics.py:115:        "ndcg_at_10": round(
+> evaluation\embedding_model_comparison\metrics.py:116:            ndcg_at_k(
+  evaluation\embedding_model_comparison\metrics.py:117:                retrieved_ids,
+  evaluation\embedding_model_comparison\metrics.py:118:                relevant_ids,
+  evaluation\embedding_model_comparison\run_benchmark.py:137:        relevant_ids = set(
+  evaluation\embedding_model_comparison\run_benchmark.py:138:            case.get(
+> evaluation\embedding_model_comparison\run_benchmark.py:139:                "relevant_source_ids",
+  evaluation\embedding_model_comparison\run_benchmark.py:140:                [],
+  evaluation\embedding_model_comparison\run_benchmark.py:141:            )
+  evaluation\embedding_model_comparison\run_benchmark.py:145:            raise ValueError(
+  evaluation\embedding_model_comparison\run_benchmark.py:146:                f"{case['case_id']} has no "
+> evaluation\embedding_model_comparison\run_benchmark.py:147:                "ground-truth relevant_source_ids. "
+  evaluation\embedding_model_comparison\run_benchmark.py:148:                "Human labeling is required before "
+  evaluation\embedding_model_comparison\run_benchmark.py:149:                "the benchmark can run."
+  evaluation\embedding_model_comparison\run_benchmark.py:160:                f"{case['case_id']} contains IDs "
+  evaluation\embedding_model_comparison\run_benchmark.py:161:                f"not found in the corpus: "
+> evaluation\embedding_model_comparison\run_benchmark.py:162:                f"{sorted(missing)}"
+  evaluation\embedding_model_comparison\run_benchmark.py:163:            )
+  evaluation\embedding_model_comparison\run_benchmark.py:164:
+  evaluation\embedding_model_comparison\run_benchmark.py:217:    embeddings = model.encode(
+  evaluation\embedding_model_comparison\run_benchmark.py:218:        texts,
+> evaluation\embedding_model_comparison\run_benchmark.py:219:        normalize_embeddings=True,
+  evaluation\embedding_model_comparison\run_benchmark.py:220:        show_progress_bar=True,
+  evaluation\embedding_model_comparison\run_benchmark.py:221:    )
+  evaluation\embedding_model_comparison\run_benchmark.py:311:    query_vector = model.encode(
+  evaluation\embedding_model_comparison\run_benchmark.py:312:        model_query,
+> evaluation\embedding_model_comparison\run_benchmark.py:313:        normalize_embeddings=True,
+  evaluation\embedding_model_comparison\run_benchmark.py:314:    )
+  evaluation\embedding_model_comparison\run_benchmark.py:315:
+  evaluation\embedding_model_comparison\run_benchmark.py:405:                relevant_ids=set(
+  evaluation\embedding_model_comparison\run_benchmark.py:406:                    case[
+> evaluation\embedding_model_comparison\run_benchmark.py:407:                        "relevant_source_ids"
+  evaluation\embedding_model_comparison\run_benchmark.py:408:                    ]
+  evaluation\embedding_model_comparison\run_benchmark.py:409:                ),
+  evaluation\embedding_model_comparison\run_benchmark.py:420:                    "retrieved": retrieved_ids,
+  evaluation\embedding_model_comparison\run_benchmark.py:421:                    "ground_truth": case[
+> evaluation\embedding_model_comparison\run_benchmark.py:422:                        "relevant_source_ids"
+  evaluation\embedding_model_comparison\run_benchmark.py:423:                    ],
+  evaluation\embedding_model_comparison\run_benchmark.py:424:                    "query_latency_ms": round(
+  evaluation\embedding_model_comparison\run_benchmark.py:440:            )
+  evaluation\embedding_model_comparison\run_benchmark.py:441:            for metric in [
+> evaluation\embedding_model_comparison\run_benchmark.py:442:                "recall_at_5",
+> evaluation\embedding_model_comparison\run_benchmark.py:443:                "recall_at_10",
+  evaluation\embedding_model_comparison\run_benchmark.py:444:                "mrr",
+> evaluation\embedding_model_comparison\run_benchmark.py:445:                "ndcg_at_10",
+  evaluation\embedding_model_comparison\run_benchmark.py:446:            ]
+  evaluation\embedding_model_comparison\run_benchmark.py:447:        }
+  evaluation\embedding_model_comparison\run_benchmark.py:487:        print(
+  evaluation\embedding_model_comparison\run_benchmark.py:488:            f"Recall@5: "
+> evaluation\embedding_model_comparison\run_benchmark.py:489:            f"{average_metrics['recall_at_5']}"
+  evaluation\embedding_model_comparison\run_benchmark.py:490:        )
+  evaluation\embedding_model_comparison\run_benchmark.py:491:        print(
+  evaluation\embedding_model_comparison\run_benchmark.py:492:            f"Recall@10: "
+> evaluation\embedding_model_comparison\run_benchmark.py:493:            f"{average_metrics['recall_at_10']}"
+  evaluation\embedding_model_comparison\run_benchmark.py:494:        )
+  evaluation\embedding_model_comparison\run_benchmark.py:495:        print(
+  evaluation\embedding_model_comparison\run_benchmark.py:498:        )
+  evaluation\embedding_model_comparison\run_benchmark.py:499:        print(
+> evaluation\embedding_model_comparison\run_benchmark.py:500:            f"nDCG@10: "
+> evaluation\embedding_model_comparison\run_benchmark.py:501:            f"{average_metrics['ndcg_at_10']}"
+  evaluation\embedding_model_comparison\run_benchmark.py:502:        )
+  evaluation\embedding_model_comparison\run_benchmark.py:503:        print(
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:146:
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:147:
+> evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:148:def chunk_text(chunk: dict[str, Any]) -> str:
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:149:    metadata = chunk.get("metadata") or {}
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:150:    return "\n".join(
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:455:    matching_ncrs: set[str],
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:456:) -> tuple[int, str]:
+> evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:457:    text = chunk_text(chunk)
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:458:    family = source_family(chunk)
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:459:    table = _provenance_table(chunk)
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:644:            number = str(chunk.get("source_id", ""))
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:645:            ncr_text_by_number[number] = (
+> evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:646:                ncr_text_by_number.get(number, "") + "\n" + chunk_text(chunk)
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:647:            )
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:648:
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:681:        elif kind == "process_out_of_spec":
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:682:            for chunk in chunks:
+> evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:683:                text = chunk_text(chunk)
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:684:                structured_breach = (
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:685:                    _is_process_measurement(chunk)
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:746:                ),
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:747:                "label_reason_counts": case_reasons[case["case_id"]],
+> evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:748:                "matching_ncr_examples": sorted(
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:749:                    matching_ncrs_by_case[case["case_id"]]
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:750:                )[:20],
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:784:
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:785:def tfidf_rank(chunks: list[dict[str, Any]], query: str, top_k: int) -> list[dict[str, Any]]:
+> evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:786:    docs = [tokenize(chunk_text(chunk)) for chunk in chunks]
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:787:    df: Counter[str] = Counter()
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:788:    for tokens in docs:
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:806:        dot = sum(weight * vec.get(token, 0.0) for token, weight in qvec.items())
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:807:        scores.append(dot / (qnorm * dnorm) if qnorm and dnorm else 0.0)
+> evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:808:    order = sorted(range(n), key=lambda i: (-scores[i], i))[:top_k]
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:809:    return [{"chunk_id": chunks[i]["chunk_id"], "score": float(scores[i])} for i in order]
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:810:
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:811:
+> evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:812:def precision_at_k(ranked_ids: list[str], relevant: set[str], k: int) -> float:
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:813:    return sum(1 for item in ranked_ids[:k] if item in relevant) / k if k else 0.0
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:814:
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:815:
+> evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:816:def recall_at_k(ranked_ids: list[str], relevant: set[str], k: int) -> float:
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:817:    return sum(1 for item in ranked_ids[:k] if item in relevant) / len(relevant) if relevant else 0.0
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:818:
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:825:
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:826:
+> evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:827:def ndcg_at_k(ranked_ids: list[str], grades: dict[str, int], k: int) -> float:
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:828:    def dcg(ids: list[str]) -> float:
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:829:        return sum(((2 ** grades.get(cid, 0)) - 1) / math.log2(rank + 1) for rank, cid in enumerate(ids[:k], 1))
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:830:    actual = dcg(ranked_ids)
+> evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:831:    ideal_grades = sorted(grades.values(), reverse=True)[:k]
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:832:    ideal = sum(((2 ** grade) - 1) / math.log2(rank + 1) for rank, grade in enumerate(ideal_grades, 1))
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:833:    return actual / ideal if ideal else 0.0
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:870:            q = config["query_prefix"] + case["query"]
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:871:            qvec = np.asarray(
+> evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:872:                model.encode(q, normalize_embeddings=True, convert_to_numpy=True, show_progress_bar=False),
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:873:                dtype=np.float32,
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:874:            ).reshape(-1)
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:884:            relevant = {cid for cid, grade in grade_map.items() if grade >= 2}
+  evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:885:            metrics = {
+> evaluation\embedding_model_comparison\run_silver_label_evaluation_candidate.py:886:                "precision_at_5": round(precision_at_k(ranked_ids, relevant, 5), 4),
+
+
+

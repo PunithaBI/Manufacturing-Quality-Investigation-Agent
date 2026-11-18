@@ -1,0 +1,70 @@
+services:
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: mqi-postgres
+
+    environment:
+      POSTGRES_DB: mqi
+      POSTGRES_USER: mqi
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-mqi_dev_password}
+
+    volumes:
+      - mqi_postgres_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U mqi -d mqi"
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+    restart: unless-stopped
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: mqi-api
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+    environment:
+      APP_NAME: Manufacturing Quality Investigation Agent
+      ENVIRONMENT: production
+
+      DATABASE_URL: postgresql+psycopg://mqi:${POSTGRES_PASSWORD:-mqi_dev_password}@postgres:5432/mqi
+
+      VECTOR_INDEX_DIRECTORY: /app/data/vector_index
+
+    ports:
+      - "8000:8000"
+
+    volumes:
+      - mqi_vector_data:/app/data/vector_index
+      - ./data/Northwind_db/nordwind.db:/seed/nordwind.db:ro
+
+    restart: unless-stopped
+
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+volumes:
+  mqi_postgres_data:
+  mqi_vector_data:

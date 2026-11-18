@@ -1,0 +1,40 @@
+{
+  "version": "1.0",
+  "description": "Human-reviewed benchmark for manufacturing evidence retrieval",
+  "corpus": {
+    "source": "data/vector_index/chunks.json",
+    "expected_chunk_count": 1188
+  },
+  "cases": [
+    {
+      "case_id": "EMB-001",
+      "query": "Find historical manufacturing evidence related to dimensional non-conformance found during final inspection.",
+      "relevant_source_ids": [],
+      "status": "NEEDS_HUMAN_LABELING"
+    },
+    {
+      "case_id": "EMB-002",
+      "query": "Find manufacturing evidence related to process measurements outside specification.",
+      "relevant_source_ids": [],
+      "status": "NEEDS_HUMAN_LABELING"
+    },
+    {
+      "case_id": "EMB-003",
+      "query": "Find previous quality investigations involving root cause and corrective action for manufacturing problems.",
+      "relevant_source_ids": [],
+      "status": "NEEDS_HUMAN_LABELING"
+    },
+    {
+      "case_id": "EMB-004",
+      "query": "Find inspection evidence associated with dimensional quality problems.",
+      "relevant_source_ids": [],
+      "status": "NEEDS_HUMAN_LABELING"
+    },
+    {
+      "case_id": "EMB-005",
+      "query": "Find historical NCR evidence that is similar to a dimensional non-conformance found during final inspection.",
+      "relevant_source_ids": [],
+      "status": "NEEDS_HUMAN_LABELING"
+    }
+  ]
+}

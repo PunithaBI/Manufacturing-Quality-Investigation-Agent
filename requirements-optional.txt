@@ -1,0 +1,2 @@
+# Optional infrastructure. Install only when required.
+asyncpg==0.30.0
